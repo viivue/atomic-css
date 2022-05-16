@@ -1,0 +1,30 @@
+{
+  "name": "atomic-css",
+  "version": "1.0.0",
+  "description": "⚛️ Atomic CSS Framework by ViiVue, for everyone.",
+  "scripts": {
+    "sass": "node-sass scss/ -o css/ --output-style=compact",
+    "sass:watch": "node-sass -w scss/ -o css/ --output-style=compact",
+    "merge": "css-merge -i css -o dist/viivue-atomic.css",
+    "merge:min": "css-merge -i css -o dist/viivue-atomic.min.css -m",
+    "dev": "npm run sass:watch",
+    "prod": "npm run sass && npm run merge && npm run merge:min"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/viivue/atomic-css.git"
+  },
+  "keywords": [
+    "atomic",
+    "viivue"
+  ],
+  "author": "phucbm",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/viivue/atomic-css/issues"
+  },
+  "homepage": "https://github.com/viivue/atomic-css#readme",
+  "devDependencies": {
+    "node-sass": "^7.0.1"
+  }
+}
