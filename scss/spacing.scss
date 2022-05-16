@@ -1,0 +1,67 @@
+/// Margin and Padding
+@import "config";
+
+$classes: ("m":"margin", "p":"padding");
+
+@each $name, $prop in $classes {
+  // auto
+  @if ($name == "m") {
+    .#{$name}-auto {
+      #{$prop}: auto;
+    }
+    // auto
+    @each $name-mod, $prop-mod in $trbl {
+      .#{$name}#{$name-mod}-auto {
+        #{$prop}#{$prop-mod}: auto;
+      }
+    }
+  }
+
+  @each $value in $spacing_values {
+    /* #{$prop} #{$value} */
+
+    // full value
+    .#{$name}#{$value} {
+      #{$prop}: #{val($value)};
+    }
+
+    // top right bottom left
+    @each $name-mod, $prop-mod in $trbl {
+
+      // positive value
+      .#{$name}#{$name-mod}#{$value} {
+        #{$prop}#{$prop-mod}: #{val($value)};
+      }
+
+      // negative value
+      @if ($value !=0) {
+        .#{$name}#{$name-mod}n#{$value} {
+          #{$prop}#{$prop-mod}: #{val(-1 * $value)};
+        }
+      }
+
+    }
+
+    // axes
+    @each $axis, $axis-props in $axes {
+
+      // positive axis
+      .#{$name}#{$axis}#{$value} {
+        @each $ap in $axis-props {
+          #{$prop}#{$ap}: #{val($value)};
+        }
+      }
+
+      // negative axis
+      @if ($value !=0) {
+        .#{$name}#{$axis}n#{$value} {
+          @each $ap in $axis-props {
+            #{$prop}#{$ap}: #{val(-1 * $value)};
+          }
+        }
+      }
+
+    }
+  }
+
+}
