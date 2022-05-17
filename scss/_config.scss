@@ -5,5 +5,11 @@
 
 $version: "1.0.0";
 
-// spacing values
+// spacing values (for margin and padding)
 $spacing_values: 0 4 8 16 24 32 48 64 96 128;
+
+// coordinate values (for position top, right, bottom left)
+$coordinate_values: (
+        "px": 0 1 2 4 6 8 12 16 24,
+        "%":50 100,
+);

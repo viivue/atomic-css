@@ -2,5 +2,5 @@
 
 // get formatted value
 @function val($value,$unit:"px") {
-  @return if($value==0, $value, $value+$unit);
+  @return if($value==0, $value, unquote($value+$unit));
 }

@@ -4,6 +4,32 @@
  */
 @import "config";
 
-// Position
+$positions: "absolute", "fixed", "relative", "static", "sticky";
 
-// Coordinates
+/* Positions */
+@each $prop in $positions {
+  .ps-#{$prop} {
+    position: #{$prop};
+  }
+}
+
+/* Coordinates */
+@each $unit, $values in $coordinate_values {
+  // each value in each unit
+  @each $val in $values {
+    // each coordinate for each value
+    @each $name, $prop in $coordinates {
+      // Positive coordinates
+      .#{$name}#{$val} {
+        #{$prop}: val($val, $unit);
+      }
+
+      // Negative coordinates
+      @if ($val!=0) {
+        .#{$name}n#{$val} {
+          #{$prop}: val(-1 * $val, $unit);
+        }
+      }
+    }
+  }
+}
