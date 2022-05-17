@@ -13,9 +13,9 @@ $classes: ("m":"margin", "p":"padding");
     .#{$name}-auto {
       #{$prop}: auto;
     }
-    @each $name-mod, $prop-mod in $trbl {
+    @each $name-mod, $prop-mod in $coordinates {
       .#{$name}#{$name-mod}-auto {
-        #{$prop}#{$prop-mod}: auto;
+        #{$prop}-#{$prop-mod}: auto;
       }
     }
   }
@@ -29,17 +29,17 @@ $classes: ("m":"margin", "p":"padding");
     }
 
     // top right bottom left
-    @each $name-mod, $prop-mod in $trbl {
+    @each $name-mod, $prop-mod in $coordinates {
 
       // positive value
       .#{$name}#{$name-mod}#{$value} {
-        #{$prop}#{$prop-mod}: #{val($value)};
+        #{$prop}-#{$prop-mod}: #{val($value)};
       }
 
       // negative value
       @if ($value !=0) {
         .#{$name}#{$name-mod}n#{$value} {
-          #{$prop}#{$prop-mod}: #{val(-1 * $value)};
+          #{$prop}-#{$prop-mod}: #{val(-1 * $value)};
         }
       }
 
