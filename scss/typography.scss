@@ -4,8 +4,46 @@
  */
 @import "config";
 
-// Basic
+@each $prop, $data in $typography {
+  $prefix: map-get($data, "prefix");
+  $value: map-get($data, "value");
 
-// Layout
+  $has_type: map-has-key($data, "type");
+  $type: map-get($data, "type");
+  $is_value_key_as_postfix: $has_type and $type == value-key-as-postfix;
+  $is_mixin: $has_type and $type == mixin;
 
-// Fonts
+  /* #{$prop} */
+
+  // Flat value
+  @if (not $has_type) {
+    @each $val in $value {
+      .#{$prefix}-#{$val} {
+        #{$prop}: #{$val};
+      }
+    }
+  }
+
+  // Mixin
+  @if ($is_mixin) {
+    $mixin: map-get($data, "mixin");
+
+    // use prop as a fallback mixin name
+    @if (not $mixin) {
+      $mixin: $prop;
+    }
+
+    .#{$prop} {
+      @include get-mixin($mixin);
+    }
+  }
+
+  // Use value key as postfix
+  @if ($is_value_key_as_postfix) {
+    @each $postfix, $val in $value {
+      .#{$prefix}-#{$postfix} {
+        #{$prop}: #{$val};
+      }
+    }
+  }
+}
