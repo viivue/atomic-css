@@ -19,19 +19,16 @@ npm install
 
 ### Dev
 
+Watch SCSS files, then compile to previewed CSS
+
 ```shell
 npm run dev
 ```
 
-1. Watch SCSS files
-2. Then compile to CSS for preview
-
 ### Prod
+
+Compile compressed CSS
 
 ```shell
 npm run prod
 ```
-
-1. Compile to CSS
-2. Merge CSS
-3. Minify CSS

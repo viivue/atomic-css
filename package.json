@@ -3,12 +3,10 @@
   "version": "1.0.0",
   "description": "⚛️ Atomic CSS Framework by ViiVue, for everyone.",
   "scripts": {
-    "sass": "node-sass scss/ -o css/ --output-style=compact",
-    "sass:watch": "node-sass -w scss/ -o css/ --output-style=compact",
-    "merge": "css-merge -i css -o dist/viivue-atomic.css",
-    "merge:min": "css-merge -i css -o dist/viivue-atomic.min.css -m",
+    "sass:watch": "sass scss:css -w --no-source-map",
+    "sass:compressed": "sass scss/_build.scss:dist/atomic.min.css --style=compressed --no-source-map",
     "dev": "npm run sass:watch",
-    "prod": "npm run sass && npm run merge && npm run merge:min"
+    "prod": "npm run sass:compressed"
   },
   "repository": {
     "type": "git",
@@ -25,6 +23,6 @@
   },
   "homepage": "https://github.com/viivue/atomic-css#readme",
   "devDependencies": {
-    "node-sass": "^7.0.1"
+    "sass": "^1.51.0"
   }
 }

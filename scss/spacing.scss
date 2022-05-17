@@ -1,17 +1,18 @@
-/// Spacing
-/// https://stackoverflow.design/product/base/spacing/
+/**
+ * Spacing
+ * https://stackoverflow.design/product/base/spacing/
+ */
 @import "config";
 
 // Margin and Padding
 $classes: ("m":"margin", "p":"padding");
 
 @each $name, $prop in $classes {
-  // auto
+  /* Margin auto */
   @if ($name == "m") {
     .#{$name}-auto {
       #{$prop}: auto;
     }
-    // auto
     @each $name-mod, $prop-mod in $trbl {
       .#{$name}#{$name-mod}-auto {
         #{$prop}#{$prop-mod}: auto;
