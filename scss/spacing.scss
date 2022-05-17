@@ -1,6 +1,8 @@
-/// Margin and Padding
+/// Spacing
+/// https://stackoverflow.design/product/base/spacing/
 @import "config";
 
+// Margin and Padding
 $classes: ("m":"margin", "p":"padding");
 
 @each $name, $prop in $classes {
