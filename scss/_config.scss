@@ -1,17 +1,32 @@
 /// Configuration
 /// Edit these configs to fit your needs
-@import "mixins";
 @import "defs";
-@import "functions";
 
 $version: "1.0.0";
 
+// breakpoints
+$breakpoints: (
+        "lg": 1200px,
+        "md": 1023px,
+        "sm": 767px,
+) !default;
+
 // spacing values (for margin and padding)
-$spacing_values: 0 4 8 16 24 32 48 64 96 128;
+$spacing_values: (
+        "x":(
+                "values": 0 10 20 40 60 100,
+                "md": 0 5 20 40 60 80,
+                "sm": 0 10 20 40 70 70
+        ),
+        //"y":(
+        //        "values": 0 4 8 16 24 32 48 64 96 128,
+        //        "md": 0 4 8 15 22 30 46 60 90 120
+        //),
+);
 
 // coordinate values (for position top, right, bottom left)
 $coordinate_values: (
-        "px": 0 1 2 4 6 8 12 16 24,
+        "px":0 1 2 4 6 8 12 16 24,
         "%":50 100,
 );
 

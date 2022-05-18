@@ -2,7 +2,7 @@
  * Typography
  * https://stackoverflow.design/product/base/typography/
  */
-@import "config";
+@import "helpers";
 
 @each $prop, $data in $typography {
   $prefix: map-get($data, "prefix");

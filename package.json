@@ -3,10 +3,12 @@
   "version": "1.0.0",
   "description": "⚛️ Atomic CSS Framework by ViiVue, for everyone.",
   "scripts": {
+    "sass": "sass scss:css --no-source-map",
     "sass:watch": "sass scss:css -w --no-source-map",
-    "sass:compressed": "sass scss/_build.scss:dist/atomic.min.css --style=compressed --no-source-map",
+    "sass:compressed": "sass scss/_build.scss:dist/atomic.css --no-source-map",
+    "cleancss": "cleancss dist/atomic.css -o dist/atomic.min.css",
     "dev": "npm run sass:watch",
-    "prod": "npm run sass:compressed"
+    "prod": "npm run sass && npm run sass:compressed && npm run cleancss"
   },
   "repository": {
     "type": "git",
@@ -23,6 +25,7 @@
   },
   "homepage": "https://github.com/viivue/atomic-css#readme",
   "devDependencies": {
+    "clean-css-cli": "^5.6.0",
     "sass": "^1.51.0"
   }
 }

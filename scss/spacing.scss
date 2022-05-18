@@ -2,69 +2,66 @@
  * Spacing
  * https://stackoverflow.design/product/base/spacing/
  */
-@import "config";
+@import "helpers";
 
 // Margin and Padding
 $classes: ("m":"margin", "p":"padding");
 
-@each $name, $prop in $classes {
-  /* Margin auto */
-  @if ($name == "m") {
-    .#{$name}-auto {
+@mixin spacing-values($prefix,$axis,$postfix,$prop,$value) {
+  // axes
+  .#{$prefix}#{$axis}#{$postfix} {
+    @each $ap in map-get($axes, $axis) {
+      #{$prop}#{$ap}: #{val($value)};
+    }
+  }
+
+  // top right bottom left
+  @each $prefix-c, $prop-c in $coordinates {
+    .#{$prefix}#{$prefix-c}#{$postfix} {
+      #{$prop}-#{$prop-c}: #{val($value)};
+    }
+  }
+}
+
+@mixin spacing($prefix, $prop, $dataset) {
+  @each $axis, $data in $dataset {
+    @each $breakpoint, $values in $data {
+      @include respond-to($breakpoint) {
+
+        @for $i from 1 through length($values) {
+          $value: nth($values, $i);
+          $postfix: get-previous-breakpoint-value($i, $value, $breakpoint, $data);
+
+          @if is-breakpoint($breakpoint) {
+            // skip not responsive values
+            @if $value != $postfix {
+              /* Breakpoint #{$breakpoint} */
+              @include spacing-values($prefix, $axis, $postfix, $prop, $value);
+            }
+          } @else {
+            @include spacing-values($prefix, $axis, $postfix, $prop, $value);
+          }
+        }
+
+      }
+    }
+  }
+}
+
+@each $prefix, $prop in $classes {
+
+  @if ($prefix == "m") {
+    /* Margin auto */
+    .#{$prefix}-auto {
       #{$prop}: auto;
     }
-    @each $name-mod, $prop-mod in $coordinates {
-      .#{$name}#{$name-mod}-auto {
+    @each $prefix-mod, $prop-mod in $coordinates {
+      .#{$prefix}#{$prefix-mod}-auto {
         #{$prop}-#{$prop-mod}: auto;
       }
     }
   }
 
-  @each $value in $spacing_values {
-    /* #{$prop} #{$value} */
-
-    // full value
-    .#{$name}#{$value} {
-      #{$prop}: #{val($value)};
-    }
-
-    // top right bottom left
-    @each $name-mod, $prop-mod in $coordinates {
-
-      // positive value
-      .#{$name}#{$name-mod}#{$value} {
-        #{$prop}-#{$prop-mod}: #{val($value)};
-      }
-
-      // negative value
-      @if ($value !=0) {
-        .#{$name}#{$name-mod}n#{$value} {
-          #{$prop}-#{$prop-mod}: #{val(-1 * $value)};
-        }
-      }
-
-    }
-
-    // axes
-    @each $axis, $axis-props in $axes {
-
-      // positive axis
-      .#{$name}#{$axis}#{$value} {
-        @each $ap in $axis-props {
-          #{$prop}#{$ap}: #{val($value)};
-        }
-      }
-
-      // negative axis
-      @if ($value !=0) {
-        .#{$name}#{$axis}n#{$value} {
-          @each $ap in $axis-props {
-            #{$prop}#{$ap}: #{val(-1 * $value)};
-          }
-        }
-      }
-
-    }
-  }
-
+  // axes
+  @include spacing($prefix, $prop, $spacing_values);
 }

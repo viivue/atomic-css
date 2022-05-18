@@ -1,0 +1,99 @@
+@import "config";
+
+////////////////////////////// Functions
+
+// get formatted value
+@function val($value,$unit:"px") {
+  @return if($value==0, $value, unquote($value+$unit));
+}
+
+// Is valid breakpoint
+@function is-breakpoint($breakpoint) {
+  @return map-has-key($breakpoints, $breakpoint);
+}
+
+// get previous breakpoint in responsive $data
+//(
+//  "values": 0 4 8 16 24 32 48 64 96 128,
+//  "md": 0 4 8 15 22 30 46 60 90 120
+//)
+// get-previous-breakpoint(md,...) => "values"
+@function get-previous-breakpoint($breakpoint,$data) {
+  $keys: map-keys($data);
+  $current_index: index($keys, $breakpoint);
+  $previous_index: $current_index - 1;
+
+  // first index is 1 (yes, not 0!!!)
+  @if $previous_index < 1 {
+    $previous_index: 1;
+  }
+
+  //@debug "Current #{$breakpoint} -> Prev #{nth($keys, $previous_index)}";
+
+  @return nth($keys, $previous_index);
+}
+
+
+// get previous breakpoint value base on responsive breakpoint
+//(
+//  "values": 0 4 8 16 24 32 48 64 96 128,
+//  "md": 0 4 8 15 22 30 46 60 90 120
+//  "sm": 0 4 8 15 22 30 46 60 90 80
+//)
+// get-postfix(120,md,...) => 128
+// get-postfix(80,sm,...) => 128
+@function get-previous-breakpoint-value($index,$value,$current_breakpoint,$data) {
+  @if is-breakpoint($current_breakpoint) {
+    $default_values: map-get($data, "values");
+    $previous_values: map-get($data, get-previous-breakpoint($current_breakpoint, $data));
+    $current_values: map-get($data, $current_breakpoint);
+    $previous_val: nth($previous_values, $index);
+
+    // if responsive value is different
+    @if $previous_val != $value {
+      @return nth($previous_values, $index);
+    }
+
+    //@debug "----";
+    //@debug "default: "+$result+" | #{$current_breakpoint}: "+$value;
+  }
+
+  // not found responsive value
+  @return $value;
+}
+
+////////////////////////////// Mixins
+
+// Get minix
+@mixin get-mixin($name) {
+  @if ($name==break-word) {
+    @include break-word;
+  }
+}
+
+// A utility class combining all word-break strategies
+// when you absolutely must break a word.
+@mixin break-word {
+  word-break: break-word;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+/// Mixin to manage responsive breakpoints
+/// @author Kitty Giraudel
+/// @param {String} $breakpoint - Breakpoint name
+/// @require $breakpoints
+@mixin respond-to($breakpoint) {
+  // If the key exists in the map
+  @if map-has-key($breakpoints, $breakpoint) {
+    // Prints a media query based on the value
+    @media only screen and (max-width: map-get($breakpoints, $breakpoint)) {
+      @content;
+    }
+  }
+    // If the key doesn't exist in the map
+  @else {
+    @content;
+  }
+}
