@@ -32,15 +32,10 @@ $classes: ("m":"margin", "p":"padding");
           $value: nth($values, $i);
           $postfix: get-previous-breakpoint-value($i, $value, $breakpoint, $data);
 
-          @if is-breakpoint($breakpoint) {
-            // skip not responsive values
-            @if format-value($value) != format-value($postfix) {
-              /* Breakpoint #{$breakpoint} */
-              @include spacing-values($prefix, $axis, $postfix, $prop, $value);
-            }
-          } @else {
+          @include responsive($breakpoint, $value, $postfix) {
             @include spacing-values($prefix, $axis, $postfix, $prop, $value);
           }
+
         }
 
       }
@@ -49,7 +44,6 @@ $classes: ("m":"margin", "p":"padding");
 }
 
 @each $prefix, $prop in $classes {
-
   @if ($prefix == "m") {
     /* Margin auto */
     .#{$prefix}-auto {

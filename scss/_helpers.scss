@@ -161,7 +161,21 @@
 /// Manage responsive breakpoints
 @mixin respond-to($breakpoint) {
   @if is-breakpoint($breakpoint) {
+    /* Breakpoint #{$breakpoint} */
     @media only screen and (max-width: map-get($breakpoints, $breakpoint)) {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}
+
+@mixin responsive($breakpoint,$value,$postfix) {
+  @if is-breakpoint($breakpoint) {
+    // skip not responsive values
+    //@debug $value + ' - ' + $postfix +' -> '+format-value($value) +' - '+ format-value($postfix);
+
+    @if format-value($value) != format-value($postfix) {
       @content;
     }
   } @else {

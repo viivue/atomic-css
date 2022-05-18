@@ -29,14 +29,7 @@ $positions: absolute fixed relative static sticky;
       $value: nth($values, $i);
       $postfix: get-previous-breakpoint-value($i, $value, $breakpoint, $coordinate_values);
 
-      @if is-breakpoint($breakpoint) {
-        // skip not responsive values
-        //@debug $value + ' - ' + $postfix +' -> '+format-value($value) +' - '+ format-value($postfix);
-
-        @if format-value($value) != format-value($postfix) {
-          @include position-coordinates($value, $postfix);
-        }
-      } @else {
+      @include responsive($breakpoint, $value, $postfix) {
         @include position-coordinates($value, $postfix);
       }
     }
