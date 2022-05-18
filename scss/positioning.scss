@@ -4,9 +4,8 @@
  */
 @import "helpers";
 
-$positions: "absolute", "fixed", "relative", "static", "sticky";
-
 /* Positions */
+$positions: absolute fixed relative static sticky;
 @each $prop in $positions {
   .ps-#{$prop} {
     position: #{$prop};
@@ -14,21 +13,31 @@ $positions: "absolute", "fixed", "relative", "static", "sticky";
 }
 
 /* Coordinates */
-@each $unit, $values in $coordinate_values {
-  // each value in each unit
-  @each $val in $values {
-    // each coordinate for each value
-    @each $name, $prop in $coordinates {
-      // Positive coordinates
-      .#{$name}#{$val} {
-        #{$prop}: val($val, $unit);
-      }
+@mixin position-coordinates($value,$postfix) {
 
-      // Negative coordinates
-      @if ($val!=0) {
-        .#{$name}n#{$val} {
-          #{$prop}: val(-1 * $val, $unit);
+  @each $name, $prop in $coordinates {
+    //@debug $name+'-'+$value+'-'+format-postfix($postfix);
+    .#{$name}#{format-postfix($postfix)} {
+      #{$prop}: format-value($value);
+    }
+  }
+}
+
+@each $breakpoint, $values in $coordinate_values {
+  @include respond-to($breakpoint) {
+    @for $i from 1 through length($values) {
+      $value: nth($values, $i);
+      $postfix: get-previous-breakpoint-value($i, $value, $breakpoint, $coordinate_values);
+
+      @if is-breakpoint($breakpoint) {
+        // skip not responsive values
+        //@debug $value + ' - ' + $postfix +' -> '+format-value($value) +' - '+ format-value($postfix);
+
+        @if format-value($value) != format-value($postfix) {
+          @include position-coordinates($value, $postfix);
         }
+      } @else {
+        @include position-coordinates($value, $postfix);
       }
     }
   }

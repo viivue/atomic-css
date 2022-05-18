@@ -13,24 +13,22 @@ $breakpoints: (
 
 // spacing values (for margin and padding)
 $spacing_values: (
-        // left, right
         "x":(
-                "values": 0 20 60,
-                "sm":     0 15 30
+                "values": 0 20 60px,
+                "sm": 0 15 30
         ),
-        // top, bottom
         "y":(
                 "values": 0 1 2 4 6 8 12 16 24 32 48 64 96 128,
-                "lg":     0 1 2 4 6 8 12 16 24 30 45 60 90 100,
-                "md":     0 1 2 4 6 8 12 16 24 30 45 45 60 80,
-                "sm":     0 1 2 4 6 8 12 16 24 30 45 45 45 60,
+                "lg": 0 1 2 4 6 8 12 16 24 30 45 60 90 100,
+                "md": 0 1 2 4 6 8 12 16 24 30 45 45 60 80,
+                "sm": 0 1 2 4 6 8 12 16 24 30 45 45 45 60,
         ),
 );
 
 // coordinate values (for position top, right, bottom left)
 $coordinate_values: (
-        "px":0 1 2 4 6 8 12 16 24,
-        "%":50 100,
+        "values": 0px 1 2 4 6 8 12 16 24 50%,
+        "sm": 0 1px 2 4 6 8 12 16 20 20%,
 );
 
 // font family

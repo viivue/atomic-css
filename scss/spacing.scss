@@ -9,16 +9,16 @@ $classes: ("m":"margin", "p":"padding");
 
 @mixin spacing-values($prefix,$axis,$postfix,$prop,$value) {
   // axes
-  .#{$prefix}#{$axis}#{$postfix} {
+  .#{$prefix}#{$axis}#{format-postfix($postfix)} {
     @each $ap in map-get($axes, $axis) {
-      #{$prop}#{$ap}: #{val($value)};
+      #{$prop}#{$ap}: #{format-value($value)};
     }
   }
 
   // top right bottom left
   @each $prefix-c, $prop-c in $coordinates {
-    .#{$prefix}#{$prefix-c}#{$postfix} {
-      #{$prop}-#{$prop-c}: #{val($value)};
+    .#{$prefix}#{$prefix-c}#{format-postfix($postfix)} {
+      #{$prop}-#{$prop-c}: #{format-value($value)};
     }
   }
 }
@@ -34,7 +34,7 @@ $classes: ("m":"margin", "p":"padding");
 
           @if is-breakpoint($breakpoint) {
             // skip not responsive values
-            @if $value != $postfix {
+            @if format-value($value) != format-value($postfix) {
               /* Breakpoint #{$breakpoint} */
               @include spacing-values($prefix, $axis, $postfix, $prop, $value);
             }
