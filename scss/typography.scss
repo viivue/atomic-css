@@ -2,8 +2,56 @@
  * Typography
  * https://stackoverflow.design/product/base/typography/
  */
+@use "sass:map";
 @import "helpers";
 
+$typography: (
+        "font-family":(
+                "type":value-key-as-postfix,
+                "prefix":ff,
+                "value":(
+                        "sans":'-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif',
+                        "serif":'Georgia, Cambria, "Times New Roman", Times, serif'
+                )
+        ),
+        "font-weight":(
+                "prefix":fw,
+                "value":normal bold
+        ),
+        "font-style":(
+                "prefix":fs,
+                "value":normal italic
+        ),
+        "text-transform":(
+                "prefix":tt,
+                "value":capitalize lowercase uppercase none unset
+        ),
+        "text-decoration":(
+                "prefix":td,
+                "value":underline none
+        ),
+        "text-align":(
+                "prefix":ta,
+                "value":left center right justify
+        ),
+        "white-space":(
+                "prefix":ws,
+                "value":normal nowrap pre pre-wrap pre-line
+        ),
+        "word-break":(
+                "prefix":wb,
+                "value":normal break-all keep-all inherit initial unset
+        ),
+        "break-word":(
+                "type":mixin
+        )
+);
+
+// custom font family
+$custom_font_family: map-merge(map-get($typography, "font-family", "value"), $font_families);
+$typography: map.set($typography, "font-family", "value", $custom_font_family);
+
+// print typo
 @each $prop, $data in $typography {
   $prefix: map-get($data, "prefix");
   $value: map-get($data, "value");
@@ -41,8 +89,10 @@
   // Use value key as postfix
   @if ($is_value_key_as_postfix) {
     @each $postfix, $val in $value {
-      .#{$prefix}-#{$postfix} {
-        #{$prop}: #{$val};
+      @if $val {
+        .#{$prefix}-#{$postfix} {
+          #{$prop}: #{$val};
+        }
       }
     }
   }

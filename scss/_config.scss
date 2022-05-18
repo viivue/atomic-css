@@ -18,10 +18,10 @@ $spacing_values: (
                 "md": 0 5 20 40 60 80,
                 "sm": 0 10 20 40 70 70
         ),
-        //"y":(
-        //        "values": 0 4 8 16 24 32 48 64 96 128,
-        //        "md": 0 4 8 15 22 30 46 60 90 120
-        //),
+  //"y":(
+  //        "values": 0 4 8 16 24 32 48 64 96 128,
+  //        "md": 0 4 8 15 22 30 46 60 90 120
+  //),
 );
 
 // coordinate values (for position top, right, bottom left)
@@ -32,5 +32,6 @@ $coordinate_values: (
 
 // font family
 $font_families: (
-        "primary":'Proxima Nova'
+        "sans":'',
+        "primary":'Proxima Nova, sans-serif'
 );
