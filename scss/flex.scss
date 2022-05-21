@@ -3,3 +3,15 @@
  * https://stackoverflow.design/product/base/flex/
  */
 @import "helpers";
+
+$dataset: (
+        align-content: stretch center flex-start flex-end space-between space-around initial inherit,
+        align-items: stretch center flex-start flex-end baseline initial inherit,
+        align-self: auto stretch center flex-start flex-end baseline initial inherit,
+        flex-direction: row row-reverse column column-reverse initial inherit,
+        flex-wrap: nowrap wrap wrap-reverse initial inherit,
+        justify-content: flex-start flex-end center space-between space-around space-evenly initial inherit,
+);
+
+// print
+@include print($dataset);
