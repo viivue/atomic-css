@@ -1,0 +1,12 @@
+/**
+ * Display
+ * https://stackoverflow.design/product/base/display/
+ */
+@import "helpers";
+
+$dataset: (
+        display: block inline inline-block flex inline-flex grid inline-grid table table-cell none unset
+);
+
+// print
+@include print($dataset);
