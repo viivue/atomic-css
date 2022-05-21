@@ -307,21 +307,34 @@
 
     // Type: inline
     @if ($is_inline) {
-      @include get-inline($prop, map-get($data, 'inline'));
+      $inline: map-get($data, 'inline');
+      @if map-has-key($data, 'selectors') {
+        @include get-inline(map-get($data, 'selectors'), $inline);
+      } @else {
+        @include get-inline(str-insert($prop, '.', -100), $inline);
+      }
     }
 
   }
 }
 
+@mixin get-inline-item($prop_val) {
+  $parts: str-split($prop_val, ':');
+  $prop: nth($parts, 1);
+  $val: nth($parts, 2);
+  #{$prop}: #{$val};
+}
+
 @mixin get-inline($prop, $inline) {
-  @if type-of($inline) == 'list' {
-    .#{$prop} {
-      @each $i in $inline {
-        $parts: str-split($i, ':');
-        $i-prop: nth($parts, 1);
-        $i-val: nth($parts, 2);
-        #{$i-prop}: #{$i-val};
+  #{$prop} {
+    @if type-of($inline) == 'list' {
+      @each $prop_val in $inline {
+        @include get-inline-item($prop_val);
       }
+    }
+
+    @if type-of($inline) == 'string' {
+      @include get-inline-item($inline);
     }
   }
 }
