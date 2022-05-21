@@ -172,6 +172,17 @@
   @return $short-prefix;
 }
 
+// ignore based on prop:val
+@function is-ignored($search-prop, $search-value) {
+  @each $val, $props in $ignore {
+    @if $val == $search-value and index($props,$search-prop) != null {
+      @return true;
+    }
+  }
+
+  @return false;
+}
+
 ////////////////////////////// Mixins
 
 // Get minix
@@ -246,8 +257,10 @@
     // Flat value
     @if (not $has_type) {
       @each $val in $value {
-        .#{$prefix}-#{$val} {
-          #{$prop}: #{$val};
+        @if not is-ignored($prop, $val) {
+          .#{$prefix}-#{$val} {
+            #{$prop}: #{$val};
+          }
         }
       }
     }
@@ -269,7 +282,7 @@
     // Use value key as postfix
     @if ($is_value_key_as_postfix) {
       @each $postfix, $val in $value {
-        @if $val {
+        @if $val and not is-ignored($prop, $val) {
           .#{$prefix}-#{$postfix} {
             #{$prop}: #{$val};
           }

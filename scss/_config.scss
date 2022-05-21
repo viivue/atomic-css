@@ -4,6 +4,13 @@
 
 $version: "1.0.0";
 
+// ignore
+$ignore_inherit_initial: justify-content flex-wrap flex-direction align-self align-items align-content;
+$ignore: (
+        inherit: $ignore_inherit_initial,
+        initial: $ignore_inherit_initial,
+);
+
 // breakpoints
 $breakpoints: (
         "lg": 1180px,
@@ -33,6 +40,6 @@ $coordinate_values: (
 
 // font family
 $font_families: (
-        "sans":'',
-        "primary":'Proxima Nova, sans-serif'
+        sans:'', // set empty to remove this item
+        primary:'Proxima Nova, sans-serif'
 );
