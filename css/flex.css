@@ -127,3 +127,22 @@
 .jc-space-evenly {
   justify-content: space-evenly;
 }
+
+/* fl-center */
+.fl-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* fl-center-v */
+.fl-center-v {
+  display: flex;
+  align-items: center;
+}
+
+/* fl-center-h */
+.fl-center-h {
+  display: flex;
+  justify-content: center;
+}

@@ -243,6 +243,7 @@
     $has_type: false;
     $is_mixin: false;
     $is_value_key_as_postfix: false;
+    $is_inline: false;
 
     @if ($input-type=='map') {
       $value: map-get($data, "value");
@@ -258,11 +259,17 @@
       @if ($input-type=='map' and not map-has-key($data, "prefix") and not $is_mixin) {
         $prefix: shorten-prop($prop);
       }
+
+      // type: inline
+      @if map-has-key($data, "inline") {
+        $type: inline;
+        $is_inline: true;
+      }
     }
 
     /* #{$prop} */
 
-    // Flat value
+    // Type: default
     @if (not $has_type) {
       @each $val in $value {
         @if not is-ignored($prop, $val) {
@@ -273,7 +280,7 @@
       }
     }
 
-    // Mixin
+    // Type: mixin
     @if ($is_mixin) {
       $mixin: map-get($data, "mixin");
 
@@ -287,7 +294,7 @@
       }
     }
 
-    // Use value key as postfix
+    // Type: value-key-as-postfix
     @if ($is_value_key_as_postfix) {
       @each $postfix, $val in $value {
         @if $val and not is-ignored($prop, $val) {
@@ -295,6 +302,25 @@
             #{$prop}: #{$val};
           }
         }
+      }
+    }
+
+    // Type: inline
+    @if ($is_inline) {
+      @include get-inline($prop, map-get($data, 'inline'));
+    }
+
+  }
+}
+
+@mixin get-inline($prop, $inline) {
+  @if type-of($inline) == 'list' {
+    .#{$prop} {
+      @each $i in $inline {
+        $parts: str-split($i, ':');
+        $i-prop: nth($parts, 1);
+        $i-val: nth($parts, 2);
+        #{$i-prop}: #{$i-val};
       }
     }
   }
