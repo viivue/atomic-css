@@ -1,0 +1,29 @@
+/**
+ * Object fit
+ * https://stackoverflow.design/product/base/object-fit/
+ */
+/* object-fit */
+.of-fill {
+  object-fit: fill;
+}
+
+.of-contain {
+  object-fit: contain;
+}
+
+.of-cover {
+  object-fit: cover;
+}
+
+.of-scale-down {
+  object-fit: scale-down;
+}
+
+.of-none {
+  object-fit: none;
+}
+
+/* object-position */
+.op-center {
+  object-position: center;
+}

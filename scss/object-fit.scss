@@ -1,0 +1,13 @@
+/**
+ * Object fit
+ * https://stackoverflow.design/product/base/object-fit/
+ */
+@import "helpers";
+
+$dataset: (
+        object-fit: fill contain cover scale-down none initial inherit,
+        object-position: center
+);
+
+// print
+@include print($dataset);
