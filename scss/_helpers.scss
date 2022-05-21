@@ -140,6 +140,38 @@
   @return $value * map-get($units, $unit);
 }
 
+@function str-split($string, $separator) {
+  // empty array/list
+  $split-arr: ();
+  // first index of separator in string
+  $index: str-index($string, $separator);
+  // loop through string
+  @while $index != null {
+    // get the substring from the first character to the separator
+    $item: str-slice($string, 1, $index - 1);
+    // push item to array
+    $split-arr: append($split-arr, $item);
+    // remove item and separator from string
+    $string: str-slice($string, $index + 1);
+    // find new index of separator
+    $index: str-index($string, $separator);
+  }
+  // add the remaining string to list (the last item)
+  $split-arr: append($split-arr, $string);
+
+  @return $split-arr;
+}
+
+// align-items => al
+@function shorten-prop($prop) {
+  $split-prop: str-split($prop, "-");
+  $short-prefix: '';
+  @each $word in $split-prop {
+    $short-prefix: str-insert($short-prefix, str-slice($word, 0, 1), 100);
+  }
+  @return $short-prefix;
+}
+
 ////////////////////////////// Mixins
 
 // Get minix
@@ -183,15 +215,31 @@
   }
 }
 
-@mixin print($dataset){
+@mixin print($dataset) {
   @each $prop, $data in $dataset {
-    $prefix: map-get($data, "prefix");
-    $value: map-get($data, "value");
+    $input-type: type-of($data);
+    $value: $data;
+    $prefix: shorten-prop($prop);
 
-    $has_type: map-has-key($data, "type");
-    $type: map-get($data, "type");
-    $is_value_key_as_postfix: $has_type and $type == value-key-as-postfix;
-    $is_mixin: $has_type and $type == mixin;
+    $has_type: false;
+    $is_mixin: false;
+    $is_value_key_as_postfix: false;
+
+    @if ($input-type=='map') {
+      $value: map-get($data, "value");
+      $prefix: map-get($data, "prefix");
+
+      // type
+      $has_type: map-has-key($data, "type");
+      $type: map-get($data, "type");
+      $is_value_key_as_postfix: $has_type and $type == value-key-as-postfix;
+      $is_mixin: $has_type and $type == mixin;
+
+      // auto prefix for type map
+      @if ($input-type=='map' and not map-has-key($data, "prefix") and not $is_mixin) {
+        $prefix: shorten-prop($prop);
+      }
+    }
 
     /* #{$prop} */
 
