@@ -1,7 +1,7 @@
 {
   "name": "atomic-css",
   "version": "1.0.0",
-  "description": "⚛️ Atomic CSS Framework by ViiVue, for everyone.",
+  "description": "⚛️ Atomic CSS Framework for everyone.",
   "scripts": {
     "sass": "sass scss:css --no-source-map",
     "sass:watch": "sass scss:css -w --no-source-map",
@@ -12,18 +12,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/viivue/atomic-css.git"
+    "url": "git+https://github.com/phucbm/atomic-css.git"
   },
   "keywords": [
     "atomic",
-    "viivue"
+    "phucbm"
   ],
   "author": "phucbm",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/viivue/atomic-css/issues"
+    "url": "https://github.com/phucbm/atomic-css/issues"
   },
-  "homepage": "https://github.com/viivue/atomic-css#readme",
+  "homepage": "https://github.com/phucbm/atomic-css#readme",
   "devDependencies": {
     "clean-css-cli": "^5.6.0",
     "sass": "^1.51.0"
