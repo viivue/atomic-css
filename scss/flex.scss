@@ -20,6 +20,9 @@ $dataset: (
         fl-center-h:(
                 inline: 'display:flex' 'justify-content:center'
         ),
+        fl-grid:(
+                inline: 'display:flex' 'flex-wrap:wrap'
+        )
 );
 
 // print

@@ -35,3 +35,25 @@ $positions: absolute fixed relative static sticky;
     }
   }
 }
+
+// print
+$dataset: (
+        ab-center:(
+                inline:'position:absolute' 'top:50%' 'left:50%' 'transform:translate(-50%, -50%)'
+        ),
+        ab-center-v:(
+                inline:'position:absolute' 'top:50%' 'transform:translateY(-50%)'
+        ),
+        ab-center-h:(
+                inline:'position:absolute' 'left:50%' 'transform:translateX(-50%)'
+        ),
+        ab-full:(
+                selectors: '.ab-full, .ab-full-b:before, .ab-full-a:after, .ab-full-ba:before, .ab-full-ba:after',
+                inline: 'position:absolute' 'top:0' 'right:0' 'bottom:0' 'left:0'
+        ),
+        ab-full-content:(
+                selectors: '.ab-full-b:before, .ab-full-a:after, .ab-full-ba:before, .ab-full-ba:after',
+                inline: 'content:""'
+        )
+);
+@include print($dataset);
