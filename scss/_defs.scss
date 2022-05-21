@@ -6,3 +6,16 @@ $axes: ("x": ("-left" "-right"), "y": ("-top" "-bottom"));
 
 // coordinates
 $coordinates: ("t":"top", "r":"right", "b":"bottom", "l":"left");
+
+// ignore
+$ignore_inherit_initial: justify-content flex-wrap flex-direction align-self align-items align-content;
+$ignore: (
+        inherit: $ignore_inherit_initial,
+        initial: $ignore_inherit_initial,
+);
+
+// replace prop
+$replace_prop: (
+        flex-start:start,
+        flex-end:end
+)

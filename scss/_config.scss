@@ -4,13 +4,6 @@
 
 $version: "1.0.0";
 
-// ignore
-$ignore_inherit_initial: justify-content flex-wrap flex-direction align-self align-items align-content;
-$ignore: (
-        inherit: $ignore_inherit_initial,
-        initial: $ignore_inherit_initial,
-);
-
 // breakpoints
 $breakpoints: (
         "lg": 1180px,

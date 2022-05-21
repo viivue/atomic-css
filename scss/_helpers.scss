@@ -183,6 +183,14 @@
   @return false;
 }
 
+@function replace-prop($search-prop) {
+  @if map-has-key($replace_prop, $search-prop) {
+    @return map-get($replace_prop, $search-prop);
+  }
+
+  @return $search-prop;
+}
+
 ////////////////////////////// Mixins
 
 // Get minix
@@ -258,7 +266,7 @@
     @if (not $has_type) {
       @each $val in $value {
         @if not is-ignored($prop, $val) {
-          .#{$prefix}-#{$val} {
+          .#{$prefix}-#{replace-prop($val)} {
             #{$prop}: #{$val};
           }
         }
@@ -283,7 +291,7 @@
     @if ($is_value_key_as_postfix) {
       @each $postfix, $val in $value {
         @if $val and not is-ignored($prop, $val) {
-          .#{$prefix}-#{$postfix} {
+          .#{$prefix}-#{replace-prop($postfix)} {
             #{$prop}: #{$val};
           }
         }
