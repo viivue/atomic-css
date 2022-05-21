@@ -1481,6 +1481,42 @@
     left: 20%;
   }
 }
+/* ab-center */
+.ab-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* ab-center-v */
+.ab-center-v {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* ab-center-h */
+.ab-center-h {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* ab-full */
+.ab-full, .ab-full-b:before, .ab-full-a:after, .ab-full-ba:before, .ab-full-ba:after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+/* ab-full-content */
+.ab-full-b:before, .ab-full-a:after, .ab-full-ba:before, .ab-full-ba:after {
+  content: "";
+}
+
 /**
  * Typography
  * https://stackoverflow.design/product/base/typography/
@@ -1611,4 +1647,265 @@
   word-wrap: break-word;
   overflow-wrap: break-word;
   hyphens: auto;
+}
+
+/**
+ * Display
+ * https://stackoverflow.design/product/base/display/
+ */
+/* display */
+.d-block {
+  display: block;
+}
+
+.d-inline {
+  display: inline;
+}
+
+.d-inline-block {
+  display: inline-block;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.d-inline-flex {
+  display: inline-flex;
+}
+
+.d-grid {
+  display: grid;
+}
+
+.d-inline-grid {
+  display: inline-grid;
+}
+
+.d-table {
+  display: table;
+}
+
+.d-table-cell {
+  display: table-cell;
+}
+
+.d-none {
+  display: none;
+}
+
+.d-unset {
+  display: unset;
+}
+
+/**
+ * Flex
+ * https://stackoverflow.design/product/base/flex/
+ */
+/* align-content */
+.ac-stretch {
+  align-content: stretch;
+}
+
+.ac-center {
+  align-content: center;
+}
+
+.ac-start {
+  align-content: flex-start;
+}
+
+.ac-end {
+  align-content: flex-end;
+}
+
+.ac-space-between {
+  align-content: space-between;
+}
+
+.ac-space-around {
+  align-content: space-around;
+}
+
+/* align-items */
+.ai-stretch {
+  align-items: stretch;
+}
+
+.ai-center {
+  align-items: center;
+}
+
+.ai-start {
+  align-items: flex-start;
+}
+
+.ai-end {
+  align-items: flex-end;
+}
+
+.ai-baseline {
+  align-items: baseline;
+}
+
+/* align-self */
+.as-auto {
+  align-self: auto;
+}
+
+.as-stretch {
+  align-self: stretch;
+}
+
+.as-center {
+  align-self: center;
+}
+
+.as-start {
+  align-self: flex-start;
+}
+
+.as-end {
+  align-self: flex-end;
+}
+
+.as-baseline {
+  align-self: baseline;
+}
+
+/* flex-direction */
+.fd-row {
+  flex-direction: row;
+}
+
+.fd-row-reverse {
+  flex-direction: row-reverse;
+}
+
+.fd-column {
+  flex-direction: column;
+}
+
+.fd-column-reverse {
+  flex-direction: column-reverse;
+}
+
+/* flex-wrap */
+.fw-nowrap {
+  flex-wrap: nowrap;
+}
+
+.fw-wrap {
+  flex-wrap: wrap;
+}
+
+.fw-wrap-reverse {
+  flex-wrap: wrap-reverse;
+}
+
+/* justify-content */
+.jc-start {
+  justify-content: flex-start;
+}
+
+.jc-end {
+  justify-content: flex-end;
+}
+
+.jc-center {
+  justify-content: center;
+}
+
+.jc-space-between {
+  justify-content: space-between;
+}
+
+.jc-space-around {
+  justify-content: space-around;
+}
+
+.jc-space-evenly {
+  justify-content: space-evenly;
+}
+
+/* fl-center */
+.fl-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* fl-center-v */
+.fl-center-v {
+  display: flex;
+  align-items: center;
+}
+
+/* fl-center-h */
+.fl-center-h {
+  display: flex;
+  justify-content: center;
+}
+
+/* fl-grid */
+.fl-grid {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/**
+ * Transitions
+ * https://stackoverflow.design/product/base/transitions/
+ */
+/* transition */
+.t {
+  transition-duration: .25s;
+  transition-property: all;
+  transition-timing-function: ease;
+  transition-delay: 0s;
+}
+
+/* slow */
+.t-slow {
+  transition-duration: .6s;
+}
+
+/* fast */
+.t-fast {
+  transition-duration: .1s;
+}
+
+/* opacity */
+.t-opacity {
+  transition-property:  opacity;
+}
+
+/**
+ * Object fit
+ * https://stackoverflow.design/product/base/object-fit/
+ */
+/* object-fit */
+.of-fill {
+  object-fit: fill;
+}
+
+.of-contain {
+  object-fit: contain;
+}
+
+.of-cover {
+  object-fit: cover;
+}
+
+.of-scale-down {
+  object-fit: scale-down;
+}
+
+.of-none {
+  object-fit: none;
+}
+
+/* object-position */
+.op-center {
+  object-position: center;
 }
