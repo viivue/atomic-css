@@ -1,0 +1,27 @@
+/**
+ * Transitions
+ * https://stackoverflow.design/product/base/transitions/
+ */
+@import "helpers";
+
+$dataset: (
+        transition: (
+                selectors: '.t',
+                inline: 'transition-duration:.25s' 'transition-property:all' 'transition-timing-function:ease' 'transition-delay:0s'
+        ),
+        slow:(
+                selectors:'.t-slow',
+                inline:'transition-duration:.6s'
+        ),
+        fast:(
+                selectors:'.t-fast',
+                inline:'transition-duration:.1s'
+        ),
+        opacity:(
+                selectors:'.t-opacity',
+                inline:'transition-property: opacity'
+        )
+);
+
+// print
+@include print($dataset);
