@@ -7,7 +7,7 @@
 
 ## Contribute
 
-This repo is under development, so if you want to give a hand then feel free to reach out to the [Road map](https://github.com/phucbm/atomic-css/issues/1).
+This repo is under development, so if you want to give a hand then feel free to reach out to the [Road map](https://github.com/viivue/atomic-css/issues/1).
 
 ## Deployment
 

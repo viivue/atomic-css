@@ -12,18 +12,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/phucbm/atomic-css.git"
+    "url": "git+https://github.com/viivue/atomic-css.git"
   },
   "keywords": [
     "atomic",
-    "phucbm"
+    "viivue"
   ],
-  "author": "phucbm",
+  "author": "viivue",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/phucbm/atomic-css/issues"
+    "url": "https://github.com/viivue/atomic-css/issues"
   },
-  "homepage": "https://github.com/phucbm/atomic-css#readme",
+  "homepage": "https://github.com/viivue/atomic-css#readme",
   "devDependencies": {
     "clean-css-cli": "^5.6.0",
     "sass": "^1.51.0"
