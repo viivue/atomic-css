@@ -13,6 +13,22 @@ $dataset: (
                         serif:'Georgia, Cambria, "Times New Roman", Times, serif'
                 )
         ),
+        color:(
+                type:value-key-as-postfix,
+                prefix:'fc',
+                value:(
+                        "white":'#fff',
+                        "black":'#000'
+                )
+        ),
+        background-color:(
+                type:value-key-as-postfix,
+                prefix:'bg',
+                value:(
+                        "white":'#fff',
+                        "black":'#000'
+                )
+        ),
         font-weight: normal bold,
         font-style: normal italic,
         text-transform: capitalize lowercase uppercase none unset,
@@ -28,6 +44,10 @@ $dataset: (
 // custom font family
 $custom_font_family: map-merge(map-get($dataset, "font-family", "value"), $font_families);
 $dataset: map.set($dataset, "font-family", "value", $custom_font_family);
+
+// custom color
+$custom_color: map-merge(map-get($dataset, "color", "value"), $colors);
+$dataset: map.set($dataset, "color", "value", $custom_color);
 
 // print
 @include print($dataset);

@@ -11,6 +11,28 @@
   font-family: Proxima Nova, sans-serif;
 }
 
+/* color */
+.fc-white {
+  color: #fff;
+}
+
+.fc-black {
+  color: #000;
+}
+
+.fc-primary {
+  color: #1C44AD;
+}
+
+/* background-color */
+.bg-white {
+  background-color: #fff;
+}
+
+.bg-black {
+  background-color: #000;
+}
+
 /* font-weight */
 .fw-normal {
   font-weight: normal;

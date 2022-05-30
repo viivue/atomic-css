@@ -2,7 +2,21 @@
 /// Edit these configs to fit your needs
 @import "defs";
 
-$version: "1.0.0";
+// Project info
+$info: (
+        name: 'My project'
+);
+
+// font family
+$font_families: (
+        sans: '', // set empty to remove this item
+        primary: 'Proxima Nova, sans-serif'
+);
+
+// colors
+$colors: (
+        primary: '#1C44AD',
+);
 
 // breakpoints
 $breakpoints: (
@@ -11,7 +25,15 @@ $breakpoints: (
         "sm": 767px,
 );
 
-// spacing values (for margin and padding)
+// font sizes
+$font-sizes: (
+        "values": 0 1 2 4 6 8 12 16 24 32 48 64 96 128,
+        "lg": 0 1 2 4 6 8 12 16 24 30 45 60 90 100,
+        "md": 0 1 2 4 6 8 12 16 24 30 45 45 60 80,
+        "sm": 0 1 2 4 6 8 12 16 24 30 45 45 45 60,
+);
+
+// spacing values (for margin and padding, x for left/right. y for top/bottom)
 $spacing_values: (
         "x":(
                 "values": 0 20 60px,
@@ -27,12 +49,5 @@ $spacing_values: (
 
 // coordinate values (for position top, right, bottom left)
 $coordinate_values: (
-        "values": 0px 1 2 4 6 8 12 16 24 50%,
-        "sm": 0 1px 2 4 6 8 12 16 20 20%,
-);
-
-// font family
-$font_families: (
-        sans:'', // set empty to remove this item
-        primary:'Proxima Nova, sans-serif'
+        "values": 0 50%
 );
