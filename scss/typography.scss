@@ -52,16 +52,6 @@ $dataset: map.set($dataset, "color", "value", $custom_color);
 // print
 @include print($dataset);
 
-
-@mixin print-variables($data, $prefix) {
-  :root {
-    @each $name, $value in $data {
-      @if $value != '' {
-        --#{$prefix}-#{$name}: #{$value};
-      }
-    }
-  }
-}
-
-@include print-variables($custom_font_family, "color");
+// CSS  variables
+@include print-variables($custom_font_family, "font");
 @include print-variables($custom_color, "color");

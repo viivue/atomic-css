@@ -4,12 +4,12 @@
 
 // Project info
 $info: (
-        name: 'My project'
+        name: 'My project',
+        variable-prefix: ''
 );
 
 // font family
 $font_families: (
-        sans: '', // set empty to remove this item
         primary: 'Proxima Nova, sans-serif'
 );
 

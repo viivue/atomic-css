@@ -3,6 +3,10 @@
  * https://stackoverflow.design/product/base/typography/
  */
 /* font-family */
+.ff-sans {
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+}
+
 .ff-serif {
   font-family: Georgia, Cambria, "Times New Roman", Times, serif;
 }
@@ -153,8 +157,9 @@
 }
 
 :root {
-  --color-serif: Georgia, Cambria, "Times New Roman", Times, serif;
-  --color-primary: Proxima Nova, sans-serif;
+  --font-sans: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+  --font-serif: Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-primary: Proxima Nova, sans-serif;
 }
 
 :root {

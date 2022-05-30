@@ -338,3 +338,24 @@
     }
   }
 }
+
+
+// Print CSS variables
+@mixin print-variables($data, $prefix) {
+  :root {
+    @each $name, $value in $data {
+      @if $value != '' {
+        @if map-has-key($info, 'variable-prefix') {
+          $i-prefix: map-get($info, 'variable-prefix');
+          @if $i-prefix != '' {
+            --#{$i-prefix}-#{$prefix}-#{$name}: #{$value};
+          } @else {
+            --#{$prefix}-#{$name}: #{$value};
+          }
+        } @else {
+          --#{$prefix}-#{$name}: #{$value};
+        }
+      }
+    }
+  }
+}
