@@ -6,9 +6,10 @@
     "sass": "sass scss:css --no-source-map",
     "sass:watch": "sass scss:css -w --no-source-map",
     "sass:compressed": "sass scss/_build.scss:dist/atomic.css --no-source-map",
-    "cleancss": "cleancss dist/atomic.css -o dist/atomic.min.css",
+    "minify": "cleancss dist/atomic.css -o dist/atomic.min.css",
+    "optimize": "csso dist/atomic.css --output dist/atomic.css --stat",
     "dev": "npm run sass:watch",
-    "prod": "npm run sass && npm run sass:compressed && npm run cleancss"
+    "prod": "npm run sass && npm run sass:compressed && npm run optimize && npm run minify"
   },
   "repository": {
     "type": "git",
@@ -26,6 +27,7 @@
   "homepage": "https://github.com/viivue/atomic-css#readme",
   "devDependencies": {
     "clean-css-cli": "^5.6.0",
+    "csso-cli": "^3.0.0",
     "sass": "^1.51.0"
   }
 }
