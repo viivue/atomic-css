@@ -151,3 +151,14 @@
   overflow-wrap: break-word;
   hyphens: auto;
 }
+
+:root {
+  --color-serif: Georgia, Cambria, "Times New Roman", Times, serif;
+  --color-primary: Proxima Nova, sans-serif;
+}
+
+:root {
+  --color-white: #fff;
+  --color-black: #000;
+  --color-primary: #1C44AD;
+}
