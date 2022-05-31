@@ -2,6 +2,21 @@
  * Typography
  * https://stackoverflow.design/product/base/typography/
  */
+.f-primary-400 {
+  font-family: 'Be Vietnam Pro', sans-serif;
+  font-weight: 400;
+}
+
+.f-primary-500 {
+  font-family: 'Be Vietnam Pro', sans-serif;
+  font-weight: 500;
+}
+
+.f-primary-700 {
+  font-family: 'Be Vietnam Pro', sans-serif;
+  font-weight: 700;
+}
+
 /* font-family */
 .ff-sans {
   font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
@@ -12,7 +27,7 @@
 }
 
 .ff-primary {
-  font-family: Proxima Nova, sans-serif;
+  font-family: 'Be Vietnam Pro', sans-serif;
 }
 
 /* color */
@@ -25,7 +40,23 @@
 }
 
 .fc-primary {
-  color: #1C44AD;
+  color: #1c44ad;
+}
+
+.fc-dark {
+  color: #1a1b1c;
+}
+
+.fc-gray {
+  color: #f6f6f6;
+}
+
+.fc-light-blue {
+  color: #115df7;
+}
+
+.fc-dark-blue {
+  color: #21297d;
 }
 
 /* background-color */
@@ -37,13 +68,33 @@
   background-color: #000;
 }
 
+.bg-primary {
+  background-color: #1c44ad;
+}
+
+.bg-dark {
+  background-color: #1a1b1c;
+}
+
+.bg-gray {
+  background-color: #f6f6f6;
+}
+
+.bg-light-blue {
+  background-color: #115df7;
+}
+
+.bg-dark-blue {
+  background-color: #21297d;
+}
+
 /* font-weight */
 .fw-normal {
-  font-weight: normal;
+  font-weight: 400;
 }
 
 .fw-bold {
-  font-weight: bold;
+  font-weight: 700;
 }
 
 /* font-style */
@@ -157,13 +208,17 @@
 }
 
 :root {
-  --font-sans: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
-  --font-serif: Georgia, Cambria, "Times New Roman", Times, serif;
-  --font-primary: Proxima Nova, sans-serif;
+  --vii-font-sans: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+  --vii-font-serif: Georgia, Cambria, "Times New Roman", Times, serif;
+  --vii-font-primary: 'Be Vietnam Pro', sans-serif;
 }
 
 :root {
-  --color-white: #fff;
-  --color-black: #000;
-  --color-primary: #1C44AD;
+  --vii-color-white: #fff;
+  --vii-color-black: #000;
+  --vii-color-primary: #1c44ad;
+  --vii-color-dark: #1a1b1c;
+  --vii-color-gray: #f6f6f6;
+  --vii-color-light-blue: #115df7;
+  --vii-color-dark-blue: #21297d;
 }

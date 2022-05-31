@@ -60,14 +60,14 @@ $font_families: ();
 
       @if type-of($weight) == 'list' {
         @each $w in $weight {
-          .ff-#{$name}-#{$w} {
+          .f-#{$name}-#{$w} {
             font-family: #{$font-face};
             font-weight: #{$w};
           }
         }
       }
       @if type-of($weight) == 'number' {
-        .ff-#{$name}-#{$weight} {
+        .f-#{$name}-#{$weight} {
           font-family: #{$font-face};
           font-weight: #{$weight};
         }
