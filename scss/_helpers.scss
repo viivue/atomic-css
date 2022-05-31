@@ -210,7 +210,7 @@
 }
 
 /// Manage responsive breakpoints
-@mixin respond-to($breakpoint) {
+@mixin media-screen($breakpoint) {
   @if is-breakpoint($breakpoint) {
     /* Breakpoint #{$breakpoint} */
     @media only screen and (max-width: map-get($breakpoints, $breakpoint)) {
@@ -341,21 +341,25 @@
 
 
 // Print CSS variables
+@mixin print-var-prop($prefix,$name,$value) {
+  @if $value != '' {
+    $project-prefix: '';
+
+    @if map-has-key($info, 'variable-prefix') {
+      $i-prefix: map-get($info, 'variable-prefix');
+      @if $i-prefix != '' {
+        $project-prefix: str-insert($i-prefix, '-', 100);
+      }
+    }
+
+    --#{$project-prefix}#{$prefix}-#{$name}: #{$value};
+  }
+}
+
 @mixin print-variables($data, $prefix) {
   :root {
     @each $name, $value in $data {
-      @if $value != '' {
-        @if map-has-key($info, 'variable-prefix') {
-          $i-prefix: map-get($info, 'variable-prefix');
-          @if $i-prefix != '' {
-            --#{$i-prefix}-#{$prefix}-#{$name}: #{$value};
-          } @else {
-            --#{$prefix}-#{$name}: #{$value};
-          }
-        } @else {
-          --#{$prefix}-#{$name}: #{$value};
-        }
-      }
+      @include print-var-prop($prefix, $name, $value);
     }
   }
 }

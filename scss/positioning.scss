@@ -24,7 +24,7 @@ $positions: absolute fixed relative static sticky;
 }
 
 @each $breakpoint, $values in $coordinate_values {
-  @include respond-to($breakpoint) {
+  @include media-screen($breakpoint) {
     @for $i from 1 through length($values) {
       $value: nth($values, $i);
       $postfix: get-previous-breakpoint-value($i, $value, $breakpoint, $coordinate_values);
