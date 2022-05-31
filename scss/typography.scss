@@ -29,7 +29,13 @@ $dataset: (
                         "black":'#000'
                 )
         ),
-        font-weight: normal bold,
+        font-weight: (
+                type:value-key-as-postfix,
+                value:(
+                        normal:400,
+                        bold:700
+                )
+        ),
         font-style: normal italic,
         text-transform: capitalize lowercase uppercase none unset,
         text-decoration: underline none,
@@ -42,12 +48,49 @@ $dataset: (
 );
 
 // custom font family
+$font_families: ();
+@each $name, $data in $fonts {
+  @if type-of($data) == 'map' {
+    $font-face: map-get($data, 'font-face');
+    $font_families: map.set($font_families, $name, $font-face);
+
+    // has defined weights
+    @if map-has-key($data, 'weight') {
+      $weight: map.get($data, 'weight');
+
+      @if type-of($weight) == 'list' {
+        @each $w in $weight {
+          .ff-#{$name}-#{$w} {
+            font-family: #{$font-face};
+            font-weight: #{$w};
+          }
+        }
+      }
+      @if type-of($weight) == 'number' {
+        .ff-#{$name}-#{$weight} {
+          font-family: #{$font-face};
+          font-weight: #{$weight};
+        }
+      }
+    }
+
+  }
+  @if type-of($data) == 'string' {
+    $font_families: map.set($font_families, $name, $data);
+  }
+}
+
 $custom_font_family: map-merge(map-get($dataset, "font-family", "value"), $font_families);
 $dataset: map.set($dataset, "font-family", "value", $custom_font_family);
 
 // custom color
 $custom_color: map-merge(map-get($dataset, "color", "value"), $colors);
 $dataset: map.set($dataset, "color", "value", $custom_color);
+
+// custom background color
+$custom_bg_color: map-merge(map-get($dataset, "background-color", "value"), $colors);
+$dataset: map.set($dataset, "background-color", "value", $custom_bg_color);
+
 
 // print
 @include print($dataset);
