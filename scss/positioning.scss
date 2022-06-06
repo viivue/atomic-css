@@ -54,6 +54,13 @@ $dataset: (
         ab-full-content:(
                 selectors: '.ab-full-b:before, .ab-full-a:after, .ab-full-ba:before, .ab-full-ba:after',
                 inline: 'content:""'
-        )
+        ),
+        z-hide:(
+                inline:'z-index:-1'
+        ),
+        z-index: (
+                prefix:'z',
+                value:1 2 3 4 5 10 20 30 40 100 99999999
+        ),
 );
 @include print($dataset);

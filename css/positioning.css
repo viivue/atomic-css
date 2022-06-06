@@ -91,3 +91,53 @@
 .ab-full-b:before, .ab-full-a:after, .ab-full-ba:before, .ab-full-ba:after {
   content: "";
 }
+
+/* z-hide */
+.z-hide {
+  z-index: -1;
+}
+
+/* z-index */
+.z-1 {
+  z-index: 1;
+}
+
+.z-2 {
+  z-index: 2;
+}
+
+.z-3 {
+  z-index: 3;
+}
+
+.z-4 {
+  z-index: 4;
+}
+
+.z-5 {
+  z-index: 5;
+}
+
+.z-10 {
+  z-index: 10;
+}
+
+.z-20 {
+  z-index: 20;
+}
+
+.z-30 {
+  z-index: 30;
+}
+
+.z-40 {
+  z-index: 40;
+}
+
+.z-100 {
+  z-index: 100;
+}
+
+.z-99999999 {
+  z-index: 99999999;
+}
