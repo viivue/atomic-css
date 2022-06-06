@@ -1,0 +1,14 @@
+/**
+ * Interactivity
+ * https://stackoverflow.design/product/base/interactivity/
+ */
+@import "helpers";
+
+$dataset: (
+        pointer-events: auto none,
+        user-select: auto none,
+        user-drag: auto none
+);
+
+// print
+@include print($dataset);

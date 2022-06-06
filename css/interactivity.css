@@ -1,0 +1,30 @@
+/**
+ * Interactivity
+ * https://stackoverflow.design/product/base/interactivity/
+ */
+/* pointer-events */
+.pe-auto {
+  pointer-events: auto;
+}
+
+.pe-none {
+  pointer-events: none;
+}
+
+/* user-select */
+.us-auto {
+  user-select: auto;
+}
+
+.us-none {
+  user-select: none;
+}
+
+/* user-drag */
+.ud-auto {
+  user-drag: auto;
+}
+
+.ud-none {
+  user-drag: none;
+}
