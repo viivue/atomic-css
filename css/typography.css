@@ -30,6 +30,10 @@
   font-family: 'Be Vietnam Pro', sans-serif;
 }
 
+.ff-icomoon {
+  font-family: 'icomoon', fantasy;
+}
+
 /* color */
 .fc-white {
   color: #fff;
@@ -211,6 +215,7 @@
   --vii-font-sans: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
   --vii-font-serif: Georgia, Cambria, "Times New Roman", Times, serif;
   --vii-font-primary: 'Be Vietnam Pro', sans-serif;
+  --vii-font-icomoon: 'icomoon', fantasy;
 }
 
 :root {

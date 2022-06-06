@@ -25,8 +25,6 @@
 
 :root {
   --margin-x-0: 0;
-  --margin-x-20: 20px;
-  --margin-x-60px: 60px;
 }
 
 .mx0 {
@@ -50,52 +48,8 @@
   margin-left: var(--margin-x-0);
 }
 
-.mx20 {
-  margin-left: var(--margin-x-20);
-  margin-right: var(--margin-x-20);
-}
-
-.mt20 {
-  margin-top: var(--margin-y-20);
-}
-
-.mr20 {
-  margin-right: var(--margin-x-20);
-}
-
-.mb20 {
-  margin-bottom: var(--margin-y-20);
-}
-
-.ml20 {
-  margin-left: var(--margin-x-20);
-}
-
-.mx60 {
-  margin-left: var(--margin-x-60px);
-  margin-right: var(--margin-x-60px);
-}
-
-.mt60 {
-  margin-top: var(--margin-y-60px);
-}
-
-.mr60 {
-  margin-right: var(--margin-x-60px);
-}
-
-.mb60 {
-  margin-bottom: var(--margin-y-60px);
-}
-
-.ml60 {
-  margin-left: var(--margin-x-60px);
-}
-
 :root {
   --margin-y-0: 0;
-  --margin-y-24: 24px;
-  --margin-y-128: 128px;
 }
 
 .my0 {
@@ -119,53 +73,8 @@
   margin-left: var(--margin-x-0);
 }
 
-.my24 {
-  margin-top: var(--margin-y-24);
-  margin-bottom: var(--margin-y-24);
-}
-
-.mt24 {
-  margin-top: var(--margin-y-24);
-}
-
-.mr24 {
-  margin-right: var(--margin-x-24);
-}
-
-.mb24 {
-  margin-bottom: var(--margin-y-24);
-}
-
-.ml24 {
-  margin-left: var(--margin-x-24);
-}
-
-.my128 {
-  margin-top: var(--margin-y-128);
-  margin-bottom: var(--margin-y-128);
-}
-
-.mt128 {
-  margin-top: var(--margin-y-128);
-}
-
-.mr128 {
-  margin-right: var(--margin-x-128);
-}
-
-.mb128 {
-  margin-bottom: var(--margin-y-128);
-}
-
-.ml128 {
-  margin-left: var(--margin-x-128);
-}
-
-/* Breakpoint sm */
 :root {
   --padding-x-0: 0;
-  --padding-x-20: 20px;
-  --padding-x-60px: 60px;
 }
 
 .px0 {
@@ -189,52 +98,8 @@
   padding-left: var(--padding-x-0);
 }
 
-.px20 {
-  padding-left: var(--padding-x-20);
-  padding-right: var(--padding-x-20);
-}
-
-.pt20 {
-  padding-top: var(--padding-y-20);
-}
-
-.pr20 {
-  padding-right: var(--padding-x-20);
-}
-
-.pb20 {
-  padding-bottom: var(--padding-y-20);
-}
-
-.pl20 {
-  padding-left: var(--padding-x-20);
-}
-
-.px60 {
-  padding-left: var(--padding-x-60px);
-  padding-right: var(--padding-x-60px);
-}
-
-.pt60 {
-  padding-top: var(--padding-y-60px);
-}
-
-.pr60 {
-  padding-right: var(--padding-x-60px);
-}
-
-.pb60 {
-  padding-bottom: var(--padding-y-60px);
-}
-
-.pl60 {
-  padding-left: var(--padding-x-60px);
-}
-
 :root {
   --padding-y-0: 0;
-  --padding-y-24: 24px;
-  --padding-y-128: 128px;
 }
 
 .py0 {
@@ -257,47 +122,3 @@
 .pl0 {
   padding-left: var(--padding-x-0);
 }
-
-.py24 {
-  padding-top: var(--padding-y-24);
-  padding-bottom: var(--padding-y-24);
-}
-
-.pt24 {
-  padding-top: var(--padding-y-24);
-}
-
-.pr24 {
-  padding-right: var(--padding-x-24);
-}
-
-.pb24 {
-  padding-bottom: var(--padding-y-24);
-}
-
-.pl24 {
-  padding-left: var(--padding-x-24);
-}
-
-.py128 {
-  padding-top: var(--padding-y-128);
-  padding-bottom: var(--padding-y-128);
-}
-
-.pt128 {
-  padding-top: var(--padding-y-128);
-}
-
-.pr128 {
-  padding-right: var(--padding-x-128);
-}
-
-.pb128 {
-  padding-bottom: var(--padding-y-128);
-}
-
-.pl128 {
-  padding-left: var(--padding-x-128);
-}
-
-/* Breakpoint sm */
