@@ -24,3 +24,30 @@ $replace_prop: (
 
 // variables
 $variables: ();
+
+// breakpoints
+$breakpoints: (
+        "lg": 1180px,
+        "md": 1023px,
+        "sm": 767px,
+);
+
+// font sizes
+$font-sizes: (
+        "values": 0 1 2 4 6 8 12 16 24 32 48 64 96 128,
+);
+
+// spacing values (for margin and padding, x for left/right. y for top/bottom)
+$spacing_values: (
+        "x":(
+                "values": 0
+        ),
+        "y":(
+                "values": 0
+        ),
+);
+
+// coordinate values (for position top, right, bottom left)
+$coordinate_values: (
+        "values": 0 50%
+);
