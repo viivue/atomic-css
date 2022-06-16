@@ -212,18 +212,18 @@
 }
 
 :root {
-  --vii-font-sans: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
-  --vii-font-serif: Georgia, Cambria, "Times New Roman", Times, serif;
-  --vii-font-primary: 'Be Vietnam Pro', sans-serif;
-  --vii-font-icomoon: 'icomoon', fantasy;
+  --font-sans: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+  --font-serif: Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-primary: 'Be Vietnam Pro', sans-serif;
+  --font-icomoon: 'icomoon', fantasy;
 }
 
 :root {
-  --vii-color-white: #fff;
-  --vii-color-black: #000;
-  --vii-color-primary: #1c44ad;
-  --vii-color-dark: #1a1b1c;
-  --vii-color-gray: #f6f6f6;
-  --vii-color-light-blue: #115df7;
-  --vii-color-dark-blue: #21297d;
+  --color-white: #fff;
+  --color-black: #000;
+  --color-primary: #1c44ad;
+  --color-dark: #1a1b1c;
+  --color-gray: #f6f6f6;
+  --color-light-blue: #115df7;
+  --color-dark-blue: #21297d;
 }
