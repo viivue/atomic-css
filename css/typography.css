@@ -2,21 +2,6 @@
  * Typography
  * https://stackoverflow.design/product/base/typography/
  */
-.f-primary-400 {
-  font-family: 'Be Vietnam Pro', sans-serif;
-  font-weight: 400;
-}
-
-.f-primary-500 {
-  font-family: 'Be Vietnam Pro', sans-serif;
-  font-weight: 500;
-}
-
-.f-primary-700 {
-  font-family: 'Be Vietnam Pro', sans-serif;
-  font-weight: 700;
-}
-
 /* font-family */
 .ff-sans {
   font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
@@ -24,14 +9,6 @@
 
 .ff-serif {
   font-family: Georgia, Cambria, "Times New Roman", Times, serif;
-}
-
-.ff-primary {
-  font-family: 'Be Vietnam Pro', sans-serif;
-}
-
-.ff-icomoon {
-  font-family: 'icomoon', fantasy;
 }
 
 /* color */
@@ -43,26 +20,6 @@
   color: #000;
 }
 
-.fc-primary {
-  color: #1c44ad;
-}
-
-.fc-dark {
-  color: #1a1b1c;
-}
-
-.fc-gray {
-  color: #f6f6f6;
-}
-
-.fc-light-blue {
-  color: #115df7;
-}
-
-.fc-dark-blue {
-  color: #21297d;
-}
-
 /* background-color */
 .bg-white {
   background-color: #fff;
@@ -70,26 +27,6 @@
 
 .bg-black {
   background-color: #000;
-}
-
-.bg-primary {
-  background-color: #1c44ad;
-}
-
-.bg-dark {
-  background-color: #1a1b1c;
-}
-
-.bg-gray {
-  background-color: #f6f6f6;
-}
-
-.bg-light-blue {
-  background-color: #115df7;
-}
-
-.bg-dark-blue {
-  background-color: #21297d;
 }
 
 /* font-weight */
@@ -214,16 +151,9 @@
 :root {
   --font-sans: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
   --font-serif: Georgia, Cambria, "Times New Roman", Times, serif;
-  --font-primary: 'Be Vietnam Pro', sans-serif;
-  --font-icomoon: 'icomoon', fantasy;
 }
 
 :root {
   --color-white: #fff;
   --color-black: #000;
-  --color-primary: #1c44ad;
-  --color-dark: #1a1b1c;
-  --color-gray: #f6f6f6;
-  --color-light-blue: #115df7;
-  --color-dark-blue: #21297d;
 }

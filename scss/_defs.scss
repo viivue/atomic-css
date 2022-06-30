@@ -2,6 +2,7 @@
 /// DO NOT EDIT!
 
 $version: "1.0.1";
+$info: ();
 
 // axes
 $axes: ("x": ("-left" "-right"), "y": ("-top" "-bottom"));
@@ -36,6 +37,12 @@ $breakpoints: (
 $font-sizes: (
         "values": 0 1 2 4 6 8 12 16 24 32 48 64 96 128,
 );
+
+// font family
+$fonts: ();
+
+// colors
+$colors: ();
 
 // spacing values (for margin and padding, x for left/right. y for top/bottom)
 $spacing_values: (

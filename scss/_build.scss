@@ -1,11 +1,19 @@
 /// Build file (for production only)
 @import "config";
 
-/*!
+@if map-get($info,"name") {
+  /*!
  * Atomic CSS #{$version}
  * Customized for #{map-get($info,"name")}
  * https://github.com/viivue/atomic-css
  */
+} @else {
+  /*!
+ * Atomic CSS #{$version}
+ * https://github.com/viivue/atomic-css
+ */
+}
+
 
 @import "spacing";
 @import "positioning";
