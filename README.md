@@ -5,6 +5,11 @@
 - 👀 Guided by [Stacks](https://stackoverflow.design/product/guidelines/using-stacks/)
 - ✨ Build with [SCSS](https://sass-lang.com/)
 
+
+We all might agree that Atomic CSS is a helpful tool for both FE and BE development. There's a lot of Atomic CSS 
+frameworks out there (like [tailwindcss](https://tailwindcss.com/)), however, to **elevate the advantage of Atomic CSS**, while keeping
+it in **as light-weight as possible**, and even **customizable** for each project, we have this project on the go.
+
 ## Contribute
 
 This repo is under development, so if you want to give a hand then feel free to reach out to the [Road map](https://github.com/viivue/atomic-css/issues/1) or the [Issues tab](https://github.com/viivue/atomic-css/issues). 
