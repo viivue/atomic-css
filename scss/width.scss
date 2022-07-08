@@ -1,0 +1,21 @@
+/**
+ * Fluid Width
+ * https://stackoverflow.design/product/base/width-height/
+ */
+
+@import "helpers";
+
+$dataset: (
+  w-auto: (
+    inline: "width:auto",
+  ),
+  w-screen: (
+    inline: "width:100vw",
+  ),
+  width: (
+    prefix: "w",
+    value: 0 10% 20% 25% 30% 33.33% 40% 50% 60% 66.67% 70% 75% 80% 90% 100%,
+  ),
+);
+
+@include print($dataset);

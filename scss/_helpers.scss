@@ -2,6 +2,14 @@
 @import "config";
 
 ////////////////////////////// Functions
+
+@function convert-unit($number) {
+  @if type-of($number) == "number" and not unitless($number) {
+    @return floor(math.div($number, ($number * 0 + 1)));
+  }
+  @return $number;
+}
+
 @function strip-units($number) {
   @return math.div($number, ($number * 0 + 1));
 }
@@ -120,6 +128,29 @@
   }
 
   @return if($minus, -$result, $result);
+}
+
+@function isANumber($value) {
+  @if type-of($value) == "number" {
+    @return true;
+  }
+
+  @if type-of($value) != "string" {
+    @return false;
+  }
+
+  $strings: "0" "1" "2" "3" "4" "5" "6" "7" "8" "9";
+  $numbers: 0 1 2 3 4 5 6 7 8 9;
+
+  @for $i from 1 through str-length($value) {
+    $character: str-slice($value, $i, $i);
+    $index: index($value, $character);
+
+    @if not $index {
+      @return false;
+    }
+  }
+  @return true;
 }
 
 ///
@@ -272,9 +303,19 @@
     // Type: default
     @if (not $has_type) {
       @each $val in $value {
+        $unit: null;
+        @if isANumber($val) {
+          $unit: str-length(get-unit($val));
+        }
         @if not is-ignored($prop, $val) {
-          .#{$prefix}-#{replace-prop($val)} {
-            #{$prop}: #{$val};
+          @if ($prop == "z-index") {
+            .#{$prefix}-#{replace-prop($val)} {
+              #{$prop}: #{$val};
+            }
+          } @else {
+            .#{$prefix}-#{convert-unit(replace-prop($val))} {
+              #{$prop}: #{if($unit == 0, format-value($val), $val)};
+            }
           }
         }
       }
