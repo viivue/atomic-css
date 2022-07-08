@@ -1,0 +1,16 @@
+@import "helpers";
+
+$dataset: (
+  bar-pill: (
+    inline: "border-radius: 1000px",
+  ),
+  bar-circle: (
+    inline: "border-radius: 100%",
+  ),
+  border-radius: (
+    prefix: "bar",
+    value: 0 3px 5px 10px 15px,
+  ),
+);
+
+@include print($dataset);
