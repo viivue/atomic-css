@@ -1,5 +1,5 @@
 /*!
-* Atomic CSS 1.0.1
+* Atomic CSS 1.0.2
 * https://github.com/viivue/atomic-css
 */
 /**
@@ -721,4 +721,86 @@
 
 .ud-none {
   user-drag: none;
+}
+
+/**
+ * Overflow
+ * https://stackoverflow.design/product/base/overflow/
+ */
+/* overflow */
+.overflow-visible {
+  overflow: visible;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.overflow-scroll {
+  overflow: scroll;
+}
+
+.overflow-auto {
+  overflow: auto;
+}
+
+/* overflow-x */
+.overflow-x-hidden {
+  overflow-x: hidden;
+}
+
+.overflow-x-scroll {
+  overflow-x: scroll;
+}
+
+.overflow-x-auto {
+  overflow-x: auto;
+}
+
+/* overflow-y */
+.overflow-y-hidden {
+  overflow-y: hidden;
+}
+
+.overflow-y-scroll {
+  overflow-y: scroll;
+}
+
+.overflow-y-auto {
+  overflow-y: auto;
+}
+
+/**
+ * Border radius
+ * https://stackoverflow.design/product/base/border-radius/
+ */
+/* bar-pill */
+.bar-pill {
+  border-radius:  1000px;
+}
+
+/* bar-circle */
+.bar-circle {
+  border-radius:  100%;
+}
+
+/* border-radius */
+.bar-0 {
+  border-radius: 0;
+}
+
+.bar-3px {
+  border-radius: 3px;
+}
+
+.bar-5px {
+  border-radius: 5px;
+}
+
+.bar-10px {
+  border-radius: 10px;
+}
+
+.bar-15px {
+  border-radius: 15px;
 }
