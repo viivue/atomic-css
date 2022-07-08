@@ -1,0 +1,23 @@
+/**
+ * Overflow
+ * https://stackoverflow.design/product/base/overflow/
+ */
+
+@import "helpers";
+
+$dataset: (
+  overflow: (
+    prefix: "overflow",
+    value: visible hidden scroll auto,
+  ),
+  overflow-x: (
+    prefix: "overflow-x",
+    value: hidden scroll auto,
+  ),
+  overflow-y: (
+    prefix: "overflow-y",
+    value: hidden scroll auto,
+  ),
+);
+
+@include print($dataset);
