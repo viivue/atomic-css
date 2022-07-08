@@ -6,9 +6,18 @@
 @import "helpers";
 
 $dataset: (
-  overflow: visible hidden scroll auto,
-  overflow-x: visible hidden scroll auto,
-  overflow-y: visible hidden scroll auto,
+  overflow: (
+    prefix: "overflow",
+    value: visible hidden scroll auto,
+  ),
+  overflow-x: (
+    prefix: "overflow-x",
+    value: visible hidden scroll auto,
+  ),
+  overflow-y: (
+    prefix: "overflow-y",
+    value: visible hidden scroll auto,
+  ),
 );
 
 @include print($dataset);
