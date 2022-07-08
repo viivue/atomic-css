@@ -1,0 +1,34 @@
+/**
+ * Border radius
+ * https://stackoverflow.design/product/base/border-radius/
+ */
+/* bar-pill */
+.bar-pill {
+  border-radius:  1000px;
+}
+
+/* bar-circle */
+.bar-circle {
+  border-radius:  100%;
+}
+
+/* border-radius */
+.bar-0 {
+  border-radius: 0;
+}
+
+.bar-3px {
+  border-radius: 3px;
+}
+
+.bar-5px {
+  border-radius: 5px;
+}
+
+.bar-10px {
+  border-radius: 10px;
+}
+
+.bar-15px {
+  border-radius: 15px;
+}

@@ -1,0 +1,54 @@
+/**
+ * Overflow
+ * https://stackoverflow.design/product/base/overflow/
+ */
+/* overflow */
+.o-visible {
+  overflow: visible;
+}
+
+.o-hidden {
+  overflow: hidden;
+}
+
+.o-scroll {
+  overflow: scroll;
+}
+
+.o-auto {
+  overflow: auto;
+}
+
+/* overflow-x */
+.ox-visible {
+  overflow-x: visible;
+}
+
+.ox-hidden {
+  overflow-x: hidden;
+}
+
+.ox-scroll {
+  overflow-x: scroll;
+}
+
+.ox-auto {
+  overflow-x: auto;
+}
+
+/* overflow-y */
+.oy-visible {
+  overflow-y: visible;
+}
+
+.oy-hidden {
+  overflow-y: hidden;
+}
+
+.oy-scroll {
+  overflow-y: scroll;
+}
+
+.oy-auto {
+  overflow-y: auto;
+}
