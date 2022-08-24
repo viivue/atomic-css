@@ -13,22 +13,22 @@
 }
 
 /* border-radius */
-.bar-0 {
+.bar0 {
   border-radius: 0;
 }
 
-.bar-3px {
+.bar3px {
   border-radius: 3px;
 }
 
-.bar-5px {
+.bar5px {
   border-radius: 5px;
 }
 
-.bar-10px {
+.bar10px {
   border-radius: 10px;
 }
 
-.bar-15px {
+.bar15px {
   border-radius: 15px;
 }

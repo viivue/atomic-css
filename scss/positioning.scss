@@ -60,6 +60,7 @@ $dataset: (
         ),
         z-index: (
                 prefix:'z',
+                hyphen:false,
                 value:1 2 3 4 5 10 20 30 40 100 99999999
         ),
 );
