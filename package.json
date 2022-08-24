@@ -7,7 +7,7 @@
     "sass:watch": "sass scss:css -w --no-source-map",
     "sass:compressed": "sass scss/_build.scss:dist/atomic.css --no-source-map",
     "optimize": "csso dist/atomic.css --output dist/atomic.min.css --stat",
-    "dev": "npm run sass:watch",
+    "dev": "npm run sass:watch && npm run sass:compressed",
     "prod": "npm run sass && npm run sass:compressed && npm run optimize"
   },
   "repository": {
