@@ -1,5 +1,5 @@
 /*!
-* Atomic CSS 1.0.2
+* Atomic CSS 1.1.0
 * https://github.com/viivue/atomic-css
 */
 /**
@@ -227,47 +227,47 @@
 }
 
 /* z-index */
-.z-1 {
+.z1 {
   z-index: 1;
 }
 
-.z-2 {
+.z2 {
   z-index: 2;
 }
 
-.z-3 {
+.z3 {
   z-index: 3;
 }
 
-.z-4 {
+.z4 {
   z-index: 4;
 }
 
-.z-5 {
+.z5 {
   z-index: 5;
 }
 
-.z-10 {
+.z10 {
   z-index: 10;
 }
 
-.z-20 {
+.z20 {
   z-index: 20;
 }
 
-.z-30 {
+.z30 {
   z-index: 30;
 }
 
-.z-40 {
+.z40 {
   z-index: 40;
 }
 
-.z-100 {
+.z100 {
   z-index: 100;
 }
 
-.z-99999999 {
+.z99999999 {
   z-index: 99999999;
 }
 
@@ -785,22 +785,134 @@
 }
 
 /* border-radius */
-.bar-0 {
+.bar0 {
   border-radius: 0;
 }
 
-.bar-3px {
+.bar3px {
   border-radius: 3px;
 }
 
-.bar-5px {
+.bar5px {
   border-radius: 5px;
 }
 
-.bar-10px {
+.bar10px {
   border-radius: 10px;
 }
 
-.bar-15px {
+.bar15px {
   border-radius: 15px;
+}
+
+/**
+ * Skeleton
+ */
+.skeleton-bg {
+  background-color: #eee;
+  background-image: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0) 80%);
+  background-size: 100px 100%;
+  background-position: -50% 0;
+  background-repeat: repeat-y;
+  animation: skeleton-shine 1.2s infinite;
+}
+
+@keyframes skeleton-shine {
+  to {
+    background-position: 150% 0;
+  }
+}
+/**
+ * Width & Height
+ */
+/* w-auto */
+.w-auto {
+  width:  auto;
+}
+
+/* width */
+.w0 {
+  width: 0;
+}
+
+.w10 {
+  width: 10%;
+}
+
+.w20 {
+  width: 20%;
+}
+
+.w25 {
+  width: 25%;
+}
+
+.w30 {
+  width: 30%;
+}
+
+.w40 {
+  width: 40%;
+}
+
+.w50 {
+  width: 50%;
+}
+
+.w60 {
+  width: 60%;
+}
+
+.w70 {
+  width: 70%;
+}
+
+.w75 {
+  width: 75%;
+}
+
+.w80 {
+  width: 80%;
+}
+
+.w90 {
+  width: 90%;
+}
+
+.w100 {
+  width: 100%;
+}
+
+/* w33 */
+.w33 {
+  width:  33.33%;
+}
+
+/* w66 */
+.w66 {
+  width:  66.67%;
+}
+
+/* w-screen */
+.w-screen {
+  width:  100vw;
+}
+
+/* h-auto */
+.h-auto {
+  height:  auto;
+}
+
+/* height */
+.h0 {
+  height: 0;
+}
+
+.h100 {
+  height: 100%;
+}
+
+/* h-screen */
+.h-screen {
+  height:  100vh;
 }

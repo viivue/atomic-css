@@ -1,6 +1,6 @@
 {
   "name": "atomic-css",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "⚛️ Atomic CSS Framework for everyone.",
   "scripts": {
     "sass": "sass scss:css --no-source-map",
