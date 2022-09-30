@@ -36,6 +36,16 @@ $positions: absolute fixed relative static sticky;
   }
 }
 
+/* Coordinates - auto */
+@mixin position-coordinates-auto() {
+  @each $name, $prop in $coordinates {
+    .#{$name}-auto {
+      #{$prop}: auto;
+    }
+  }
+}
+@include position-coordinates-auto();
+
 // print
 $dataset: (
         ab-center:(
