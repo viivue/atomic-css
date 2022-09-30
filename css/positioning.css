@@ -56,6 +56,23 @@
   left: 50%;
 }
 
+/* Coordinates - auto */
+.t-auto {
+  top: auto;
+}
+
+.r-auto {
+  right: auto;
+}
+
+.b-auto {
+  bottom: auto;
+}
+
+.l-auto {
+  left: auto;
+}
+
 /* ab-center */
 .ab-center {
   position: absolute;

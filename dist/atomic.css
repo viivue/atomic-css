@@ -1,5 +1,5 @@
 /*!
-* Atomic CSS 1.1.0
+* Atomic CSS 1.1.1
 * https://github.com/viivue/atomic-css
 */
 /**
@@ -183,6 +183,23 @@
 
 .l50p {
   left: 50%;
+}
+
+/* Coordinates - auto */
+.t-auto {
+  top: auto;
+}
+
+.r-auto {
+  right: auto;
+}
+
+.b-auto {
+  bottom: auto;
+}
+
+.l-auto {
+  left: auto;
 }
 
 /* ab-center */

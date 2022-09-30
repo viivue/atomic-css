@@ -46,7 +46,9 @@ npm run dev
 
 ### Prod
 
-Compile compressed CSS
+Compile compressed CSS for distribution.
+
+> Check version at `_defs.scss` and `package.json`
 
 ```shell
 npm run prod
