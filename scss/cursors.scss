@@ -1,0 +1,15 @@
+/**
+ * Cursors
+ * https://stackoverflow.design/product/base/cursors/
+ */
+@import "helpers";
+
+$dataset: (
+        cursor:(
+                prefix:'c',
+                value:auto default pointer text wait move not-allowed help
+        ),
+);
+
+// print
+@include print($dataset);
