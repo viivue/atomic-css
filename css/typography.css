@@ -38,6 +38,35 @@
   font-weight: 700;
 }
 
+/* line-height */
+.lh-xs {
+  line-height: 1;
+}
+
+.lh-sm {
+  line-height: 1.15;
+}
+
+.lh-md {
+  line-height: 1.3;
+}
+
+.lh-lg {
+  line-height: 1.6;
+}
+
+.lh-xl {
+  line-height: 1.92;
+}
+
+.lh-xxl {
+  line-height: 2;
+}
+
+.lh-unset {
+  line-height: unset;
+}
+
 /* font-style */
 .fs-normal {
   font-style: normal;
