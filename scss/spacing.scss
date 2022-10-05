@@ -7,74 +7,69 @@
 // Margin and Padding
 $classes: ("m":"margin", "p":"padding");
 
-@mixin spacing-values($prefix,$axis,$postfix,$prop,$value) {
-  // axes
-  .#{$prefix}#{$axis}#{format-postfix($postfix)} {
-    @each $ap in map-get($axes, $axis) {
-      //#{$prop}#{$ap}: #{format-value($value)};
+/* Margin auto */
+.m-auto {
+  margin: auto;
+}
 
-      $var: '';
-      @if $ap == '-top' or $ap == '-bottom' {
-        $var: '-y';
-      }
-      @if $ap == '-left' or $ap == '-right' {
-        $var: '-x';
-      }
-
-
-      #{$prop}#{$ap}: var(--#{$prop}#{$var}-#{replace-prop($value)});
-    }
-  }
-
-  // top right bottom left
-  @each $prefix-c, $prop-c in $coordinates {
-    .#{$prefix}#{$prefix-c}#{format-postfix($postfix)} {
-      $var: '';
-      @debug $prop-c;
-      @if $prop-c == 'top' or $prop-c == 'bottom' {
-        $var: 'y';
-      }
-      @if $prop-c == 'left' or $prop-c == 'right' {
-        $var: 'x';
-      }
-
-      #{$prop}-#{$prop-c}: var(--#{$prop}-#{$var}-#{replace-prop($value)});
-    }
+@each $prefix, $prop in $coordinates {
+  .m#{$prefix}-auto {
+    margin-#{$prop}: auto;
   }
 }
 
-@mixin spacing($prefix, $prop, $dataset) {
-  @each $axis, $data in $dataset {
-    @each $breakpoint, $values in $data {
+/**
+ * Vertical Spacing
+ */
 
-      @if is-breakpoint($breakpoint) {
-        @include media-screen($breakpoint) {
-
-          @for $i from 1 through length($values) {
-            $value: nth($values, $i);
-            $postfix: get-previous-breakpoint-value($i, $value, $breakpoint, $data);
-
-            @include responsive($breakpoint, $value, $postfix) {
-            }
-
-          }
-
-        }
-      } @else {
+@mixin vertical-spacing($vertical_spacing) {
+  @each $breakpoint, $values in $vertical_spacing {
+    @if is-breakpoint($breakpoint) {
+      // Responsive value
+      @include media-screen($breakpoint) {
         :root {
           @for $i from 1 through length($values) {
             $value: nth($values, $i);
-            $postfix: get-previous-breakpoint-value($i, $value, $breakpoint, $data);
+            $postfix: get-desktop-value($i, $vertical_spacing);
 
-            @debug ($axis, $prefix, $prop, $value, $postfix);
-            --#{$prop}-#{$axis}-#{replace-prop($postfix)}: #{format-value($value)};
+            @debug $value, $postfix;
+            @if $value != $postfix {
+              @include get-variable(spacing-#{replace-prop($postfix)}, #{format-value($value)});
+            }
           }
         }
-
+      }
+    } @else {
+      // Desktop value
+      :root {
         @for $i from 1 through length($values) {
           $value: nth($values, $i);
-          $postfix: get-previous-breakpoint-value($i, $value, $breakpoint, $data);
-          @include spacing-values($prefix, $axis, $postfix, $prop, $value);
+          $postfix: get-previous-breakpoint-value($i, $value, $breakpoint, $vertical_spacing);
+          //@debug $value, $postfix;
+
+          @include get-variable(spacing-#{replace-prop($postfix)}, #{format-value($value)});
+        }
+      }
+
+      // margin padding top bottom
+      @for $i from 1 through length($values) {
+        $value: nth($values, $i);
+        $postfix: get-previous-breakpoint-value($i, $value, $breakpoint, $vertical_spacing);
+        //@debug $value, $postfix;
+
+        $var: var(#{get-variable(spacing-#{replace-prop($postfix)})});
+
+        .pt#{replace-prop($postfix)} {
+          padding-top: #{$var};
+        }
+        .pb#{replace-prop($postfix)} {
+          padding-bottom: #{$var};
+        }
+        .mt#{replace-prop($postfix)} {
+          margin-top: #{$var};
+        }
+        .mb#{replace-prop($postfix)} {
+          margin-bottom: #{$var};
         }
       }
 
@@ -82,19 +77,4 @@ $classes: ("m":"margin", "p":"padding");
   }
 }
 
-@each $prefix, $prop in $classes {
-  @if ($prefix == "m") {
-    /* Margin auto */
-    .#{$prefix}-auto {
-      #{$prop}: auto;
-    }
-    @each $prefix-mod, $prop-mod in $coordinates {
-      .#{$prefix}#{$prefix-mod}-auto {
-        #{$prop}-#{$prop-mod}: auto;
-      }
-    }
-  }
-
-  // axes
-  @include spacing($prefix, $prop, $spacing_values);
-}
+@include vertical-spacing($vertical_spacing);
