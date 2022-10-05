@@ -5,7 +5,7 @@
 // Project info
 //$info: (
 //        name: 'Atomic CSS',
-//        //variable-prefix: 'prefix'
+//        variable-prefix: ''
 //);
 
 // font family
@@ -29,4 +29,17 @@
 // aspect ratio
 //$aspect_ratio: (
 //        "custom":"1280/768"
+//);
+
+// breakpoints
+//$breakpoints: (
+//        "lg": 1280px,
+//        "md": 1024px,
+//        "sm": 480px,
+//);
+
+// vertical spacing
+//$vertical_spacing: (
+//        "values":0 1 2 4 6 8 12 16 24 32 48 64 96 128,
+//        "md":    0 1 2 4 6 8 12 16 24 30 40 50 60 70,
 //);

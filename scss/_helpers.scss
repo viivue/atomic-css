@@ -82,6 +82,10 @@
   @return $value;
 }
 
+@function get-desktop-value($index,$data) {
+  $default_values: map-get($data, "values");
+  @return nth($default_values, $index);
+}
 
 ///
 /// Casts a string into a number
@@ -405,4 +409,38 @@
       @include print-var-prop($prefix, $name, $value);
     }
   }
+}
+
+/**
+ * Return --prop:value; with project prefix
+ */
+@mixin get-variable($prop,$value) {
+  @if $value != '' {
+    $project-prefix: '';
+
+    @if map-has-key($info, 'variable-prefix') {
+      $i-prefix: map-get($info, 'variable-prefix');
+      @if $i-prefix != '' {
+        $project-prefix: str-insert($i-prefix, '-', 100);
+      }
+    }
+
+    --#{$project-prefix}#{$prop}: #{$value};
+  }
+}
+
+/**
+ * Return --prop with project prefix
+ */
+@function get-variable($prop) {
+  $project-prefix: '';
+
+  @if map-has-key($info, 'variable-prefix') {
+    $i-prefix: map-get($info, 'variable-prefix');
+    @if $i-prefix != '' {
+      $project-prefix: str-insert($i-prefix, '-', 100);
+    }
+  }
+
+  @return --#{$project-prefix}#{$prop};
 }
