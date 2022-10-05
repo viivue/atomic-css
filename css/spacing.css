@@ -2,12 +2,6 @@
  * Spacing
  * https://stackoverflow.design/product/base/spacing/
  */
-/**
- * Return --prop:value; with project prefix
- */
-/**
- * Return --prop with project prefix
- */
 /* Margin auto */
 .m-auto {
   margin: auto;
