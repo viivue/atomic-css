@@ -411,9 +411,7 @@
   }
 }
 
-/**
- * Return --prop:value; with project prefix
- */
+// Return --prop:value; with project prefix
 @mixin get-variable($prop,$value) {
   @if $value != '' {
     $project-prefix: '';
@@ -429,9 +427,7 @@
   }
 }
 
-/**
- * Return --prop with project prefix
- */
+// Return --prop with project prefix
 @function get-variable($prop) {
   $project-prefix: '';
 
