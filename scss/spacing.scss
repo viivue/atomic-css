@@ -32,9 +32,16 @@ $classes: ("m":"margin", "p":"padding");
             $value: nth($values, $i);
             $postfix: get-desktop-value($i, $vertical_spacing);
 
-            @debug $value, $postfix;
+            //@debug $value, $postfix;
+
+            /// if changed compare with desktop value
             @if $value != $postfix {
-              @include get-variable(spacing-#{replace-prop($postfix)}, #{format-value($value)});
+              $previous_postfix: get-previous-breakpoint-value($i, $value, $breakpoint, $vertical_spacing);
+
+              // and changed compare with the previous value
+              @if $value != $previous_postfix {
+                @include get-variable(spacing-#{replace-prop($postfix)}, #{format-value($value)});
+              }
             }
           }
         }
