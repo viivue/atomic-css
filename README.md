@@ -1,4 +1,10 @@
-# Atomic CSS (private, beta)
+# Atomic CSS
+
+[![release](https://badgen.net/github/release/viivue/atomic-css/)](https://github.com/viivue/atomic-css/releases/latest)
+[![minified](https://badgen.net/badge/minified/~11KB/cyan)](https://www.jsdelivr.com/package/gh/viivue/atomic-css)
+[![jsdelivr](https://data.jsdelivr.com/v1/package/gh/viivue/atomic-css/badge?style=rounded)](https://www.jsdelivr.com/package/gh/viivue/atomic-css)
+[![license](https://badgen.net/github/license/viivue/atomic-css/)](https://github.com/viivue/atomic-css/blob/main/LICENSE)
+
 > ⚛️ Customizable Atomic CSS Framework for everyone.
 
 - 💡Inspirited by [Atomic CSS, Vì Một Thế Giới Hoà Bình](https://ehkoo.com/bai-viet/introduction-to-functional-utility-first-atomic-css)
