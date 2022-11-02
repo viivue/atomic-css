@@ -1,7 +1,8 @@
 {
   "name": "@viivue/atomic-css",
   "version": "1.1.3",
-  "description": "⚛️ Atomic CSS Framework for everyone.",
+  "description": "⚛️ Customizable Atomic CSS Framework.",
+  "main": "./dist/atomic.min.css",
   "scripts": {
     "sass": "sass scss:css --no-source-map",
     "sass:watch": "sass scss:css -w --no-source-map",
@@ -19,12 +20,15 @@
     "customizable-atomic-css",
     "viivue"
   ],
-  "author": "viivue",
+  "author": {
+    "name": "phucbm",
+    "url": "https://github.com/phucbm"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/viivue/atomic-css/issues"
   },
-  "homepage": "https://github.com/viivue/atomic-css#readme",
+  "homepage": "https://github.com/viivue/atomic-css",
   "devDependencies": {
     "csso-cli": "^3.0.0",
     "sass": "^1.51.0"

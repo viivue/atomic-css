@@ -24,6 +24,12 @@ Install NPM package with basic config
 npm i @viivue/atomic-css
 ```
 
+Import
+
+```js
+import "@viivue/atomic-css";
+```
+
 Or, you can download the default Atomic CSS files in the [`/dist` folder](https://github.com/viivue/atomic-css/tree/main/dist).
 
 ### Customization
