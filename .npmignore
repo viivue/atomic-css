@@ -1,0 +1,5 @@
+.idea
+.gitignore
+/css
+/scss
+/dist/atomic.css

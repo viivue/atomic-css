@@ -1,6 +1,6 @@
 # Atomic CSS
 
-[![release](https://badgen.net/github/release/viivue/atomic-css/)](https://github.com/viivue/atomic-css/releases/latest)
+[![npm](https://badgen.net/npm/v/@viivue/atomic-css)](https://www.npmjs.com/package/@viivue/atomic-css)
 [![minified](https://badgen.net/badge/minified/~11KB/cyan)](https://www.jsdelivr.com/package/gh/viivue/atomic-css)
 [![jsdelivr](https://data.jsdelivr.com/v1/package/gh/viivue/atomic-css/badge?style=rounded)](https://www.jsdelivr.com/package/gh/viivue/atomic-css)
 [![license](https://badgen.net/github/license/viivue/atomic-css/)](https://github.com/viivue/atomic-css/blob/main/LICENSE)
@@ -16,15 +16,15 @@ We all might agree that Atomic CSS is a helpful tool for both FE and BE developm
 frameworks out there (like [tailwindcss](https://tailwindcss.com/)), however, to **elevate the advantage of Atomic CSS**, while keeping
 it in **as light-weight as possible**, and even **customizable** for each project, we have this project on the go.
 
-## Contribute
-
-This repo is under development, so if you want to give a hand then feel free to reach out to the [Road map](https://github.com/viivue/atomic-css/issues/1) or the [Issues tab](https://github.com/viivue/atomic-css/issues). 
-
 ## Usage
 
-### Default
+Install NPM package with basic config
 
-You can download the default Atomic CSS files in the [`/dist` folder](https://github.com/viivue/atomic-css/tree/main/dist).
+```shell
+npm i @viivue/atomic-css
+```
+
+Or, you can download the default Atomic CSS files in the [`/dist` folder](https://github.com/viivue/atomic-css/tree/main/dist).
 
 ### Customization
 
@@ -58,4 +58,12 @@ Compile compressed CSS for distribution.
 
 ```shell
 npm run prod
+```
+
+### Publish NPM package
+
+Check version
+
+```shell
+npm publish
 ```
