@@ -1,0 +1,58 @@
+@import 'helpers';
+
+/**
+ * Flex grid
+ */
+.flex-grid-template {
+  --grid-gap-x: 30px;
+  --grid-gap-y: 30px;
+  --grid-col: 3;
+
+  /* calculate new width */
+  --grid-gap-x-total: calc(var(--grid-gap-x) * (var(--grid-col) - 1));
+  --grid-space-each: calc(var(--grid-gap-x-total) / var(--grid-col));
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--grid-gap-y) var(--grid-gap-x);
+}
+
+.flex-grid-template > * {
+  width: calc(100% / var(--grid-col) - var(--grid-space-each));
+}
+
+@media only screen and (max-width: map-get($breakpoints, "sm")) {
+  .flex-grid-template {
+    --grid-col: 2;
+  }
+}
+
+@media only screen and (max-width: map-get($breakpoints, "xs")) {
+  .flex-grid-template {
+    --grid-col: 1;
+  }
+}
+
+/**
+ * Background object fit
+ */
+@mixin img-object-fit {
+  object-position: center center;
+  height: 100%;
+  width: 100%;
+  min-height: 100%;
+  min-width: 100%;
+  max-height: 100%;
+  max-width: 100%;
+  display: block;
+}
+
+.img-wrapper-cover > img {
+  @include img-object-fit;
+  object-fit: cover;
+}
+
+.img-wrapper-contain > img {
+  @include img-object-fit;
+  object-fit: contain;
+}
