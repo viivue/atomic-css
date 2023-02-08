@@ -59,14 +59,18 @@
 
 /**
  * Clear list style
+ * We can add the class directly to the ul or to the wrapper that has ul inside
  */
+
+// clear list style of the ul
 ul.list-style-none,
 .list-style-none ul {
   margin: 0;
-  list-style-type: none;
+  list-style: none;
 }
 
-.list-style-none ul > li,
-.list-style-none > li {
+// clear padding of the li
+ul.list-style-none > li,
+.list-style-none ul > li {
   padding: 0;
 }
