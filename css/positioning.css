@@ -4,173 +4,173 @@
  */
 /* Positions */
 .ps-absolute {
-  position: absolute;
+    position:absolute;
 }
 
 .ps-fixed {
-  position: fixed;
+    position:fixed;
 }
 
 .ps-relative {
-  position: relative;
+    position:relative;
 }
 
 .ps-static {
-  position: static;
+    position:static;
 }
 
 .ps-sticky {
-  position: sticky;
+    position:sticky;
 }
 
 /* Coordinates */
 .t0 {
-  top: 0;
+    top:0;
 }
 
 .r0 {
-  right: 0;
+    right:0;
 }
 
 .b0 {
-  bottom: 0;
+    bottom:0;
 }
 
 .l0 {
-  left: 0;
+    left:0;
 }
 
 .t50p {
-  top: 50%;
+    top:50%;
 }
 
 .r50p {
-  right: 50%;
+    right:50%;
 }
 
 .b50p {
-  bottom: 50%;
+    bottom:50%;
 }
 
 .l50p {
-  left: 50%;
+    left:50%;
 }
 
 .t100p {
-  top: 100%;
+    top:100%;
 }
 
 .r100p {
-  right: 100%;
+    right:100%;
 }
 
 .b100p {
-  bottom: 100%;
+    bottom:100%;
 }
 
 .l100p {
-  left: 100%;
+    left:100%;
 }
 
 /* Coordinates - auto */
 .t-auto {
-  top: auto;
+    top:auto;
 }
 
 .r-auto {
-  right: auto;
+    right:auto;
 }
 
 .b-auto {
-  bottom: auto;
+    bottom:auto;
 }
 
 .l-auto {
-  left: auto;
+    left:auto;
 }
 
 /* ab-center */
 .ab-center {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%, -50%);
 }
 
 /* ab-center-v */
 .ab-center-v {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
 }
 
 /* ab-center-h */
 .ab-center-h {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
+    position:absolute;
+    left:50%;
+    transform:translateX(-50%);
 }
 
 /* ab-full */
 .ab-full, .ab-full-b:before, .ab-full-a:after, .ab-full-ba:before, .ab-full-ba:after {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
+    position:absolute;
+    top:0;
+    right:0;
+    bottom:0;
+    left:0;
 }
 
 /* ab-full-content */
 .ab-full-b:before, .ab-full-a:after, .ab-full-ba:before, .ab-full-ba:after {
-  content: "";
+    content:"";
 }
 
 /* z-hide */
 .z-hide {
-  z-index: -1;
+    z-index:-1;
 }
 
 /* z-index */
 .z1 {
-  z-index: 1;
+    z-index:1;
 }
 
 .z2 {
-  z-index: 2;
+    z-index:2;
 }
 
 .z3 {
-  z-index: 3;
+    z-index:3;
 }
 
 .z4 {
-  z-index: 4;
+    z-index:4;
 }
 
 .z5 {
-  z-index: 5;
+    z-index:5;
 }
 
 .z10 {
-  z-index: 10;
+    z-index:10;
 }
 
 .z20 {
-  z-index: 20;
+    z-index:20;
 }
 
 .z30 {
-  z-index: 30;
+    z-index:30;
 }
 
 .z40 {
-  z-index: 40;
+    z-index:40;
 }
 
 .z100 {
-  z-index: 100;
+    z-index:100;
 }
 
 .z99999999 {
-  z-index: 99999999;
+    z-index:99999999;
 }

@@ -3,29 +3,29 @@
  */
 /* aspect-ratio */
 .ar-auto {
-  aspect-ratio: auto;
+    aspect-ratio:auto;
 }
 
 .ar-inherit {
-  aspect-ratio: inherit;
+    aspect-ratio:inherit;
 }
 
 .ar-unset {
-  aspect-ratio: unset;
+    aspect-ratio:unset;
 }
 
 .ar-1 {
-  aspect-ratio: 1;
+    aspect-ratio:1;
 }
 
 .ar-169 {
-  aspect-ratio: 16/9;
+    aspect-ratio:16/9;
 }
 
 .ar-43 {
-  aspect-ratio: 4/3;
+    aspect-ratio:4/3;
 }
 
 .ar-12 {
-  aspect-ratio: 1/2;
+    aspect-ratio:1/2;
 }

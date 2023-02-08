@@ -2,16 +2,16 @@
  * Skeleton
  */
 .skeleton-bg {
-  background-color: #eee;
-  background-image: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0) 80%);
-  background-size: 100px 100%;
-  background-position: -50% 0;
-  background-repeat: repeat-y;
-  animation: skeleton-shine 1.2s infinite;
+    background-color:#eee;
+    background-image:linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0) 80%);
+    background-size:100px 100%;
+    background-position:-50% 0;
+    background-repeat:repeat-y;
+    animation:skeleton-shine 1.2s infinite;
 }
 
 @keyframes skeleton-shine {
-  to {
-    background-position: 150% 0;
-  }
+    to {
+        background-position:150% 0;
+    }
 }

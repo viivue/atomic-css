@@ -4,45 +4,45 @@
  */
 /* display */
 .d-block {
-  display: block;
+    display:block;
 }
 
 .d-inline {
-  display: inline;
+    display:inline;
 }
 
 .d-inline-block {
-  display: inline-block;
+    display:inline-block;
 }
 
 .d-flex {
-  display: flex;
+    display:flex;
 }
 
 .d-inline-flex {
-  display: inline-flex;
+    display:inline-flex;
 }
 
 .d-grid {
-  display: grid;
+    display:grid;
 }
 
 .d-inline-grid {
-  display: inline-grid;
+    display:inline-grid;
 }
 
 .d-table {
-  display: table;
+    display:table;
 }
 
 .d-table-cell {
-  display: table-cell;
+    display:table-cell;
 }
 
 .d-none {
-  display: none;
+    display:none;
 }
 
 .d-unset {
-  display: unset;
+    display:unset;
 }

@@ -4,23 +4,23 @@
  */
 /* transition */
 .t {
-  transition-duration: .25s;
-  transition-property: all;
-  transition-timing-function: ease;
-  transition-delay: 0s;
+    transition-duration:.25s;
+    transition-property:all;
+    transition-timing-function:ease;
+    transition-delay:0s;
 }
 
 /* slow */
 .t-slow {
-  transition-duration: .6s;
+    transition-duration:.6s;
 }
 
 /* fast */
 .t-fast {
-  transition-duration: .1s;
+    transition-duration:.1s;
 }
 
 /* opacity */
 .t-opacity {
-  transition-property:  opacity;
+    transition-property:opacity;
 }

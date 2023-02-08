@@ -2,56 +2,56 @@
  * Flex grid
  */
 .flex-grid-template {
-  --grid-gap-x: 30px;
-  --grid-gap-y: 30px;
-  --grid-col: 3;
-  /* calculate new width */
-  --grid-gap-x-total: calc(var(--grid-gap-x) * (var(--grid-col) - 1));
-  --grid-space-each: calc(var(--grid-gap-x-total) / var(--grid-col));
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--grid-gap-y) var(--grid-gap-x);
+    --grid-gap-x:30px;
+    --grid-gap-y:30px;
+    --grid-col:3;
+    /* calculate new width */
+    --grid-gap-x-total:calc(var(--grid-gap-x) * (var(--grid-col) - 1));
+    --grid-space-each:calc(var(--grid-gap-x-total) / var(--grid-col));
+    display:flex;
+    flex-wrap:wrap;
+    gap:var(--grid-gap-y) var(--grid-gap-x);
 }
 
 .flex-grid-template > * {
-  width: calc(100% / var(--grid-col) - var(--grid-space-each));
+    width:calc(100% / var(--grid-col) - var(--grid-space-each));
 }
 
-@media only screen and (max-width: 768px) {
-  .flex-grid-template {
-    --grid-col: 2;
-  }
+@media only screen and (max-width:768px) {
+    .flex-grid-template {
+        --grid-col:2;
+    }
 }
-@media only screen and (max-width: 480px) {
-  .flex-grid-template {
-    --grid-col: 1;
-  }
+@media only screen and (max-width:480px) {
+    .flex-grid-template {
+        --grid-col:1;
+    }
 }
 /**
  * Background object fit
  */
 .img-wrapper-cover > img {
-  object-position: center center;
-  height: 100%;
-  width: 100%;
-  min-height: 100%;
-  min-width: 100%;
-  max-height: 100%;
-  max-width: 100%;
-  display: block;
-  object-fit: cover;
+    object-position:center center;
+    height:100%;
+    width:100%;
+    min-height:100%;
+    min-width:100%;
+    max-height:100%;
+    max-width:100%;
+    display:block;
+    object-fit:cover;
 }
 
 .img-wrapper-contain > img {
-  object-position: center center;
-  height:100%;
-  width:100%;
-  min-height:100%;
-  min-width:100%;
-  max-height:100%;
-  max-width:100%;
-  display:block;
-  object-fit:contain;
+    object-position:center center;
+    height:100%;
+    width:100%;
+    min-height:100%;
+    min-width:100%;
+    max-height:100%;
+    max-width:100%;
+    display:block;
+    object-fit:contain;
 }
 
 /**
@@ -60,11 +60,11 @@
  */
 ul.list-style-none,
 .list-style-none ul {
-  margin:0;
-  list-style:none;
+    margin:0;
+    list-style:none;
 }
 
 ul.list-style-none > li,
 .list-style-none ul > li {
-  padding:0;
+    padding:0;
 }

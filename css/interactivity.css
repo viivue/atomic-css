@@ -4,27 +4,27 @@
  */
 /* pointer-events */
 .pe-auto {
-  pointer-events: auto;
+    pointer-events:auto;
 }
 
 .pe-none {
-  pointer-events: none;
+    pointer-events:none;
 }
 
 /* user-select */
 .us-auto {
-  user-select: auto;
+    user-select:auto;
 }
 
 .us-none {
-  user-select: none;
+    user-select:none;
 }
 
 /* user-drag */
 .ud-auto {
-  user-drag: auto;
+    user-drag:auto;
 }
 
 .ud-none {
-  user-drag: none;
+    user-drag:none;
 }
