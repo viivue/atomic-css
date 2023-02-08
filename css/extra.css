@@ -56,7 +56,6 @@
 
 /**
  * Clear list style
- * We can add the class directly to the ul or to the wrapper that has ul inside
  */
 ul.list-style-none,
 .list-style-none ul {
