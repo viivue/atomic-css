@@ -1,6 +1,5 @@
 /*!
 * Atomic CSS 1.1.9
-* Customized for 2023-TWC-Novotec
 * https://github.com/viivue/atomic-css
 */
 /**
@@ -32,392 +31,25 @@
  * Vertical Spacing
  */
 :root {
-  --twc-spacing-0:0;
-  --twc-spacing-5:5px;
-  --twc-spacing-10:10px;
-  --twc-spacing-15:15px;
-  --twc-spacing-20:20px;
-  --twc-spacing-25:25px;
-  --twc-spacing-30:30px;
-  --twc-spacing-35:35px;
-  --twc-spacing-40:40px;
-  --twc-spacing-45:45px;
-  --twc-spacing-50:50px;
-  --twc-spacing-55:55px;
-  --twc-spacing-60:60px;
-  --twc-spacing-65:65px;
-  --twc-spacing-70:70px;
-  --twc-spacing-75:75px;
-  --twc-spacing-85:85px;
-  --twc-spacing-90:90px;
-  --twc-spacing-100:100px;
-  --twc-spacing-120:120px;
+  --spacing-0:0;
 }
 
 .pt0 {
-  padding-top:var(--twc-spacing-0);
+  padding-top:var(--spacing-0);
 }
 
 .pb0 {
-  padding-bottom:var(--twc-spacing-0);
+  padding-bottom:var(--spacing-0);
 }
 
 .mt0 {
-  margin-top:var(--twc-spacing-0);
+  margin-top:var(--spacing-0);
 }
 
 .mb0 {
-  margin-bottom:var(--twc-spacing-0);
+  margin-bottom:var(--spacing-0);
 }
 
-.pt5 {
-  padding-top:var(--twc-spacing-5);
-}
-
-.pb5 {
-  padding-bottom:var(--twc-spacing-5);
-}
-
-.mt5 {
-  margin-top:var(--twc-spacing-5);
-}
-
-.mb5 {
-  margin-bottom:var(--twc-spacing-5);
-}
-
-.pt10 {
-  padding-top:var(--twc-spacing-10);
-}
-
-.pb10 {
-  padding-bottom:var(--twc-spacing-10);
-}
-
-.mt10 {
-  margin-top:var(--twc-spacing-10);
-}
-
-.mb10 {
-  margin-bottom:var(--twc-spacing-10);
-}
-
-.pt15 {
-  padding-top:var(--twc-spacing-15);
-}
-
-.pb15 {
-  padding-bottom:var(--twc-spacing-15);
-}
-
-.mt15 {
-  margin-top:var(--twc-spacing-15);
-}
-
-.mb15 {
-  margin-bottom:var(--twc-spacing-15);
-}
-
-.pt20 {
-  padding-top:var(--twc-spacing-20);
-}
-
-.pb20 {
-  padding-bottom:var(--twc-spacing-20);
-}
-
-.mt20 {
-  margin-top:var(--twc-spacing-20);
-}
-
-.mb20 {
-  margin-bottom:var(--twc-spacing-20);
-}
-
-.pt25 {
-  padding-top:var(--twc-spacing-25);
-}
-
-.pb25 {
-  padding-bottom:var(--twc-spacing-25);
-}
-
-.mt25 {
-  margin-top:var(--twc-spacing-25);
-}
-
-.mb25 {
-  margin-bottom:var(--twc-spacing-25);
-}
-
-.pt30 {
-  padding-top:var(--twc-spacing-30);
-}
-
-.pb30 {
-  padding-bottom:var(--twc-spacing-30);
-}
-
-.mt30 {
-  margin-top:var(--twc-spacing-30);
-}
-
-.mb30 {
-  margin-bottom:var(--twc-spacing-30);
-}
-
-.pt35 {
-  padding-top:var(--twc-spacing-35);
-}
-
-.pb35 {
-  padding-bottom:var(--twc-spacing-35);
-}
-
-.mt35 {
-  margin-top:var(--twc-spacing-35);
-}
-
-.mb35 {
-  margin-bottom:var(--twc-spacing-35);
-}
-
-.pt40 {
-  padding-top:var(--twc-spacing-40);
-}
-
-.pb40 {
-  padding-bottom:var(--twc-spacing-40);
-}
-
-.mt40 {
-  margin-top:var(--twc-spacing-40);
-}
-
-.mb40 {
-  margin-bottom:var(--twc-spacing-40);
-}
-
-.pt45 {
-  padding-top:var(--twc-spacing-45);
-}
-
-.pb45 {
-  padding-bottom:var(--twc-spacing-45);
-}
-
-.mt45 {
-  margin-top:var(--twc-spacing-45);
-}
-
-.mb45 {
-  margin-bottom:var(--twc-spacing-45);
-}
-
-.pt50 {
-  padding-top:var(--twc-spacing-50);
-}
-
-.pb50 {
-  padding-bottom:var(--twc-spacing-50);
-}
-
-.mt50 {
-  margin-top:var(--twc-spacing-50);
-}
-
-.mb50 {
-  margin-bottom:var(--twc-spacing-50);
-}
-
-.pt55 {
-  padding-top:var(--twc-spacing-55);
-}
-
-.pb55 {
-  padding-bottom:var(--twc-spacing-55);
-}
-
-.mt55 {
-  margin-top:var(--twc-spacing-55);
-}
-
-.mb55 {
-  margin-bottom:var(--twc-spacing-55);
-}
-
-.pt60 {
-  padding-top:var(--twc-spacing-60);
-}
-
-.pb60 {
-  padding-bottom:var(--twc-spacing-60);
-}
-
-.mt60 {
-  margin-top:var(--twc-spacing-60);
-}
-
-.mb60 {
-  margin-bottom:var(--twc-spacing-60);
-}
-
-.pt65 {
-  padding-top:var(--twc-spacing-65);
-}
-
-.pb65 {
-  padding-bottom:var(--twc-spacing-65);
-}
-
-.mt65 {
-  margin-top:var(--twc-spacing-65);
-}
-
-.mb65 {
-  margin-bottom:var(--twc-spacing-65);
-}
-
-.pt70 {
-  padding-top:var(--twc-spacing-70);
-}
-
-.pb70 {
-  padding-bottom:var(--twc-spacing-70);
-}
-
-.mt70 {
-  margin-top:var(--twc-spacing-70);
-}
-
-.mb70 {
-  margin-bottom:var(--twc-spacing-70);
-}
-
-.pt75 {
-  padding-top:var(--twc-spacing-75);
-}
-
-.pb75 {
-  padding-bottom:var(--twc-spacing-75);
-}
-
-.mt75 {
-  margin-top:var(--twc-spacing-75);
-}
-
-.mb75 {
-  margin-bottom:var(--twc-spacing-75);
-}
-
-.pt85 {
-  padding-top:var(--twc-spacing-85);
-}
-
-.pb85 {
-  padding-bottom:var(--twc-spacing-85);
-}
-
-.mt85 {
-  margin-top:var(--twc-spacing-85);
-}
-
-.mb85 {
-  margin-bottom:var(--twc-spacing-85);
-}
-
-.pt90 {
-  padding-top:var(--twc-spacing-90);
-}
-
-.pb90 {
-  padding-bottom:var(--twc-spacing-90);
-}
-
-.mt90 {
-  margin-top:var(--twc-spacing-90);
-}
-
-.mb90 {
-  margin-bottom:var(--twc-spacing-90);
-}
-
-.pt100 {
-  padding-top:var(--twc-spacing-100);
-}
-
-.pb100 {
-  padding-bottom:var(--twc-spacing-100);
-}
-
-.mt100 {
-  margin-top:var(--twc-spacing-100);
-}
-
-.mb100 {
-  margin-bottom:var(--twc-spacing-100);
-}
-
-.pt120 {
-  padding-top:var(--twc-spacing-120);
-}
-
-.pb120 {
-  padding-bottom:var(--twc-spacing-120);
-}
-
-.mt120 {
-  margin-top:var(--twc-spacing-120);
-}
-
-.mb120 {
-  margin-bottom:var(--twc-spacing-120);
-}
-
-/* Breakpoint md */
-@media only screen and (max-width:1024px) {
-  :root {
-    --twc-spacing-45:40px;
-    --twc-spacing-50:40px;
-    --twc-spacing-55:50px;
-    --twc-spacing-60:50px;
-    --twc-spacing-65:60px;
-    --twc-spacing-70:60px;
-    --twc-spacing-75:60px;
-    --twc-spacing-85:70px;
-    --twc-spacing-90:80px;
-    --twc-spacing-100:85px;
-    --twc-spacing-120:90px;
-  }
-}
-/* Breakpoint sm */
-@media only screen and (max-width:768px) {
-  :root {
-    --twc-spacing-25:22px;
-    --twc-spacing-30:27px;
-    --twc-spacing-35:32px;
-    --twc-spacing-55:40px;
-    --twc-spacing-60:40px;
-    --twc-spacing-65:50px;
-    --twc-spacing-70:50px;
-    --twc-spacing-75:55px;
-    --twc-spacing-85:65px;
-    --twc-spacing-90:70px;
-    --twc-spacing-100:70px;
-    --twc-spacing-120:70px;
-  }
-}
-/* Breakpoint xs */
-@media only screen and (max-width:480px) {
-  :root {
-    --twc-spacing-40:36px;
-    --twc-spacing-75:50px;
-    --twc-spacing-85:55px;
-    --twc-spacing-90:60px;
-    --twc-spacing-100:60px;
-    --twc-spacing-120:60px;
-  }
-}
 /**
  * Positioning
  * https://stackoverflow.design/product/base/position/
@@ -599,26 +231,6 @@
  * Typography
  * https://stackoverflow.design/product/base/typography/
  */
-.f-primary-300 {
-  font-family:"Rubik", sans-serif;
-  font-weight:300;
-}
-
-.f-primary-400 {
-  font-family:"Rubik", sans-serif;
-  font-weight:400;
-}
-
-.f-primary-500 {
-  font-family:"Rubik", sans-serif;
-  font-weight:500;
-}
-
-.f-primary-600 {
-  font-family:"Rubik", sans-serif;
-  font-weight:600;
-}
-
 /* font-family */
 .ff-sans {
   font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
@@ -626,14 +238,6 @@
 
 .ff-serif {
   font-family:Georgia, Cambria, "Times New Roman", Times, serif;
-}
-
-.ff-primary {
-  font-family:"Rubik", sans-serif;
-}
-
-.ff-icomoon {
-  font-family:"icomoon", fantasy;
 }
 
 /* color */
@@ -645,73 +249,9 @@
   color:#000;
 }
 
-.fc-primary {
-  color:#7cc181;
-}
-
-.fc-secondary {
-  color:#001e49;
-}
-
-.fc-green-300 {
-  color:#7cc181;
-}
-
-.fc-green-200 {
-  color:#aed2b1;
-}
-
-.fc-green-100 {
-  color:#f8fcf9;
-}
-
-.fc-blue {
-  color:#001e49;
-}
-
-.fc-gray {
-  color:#acb3be;
-}
-
-.fc-black {
-  color:#000;
-}
-
 /* background-color */
 .bg-white {
   background-color:#fff;
-}
-
-.bg-black {
-  background-color:#000;
-}
-
-.bg-primary {
-  background-color:#7cc181;
-}
-
-.bg-secondary {
-  background-color:#001e49;
-}
-
-.bg-green-300 {
-  background-color:#7cc181;
-}
-
-.bg-green-200 {
-  background-color:#aed2b1;
-}
-
-.bg-green-100 {
-  background-color:#f8fcf9;
-}
-
-.bg-blue {
-  background-color:#001e49;
-}
-
-.bg-gray {
-  background-color:#acb3be;
 }
 
 .bg-black {
@@ -867,23 +407,13 @@
 }
 
 :root {
-  --twc-font-sans:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
-  --twc-font-serif:Georgia, Cambria, "Times New Roman", Times, serif;
-  --twc-font-primary:"Rubik", sans-serif;
-  --twc-font-icomoon:"icomoon", fantasy;
+  --font-sans:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  --font-serif:Georgia, Cambria, "Times New Roman", Times, serif;
 }
 
 :root {
-  --twc-color-white:#fff;
-  --twc-color-black:#000;
-  --twc-color-primary:#7cc181;
-  --twc-color-secondary:#001e49;
-  --twc-color-green-300:#7cc181;
-  --twc-color-green-200:#aed2b1;
-  --twc-color-green-100:#f8fcf9;
-  --twc-color-blue:#001e49;
-  --twc-color-gray:#acb3be;
-  --twc-color-black:#000;
+  --color-white:#fff;
+  --color-black:#000;
 }
 
 /**
