@@ -68,7 +68,7 @@ npm run prod
 
 ### Publish NPM package
 
-Check version
+Increase version in `package.json` and `scss/_def.scss`
 
 ```shell
 npm publish
