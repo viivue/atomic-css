@@ -1,7 +1,7 @@
 # Atomic CSS
 
 [![npm](https://badgen.net/npm/v/@viivue/atomic-css)](https://www.npmjs.com/package/@viivue/atomic-css)
-[![minified](https://badgen.net/badge/minified/~11KB/cyan)](https://www.jsdelivr.com/package/gh/viivue/atomic-css)
+[![minified](https://badgen.net/badge/minified/~8KB/cyan)](https://www.jsdelivr.com/package/gh/viivue/atomic-css)
 [![jsdelivr](https://data.jsdelivr.com/v1/package/gh/viivue/atomic-css/badge?style=rounded)](https://www.jsdelivr.com/package/gh/viivue/atomic-css)
 [![license](https://badgen.net/github/license/viivue/atomic-css/)](https://github.com/viivue/atomic-css/blob/main/LICENSE)
 
@@ -42,34 +42,17 @@ To add custom classes for a specific project, you will have to:
 
 ## Deployment
 
-Install `npm`
-
 ```shell
 npm install
-```
 
-### Dev
-
-Watch SCSS files, then compile to previewed CSS
-
-```shell
+# Watch SCSS files, then compile to previewed CSS
 npm run dev
-```
 
-### Prod
-
-Compile compressed CSS for distribution.
-
-> Check version at `_defs.scss` and `package.json`
-
-```shell
+# Compile compressed CSS for distribution.
+# Check version at `_defs.scss` and `package.json`
 npm run prod
-```
 
-### Publish NPM package
-
-Increase version in `package.json` and `scss/_def.scss`
-
-```shell
+# Publish NPM package
+# Auto-publish package on release using GitHub workflow
 npm publish
 ```
