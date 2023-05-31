@@ -647,6 +647,36 @@
   transition-property:opacity;
 }
 
+/* opacity-color */
+.t-opacity-color {
+  transition-property:opacity, color;
+}
+
+/* transform */
+.t-transform {
+  transition-property:transform;
+}
+
+/* transform-opacity */
+.t-transform-opacity {
+  transition-property:transform, opacity;
+}
+
+/* transform-opacity-color */
+.t-transform-opacity-color {
+  transition-property:transform, opacity, color;
+}
+
+/* transform-color */
+.t-transform-color {
+  transition-property:transform, color;
+}
+
+/* color */
+.t-color {
+  transition-property:color;
+}
+
 /**
  * Object fit
  * https://stackoverflow.design/product/base/object-fit/
@@ -1033,4 +1063,19 @@ ul.list-style-none,
 ul.list-style-none > li,
 .list-style-none ul > li {
   padding:0;
+}
+
+/*
+ * Visually hidden
+ * https://www.joshwcomeau.com/snippets/react-components/visually-hidden/
+ */
+.visually-hidden {
+  position:absolute;
+  overflow:hidden;
+  clip:rect(0 0 0 0);
+  width:1px;
+  height:1px;
+  margin:-1px;
+  padding:0;
+  border:0;
 }
