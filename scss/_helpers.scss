@@ -275,9 +275,6 @@
     $is_value_key_as_postfix: false;
     $is_inline: false;
 
-    // separate option
-    $has_separate: false;
-
     @if ($input-type=='map') {
       $value: map-get($data, "value");
       $prefix: map-get($data, "prefix");
@@ -285,11 +282,6 @@
       // has hyphen
       @if map-has-key($data, "hyphen") {
         $has_hyphen: map-get($data, "hyphen");
-      }
-
-      // has separate
-      @if map-has-key($data, 'separate') {
-        $has_separate: map-get($data, 'separate')
       }
 
       // type
@@ -323,26 +315,9 @@
       }
 
       @each $val in $value {
-        @if $val {
-
-          // separate functional
-          @if $has_separate and str-index($val, '-') {
-            $list: ();
-
-            @each $property in str-split($val, '-') {
-              $list: append($list, $property)
-            }
-            .#{$prefix}#{$hyphen}#{replace-prop($val)} {
-              #{$prop}: #{$list};
-            }
-
-          } @else {
-            // default
-            @if not is-ignored($prop, $val) {
-              .#{$prefix}#{$hyphen}#{replace-prop($val)} {
-                #{$prop}: #{$val};
-              }
-            }
+        @if not is-ignored($prop, $val) {
+          .#{$prefix}#{$hyphen}#{replace-prop($val)} {
+            #{$prop}: #{$val};
           }
         }
       }

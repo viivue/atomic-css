@@ -20,12 +20,7 @@ $dataset: (
         opacity:(
                 selectors:'.t-opacity',
                 inline:'transition-property: opacity'
-        ),
-        transition-property:(
-                prefix: "t",
-                separate: true,
-                value: transform transform-opacity opacity-color
-        ),
+        )
 );
 
 // print
