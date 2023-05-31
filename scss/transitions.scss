@@ -20,7 +20,31 @@ $dataset: (
         opacity:(
                 selectors:'.t-opacity',
                 inline:'transition-property: opacity'
-        )
+        ),
+        opacity-color:(
+                selectors:'.t-opacity-color',
+                inline:'transition-property: opacity, color'
+        ),
+        transform :(
+                selectors:'.t-transform',
+                inline:'transition-property: transform'
+        ),
+        transform-opacity :(
+                selectors:'.t-transform-opacity ',
+                inline:'transition-property: transform, opacity'
+        ),
+        transform-opacity-color:(
+                selectors:'.t-transform-opacity-color',
+                inline:'transition-property: transform, opacity, color'
+        ),
+        transform-color:(
+                selectors:'.t-transform-color',
+                inline:'transition-property: transform, color'
+        ),
+        color :(
+                selectors:'.t-color',
+                inline:'transition-property: color'
+        ),
 );
 
 // print
