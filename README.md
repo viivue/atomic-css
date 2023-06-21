@@ -18,6 +18,8 @@ it in **as light-weight as possible**, and even **customizable** for each projec
 
 ## Usage
 
+### NPM
+
 Install NPM package with basic config
 
 ```shell
@@ -31,6 +33,13 @@ import "@viivue/atomic-css";
 ```
 
 Or, you can download the default Atomic CSS files in the [`/dist` folder](https://github.com/viivue/atomic-css/tree/main/dist).
+
+### CDN
+Check the CDN served by jsDelivr [here](https://www.jsdelivr.com/package/gh/viivue/atomic-css?tab=files&path=dist)
+
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/viivue/atomic-css@1.1.10/dist/atomic.min.css">
+```
 
 ### Customization
 
