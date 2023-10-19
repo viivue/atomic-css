@@ -1,0 +1,29 @@
+.container {
+  position: relative;
+  width: 100%;
+  max-width: 1116px;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 20px;
+  padding-left: 20px;
+}
+
+.container-large {
+  position: relative;
+  width: 100%;
+  max-width: 1236px;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 20px;
+  padding-left: 20px;
+}
+
+.container-xl {
+  position: relative;
+  width: 100%;
+  max-width: 1330px;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 20px;
+  padding-left: 20px;
+}

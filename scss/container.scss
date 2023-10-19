@@ -1,0 +1,23 @@
+@import "helpers";
+
+@mixin print-container-class($data) {
+  $container-gap: map-get($data, 'gap');
+
+  @each $name, $value in map-get($data, size) {
+    .#{$name} {
+      position: relative;
+      width: 100%;
+      max-width: format-value(calc($value + $container-gap * 2));
+      margin-right: auto;
+      margin-left: auto;
+      padding-right: format-value($container-gap);
+      padding-left: format-value($container-gap);
+    }
+  }
+}
+
+@mixin print-container($data, $prefix) {
+  @include print-container-class($data);
+}
+
+@include print-container($containers, "container");
