@@ -402,6 +402,7 @@
     --#{$project-prefix}#{$prefix}-#{$name}: #{$value};
   }
 }
+
 @mixin print-variables($data, $prefix) {
   :root {
     @each $name, $value in $data {
@@ -409,7 +410,6 @@
     }
   }
 }
-
 
 // Return --prop:value; with project prefix
 @mixin get-variable($prop,$value) {
