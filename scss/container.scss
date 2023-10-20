@@ -1,17 +1,37 @@
 @import "helpers";
 
+
+@function get-container-name($data) {
+  $container-gap: map-get($data, 'gap');
+  $container-selector: "";
+  @each $name, $value in map-get($data, size) {
+    @if ($name != 'container') {
+      $container-selector: $container-selector + "," + "." + $name;
+    } @else {
+      $container-selector: "." + $container-selector + $name;
+    }
+  }
+  @return $container-selector;
+}
+
 @mixin print-container-class($data) {
   $container-gap: map-get($data, 'gap');
+  $container-selector: get-container-name($data);
+  @debug $container-selector;
+
+  // print
+  $dataset: (
+          container:(
+                  selectors: '#{$container-selector}',
+                  inline: 'position:relative' 'width:100%' 'margin-right:auto' 'margin-left:auto' 'padding-left:#{format-value($container-gap)}' 'padding-right:#{format-value($container-gap)}'
+          ),
+  );
+  @include print($dataset);
+
 
   @each $name, $value in map-get($data, size) {
     .#{$name} {
-      position: relative;
-      width: 100%;
       max-width: format-value(calc($value + $container-gap * 2));
-      margin-right: auto;
-      margin-left: auto;
-      padding-right: format-value($container-gap);
-      padding-left: format-value($container-gap);
     }
   }
 }
@@ -19,5 +39,6 @@
 @mixin print-container($data, $prefix) {
   @include print-container-class($data);
 }
+
 
 @include print-container($containers, "container");
