@@ -4,12 +4,16 @@
 @function get-container-name($data) {
   $container-gap: map-get($data, 'gap');
   $container-selector: "";
+
+  $index: 0;
   @each $name, $value in map-get($data, size) {
-    @if ($name != 'container') {
+    @debug $index;
+    @if ($index != 0) {
       $container-selector: $container-selector + "," + "." + $name;
     } @else {
       $container-selector: "." + $container-selector + $name;
     }
+    $index: $index + 1;
   }
   @return $container-selector;
 }
