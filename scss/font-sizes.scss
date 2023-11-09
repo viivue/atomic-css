@@ -58,3 +58,38 @@
 }
 
 @include font-sizes($font_sizes);
+
+
+@function get-container-name($data) {
+  $container-gap: map-get($data, 'gap');
+  $container-selector: "";
+
+  $index: 0;
+  @each $name, $value in map-get($data, size) {
+    @debug $index;
+    @if ($index != 0) {
+      $container-selector: $container-selector + "," + "." + $name;
+    } @else {
+      $container-selector: "." + $container-selector + $name;
+    }
+    $index: $index + 1;
+  }
+  @return $container-selector;
+}
+
+@mixin print-font-size-custom-class($data) {
+
+  // print
+  $dataset: ( );
+  @include print($dataset);
+
+
+  @each $name, $value in map-get($data, size) {
+    .#{$name} {
+      font-size: format-value($value);
+    }
+  }
+}
+
+@include print-font-size-custom-class($font_size_headings);
+
