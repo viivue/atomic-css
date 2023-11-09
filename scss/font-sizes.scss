@@ -57,39 +57,27 @@
   }
 }
 
-@include font-sizes($font_sizes);
-
-
-@function get-container-name($data) {
-  $container-gap: map-get($data, 'gap');
-  $container-selector: "";
-
-  $index: 0;
-  @each $name, $value in map-get($data, size) {
-    @debug $index;
-    @if ($index != 0) {
-      $container-selector: $container-selector + "," + "." + $name;
-    } @else {
-      $container-selector: "." + $container-selector + $name;
-    }
-    $index: $index + 1;
-  }
-  @return $container-selector;
-}
-
 @mixin print-font-size-custom-class($data) {
 
   // print
-  $dataset: ( );
-  @include print($dataset);
+  $list: map-get($font_sizes, 'values');
 
 
-  @each $name, $value in map-get($data, size) {
-    .#{$name} {
-      font-size: format-value($value);
+  @each $name, $value in $data {
+    $isValid: map-search($list, $value);
+
+    @if ($isValid) {
+      .#{$name} {
+        font-size: var(#{get-variable(bb-size-#{replace-prop($value)})});
+      }
+    } @else {
+      .#{$name} {
+        font-size: format-value($value);
+      }
     }
   }
 }
 
-@include print-font-size-custom-class($font_size_headings);
 
+@include font-sizes($font_sizes);
+@include print-font-size-custom-class($font_size_custom);
