@@ -2,12 +2,12 @@
 
 
 @function get-container-name($data) {
-  $container-gap: map-get($data, 'gap');
   $container-selector: "";
 
   $index: 0;
   @each $name, $value in map-get($data, size) {
-    @debug $index;
+
+    // generate a container selector chain
     @if ($index != 0) {
       $container-selector: $container-selector + "," + "." + $name;
     } @else {
@@ -34,8 +34,10 @@
 
 
   @each $name, $value in map-get($data, size) {
-    .#{$name} {
-      max-width: format-value(calc($value + $container-gap * 2));
+    @if ($name != 'container-fluid') {
+      .#{$name} {
+        max-width: format-value(calc($value + $container-gap * 2));
+      }
     }
   }
 }

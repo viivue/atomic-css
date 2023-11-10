@@ -68,9 +68,11 @@ $aspect_ratio: ();
 // containers
 $containers: (
         size:(
+                "container-small": 880,
                 "container": 1076,
                 "container-large": 1196,
-                "container-xl": 1290
+                "container-fluid": unset,
         ),
         gap:20
 );
+

@@ -1,21 +1,21 @@
 /* container */
-.container, .container-large, .container-xl {
-  position:relative;
-  width:100%;
-  margin-right:auto;
-  margin-left:auto;
-  padding-left:20px;
-  padding-right:20px;
+.container-small, .container, .container-large, .container-fluid {
+    position:relative;
+    width:100%;
+    margin-right:auto;
+    margin-left:auto;
+    padding-left:20px;
+    padding-right:20px;
+}
+
+.container-small {
+    max-width:920px;
 }
 
 .container {
-  max-width:1116px;
+    max-width:1116px;
 }
 
 .container-large {
-  max-width:1236px;
-}
-
-.container-xl {
-  max-width:1330px;
+    max-width:1236px;
 }
