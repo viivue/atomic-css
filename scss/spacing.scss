@@ -40,7 +40,7 @@ $classes: ("m":"margin", "p":"padding");
 
               // and changed compare with the previous value
               @if $value != $previous_postfix {
-                @include get-variable(spacing-#{replace-prop($postfix)}, #{format-value($value)});
+                @include get-variable(bb-spacing-#{replace-prop($postfix)}, #{format-value($value)});
               }
             }
           }
@@ -54,7 +54,7 @@ $classes: ("m":"margin", "p":"padding");
           $postfix: get-previous-breakpoint-value($i, $value, $breakpoint, $vertical_spacing);
           //@debug $value, $postfix;
 
-          @include get-variable(spacing-#{replace-prop($postfix)}, #{format-value($value)});
+          @include get-variable(bb-spacing-#{replace-prop($postfix)}, #{format-value($value)});
         }
       }
 
@@ -64,7 +64,7 @@ $classes: ("m":"margin", "p":"padding");
         $postfix: get-previous-breakpoint-value($i, $value, $breakpoint, $vertical_spacing);
         //@debug $value, $postfix;
 
-        $var: var(#{get-variable(spacing-#{replace-prop($postfix)})});
+        $var: var(#{get-variable(bb-spacing-#{replace-prop($postfix)})});
 
         .pt#{replace-prop($postfix)} {
           padding-top: #{$var};
@@ -84,4 +84,27 @@ $classes: ("m":"margin", "p":"padding");
   }
 }
 
+/**
+ * default spacing
+ */
+
+@mixin print-default-spacing($data) {
+
+  // print
+  $list: map-get($vertical_spacing, 'values');
+
+  :root {
+    @each $name, $value in $data {
+      $isValid: map-search($list, $value);
+      // if the value is not existing in the $default_spacing, create 'px' for it
+      @if (not $isValid) {
+        @include get-variable(bb-spacing-#{replace-prop($name)}, format-value($value));
+      } @else {
+        @include get-variable(bb-spacing-#{replace-prop($name)}, var(#{get-variable(bb-spacing-#{replace-prop($value)})}));
+      }
+    }
+  }
+}
+
 @include vertical-spacing($vertical_spacing);
+@include print-default-spacing($default_spacing);

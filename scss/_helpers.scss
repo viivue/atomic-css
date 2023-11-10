@@ -440,3 +440,12 @@
 
   @return --#{$project-prefix}#{$prop};
 }
+
+@function map-search($list, $value) {
+  @for $i from 1 through length($list) {
+    @if (nth($list, $i) == $value) {
+      @return true;
+    }
+  }
+  @return false;
+}
