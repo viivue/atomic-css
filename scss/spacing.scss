@@ -19,10 +19,11 @@ $classes: ("m":"margin", "p":"padding");
 }
 
 /**
- * Vertical Spacing
+ * General spacing variables
  */
 
-@mixin vertical-spacing($vertical_spacing) {
+@mixin generate-spacing-variables($vertical_spacing, $prefix) {
+  $project-prefix: map-get($info, 'variable-prefix');
   @each $breakpoint, $values in $vertical_spacing {
     @if is-breakpoint($breakpoint) {
       // Responsive value
@@ -40,7 +41,7 @@ $classes: ("m":"margin", "p":"padding");
 
               // and changed compare with the previous value
               @if $value != $previous_postfix {
-                @include get-variable(bb-spacing-#{replace-prop($postfix)}, #{format-value($value)});
+                @include get-variable(#{$prefix}-#{replace-prop($postfix)}, #{format-value($value)});
               }
             }
           }
@@ -54,7 +55,7 @@ $classes: ("m":"margin", "p":"padding");
           $postfix: get-previous-breakpoint-value($i, $value, $breakpoint, $vertical_spacing);
           //@debug $value, $postfix;
 
-          @include get-variable(bb-spacing-#{replace-prop($postfix)}, #{format-value($value)});
+          @include get-variable(#{$prefix}-#{replace-prop($postfix)}, #{format-value($value)});
         }
       }
 
@@ -64,7 +65,7 @@ $classes: ("m":"margin", "p":"padding");
         $postfix: get-previous-breakpoint-value($i, $value, $breakpoint, $vertical_spacing);
         //@debug $value, $postfix;
 
-        $var: var(#{get-variable(bb-spacing-#{replace-prop($postfix)})});
+        $var: var(#{get-variable(#{$prefix}-#{replace-prop($postfix)})});
 
         .pt#{replace-prop($postfix)} {
           padding-top: #{$var};
@@ -85,26 +86,10 @@ $classes: ("m":"margin", "p":"padding");
 }
 
 /**
- * default spacing
+ * custom spacing
  */
+@include print-variables-in-root($custom_spacing, $vertical_spacing, 'values', 'spacing');
+@include print-variables-in-root($gap_spacing, $horizontal_spacing, 'values', 'gap');
 
-@mixin print-custom-name-spacing($data) {
-
-  // get value list from $vertical_spacing
-  $allowedValuesList: map-get($vertical_spacing, 'values');
-
-  :root {
-    @each $name, $value in $data {
-      $isAllowedValue: map-search($allowedValuesList, $value);
-      // if the value is not existing in the $vertical_spacing, create 'px' for it
-      @if (not $isAllowedValue) {
-        @include get-variable(bb-spacing-#{replace-prop($name)}, format-value($value));
-      } @else {
-        @include get-variable(bb-spacing-#{replace-prop($name)}, var(#{get-variable(bb-spacing-#{replace-prop($value)})}));
-      }
-    }
-  }
-}
-
-@include vertical-spacing($vertical_spacing);
-@include print-custom-name-spacing($custom_spacing);
+@include generate-spacing-variables($vertical_spacing, 'spacing');
+@include generate-spacing-variables($horizontal_spacing, 'gap');

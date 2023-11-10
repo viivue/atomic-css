@@ -5,7 +5,7 @@
 // Project info
 $info: (
         name: 'Atomic CSS',
-        variable-prefix: ''
+        variable-prefix: 'bb'
 );
 
 // font family
@@ -39,6 +39,7 @@ $breakpoints: (
         "xs": 480px,
 );
 
+
 // vertical spacing
 $vertical_spacing: (
         "values":0 1 2 4 6 8 12 16 24 32 48 64 96 128,
@@ -51,3 +52,15 @@ $custom_spacing: (
         'heading':20,
         'paragraph':16,
 );
+
+// horizontal spacing
+$horizontal_spacing: (
+        "values":20 40,
+        "md":20 20,
+);
+
+// gap spacing (horizontal)
+$gap_spacing: (
+        "vc-column":20,
+        "container":40px,
+)
