@@ -88,16 +88,16 @@ $classes: ("m":"margin", "p":"padding");
  * default spacing
  */
 
-@mixin print-default-spacing($data) {
+@mixin print-custom-name-spacing($data) {
 
-  // print
-  $list: map-get($vertical_spacing, 'values');
+  // get value list from $vertical_spacing
+  $allowedValuesList: map-get($vertical_spacing, 'values');
 
   :root {
     @each $name, $value in $data {
-      $isValid: map-search($list, $value);
-      // if the value is not existing in the $default_spacing, create 'px' for it
-      @if (not $isValid) {
+      $isAllowedValue: map-search($allowedValuesList, $value);
+      // if the value is not existing in the $vertical_spacing, create 'px' for it
+      @if (not $isAllowedValue) {
         @include get-variable(bb-spacing-#{replace-prop($name)}, format-value($value));
       } @else {
         @include get-variable(bb-spacing-#{replace-prop($name)}, var(#{get-variable(bb-spacing-#{replace-prop($value)})}));
@@ -107,4 +107,4 @@ $classes: ("m":"margin", "p":"padding");
 }
 
 @include vertical-spacing($vertical_spacing);
-@include print-default-spacing($default_spacing);
+@include print-custom-name-spacing($custom_spacing);
