@@ -62,22 +62,18 @@
   // print
   $list: map-get($font_sizes, 'values');
 
-
-  @each $name, $value in $data {
-    $isValid: map-search($list, $value);
-
-    @if ($isValid) {
-      .#{$name} {
-        font-size: var(#{get-variable(bb-size-#{replace-prop($value)})});
-      }
-    } @else {
-      .#{$name} {
-        font-size: format-value($value);
+  :root {
+    @each $name, $value in $data {
+      $isValid: map-search($list, $value);
+      // if the value is not existing in the $font_sizes, create 'px' for the value
+      @if (not $isValid) {
+        @include get-variable(bb-size-#{replace-prop($name)}, format-value($value));
+      } @else {
+        @include get-variable(bb-size-#{replace-prop($name)}, var(#{get-variable(bb-size-#{replace-prop($value)})}));
       }
     }
   }
 }
-
 
 @include font-sizes($font_sizes);
 @include print-font-size-custom-class($font_size_custom);
