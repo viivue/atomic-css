@@ -21,7 +21,7 @@
 @mixin print-container-class($data) {
   $container-gap: map-get($data, 'gap');
   $container-selector: get-container-name($data);
-  @debug $container-selector;
+  $project-prefix: map-get($info, 'variable-prefix');
 
   // print
   $dataset: (
@@ -32,10 +32,24 @@
   );
   @include print($dataset);
 
+  // Generate container variables
+  :root {
+    @each $name, $value in map-get($data, size) {
+      @if (type-of($value) == 'number') {
+        --#{$project-prefix}-#{$name}: #{format-value($value)};
+      }
+    }
+  }
 
+  // Generate container classes
   @each $name, $value in map-get($data, size) {
-    @if ($name != 'container-fluid') {
+    @if ($name == 'container-fluid') {
       .#{$name} {
+        --bb-gap-side: #{format-value($container-gap)};
+      }
+    } @else {
+      .#{$name} {
+        --bb-gap-side: calc((var(--bb-100vw, 100vw) - var(--#{$project-prefix}-#{$name})) * 0.5);
         max-width: format-value(calc($value + $container-gap * 2));
       }
     }
