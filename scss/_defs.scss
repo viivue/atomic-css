@@ -71,8 +71,8 @@ $containers: (
                 "container-small": 880,
                 "container": 1076,
                 "container-large": 1196,
-                "container-fluid": unset,
+                "container-fluid": unset, // unset => none max-width but still keep gap value
         ),
-        gap:20
+        gap:20 // container paddings
 );
 

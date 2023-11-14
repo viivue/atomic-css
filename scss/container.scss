@@ -1,26 +1,27 @@
 @import "helpers";
 
-
-@function get-container-name($data) {
-  $container-selector: "";
+// Get container selectors and return a selector chain
+// size: ("container-small": 880, "container": 1076) => .container-small, .container {}
+@function get-container-selectors($data) {
+  $container-selectors: "";
 
   $index: 0;
   @each $name, $value in map-get($data, size) {
 
     // generate a container selector chain
     @if ($index != 0) {
-      $container-selector: $container-selector + "," + "." + $name;
+      $container-selector: $container-selectors + "," + "." + $name;
     } @else {
-      $container-selector: "." + $container-selector + $name;
+      $container-selectors: "." + $container-selectors + $name;
     }
     $index: $index + 1;
   }
-  @return $container-selector;
+  @return $container-selectors;
 }
 
 @mixin print-container-class($data) {
   $container-gap: map-get($data, 'gap');
-  $container-selector: get-container-name($data);
+  $container-selector: get-container-selectors($data);
   $project-prefix: map-get($info, 'variable-prefix');
 
   // print
