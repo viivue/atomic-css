@@ -5,7 +5,7 @@
 // Project info
 //$info: (
 //        name: 'Atomic CSS',
-//        variable-prefix: 'bb'
+//        variable-prefix: ''
 //);
 
 // font family
@@ -39,7 +39,6 @@
 //        "xs": 480px,
 //);
 
-
 // vertical spacing
 $vertical_spacing: (
         "values":0 1 2 4 6 8 12 16 24 32 48 64 96 128,
@@ -63,4 +62,4 @@ $horizontal_spacing: (
 $gap_spacing: (
         "vc-column":20,
         "container":40px,
-)
+);

@@ -88,8 +88,8 @@ $classes: ("m":"margin", "p":"padding");
 /**
  * custom spacing
  */
-@include print-variables-in-root($custom_spacing, $vertical_spacing, 'values', 'spacing');
-@include print-variables-in-root($gap_spacing, $horizontal_spacing, 'values', 'gap');
+@include print-variables-in-root($vertical_spacing, $custom_spacing, 'spacing');
+@include print-variables-in-root($horizontal_spacing, $gap_spacing, 'gap');
 
 @include generate-spacing-variables($vertical_spacing, 'spacing');
 @include generate-spacing-variables($horizontal_spacing, 'gap');

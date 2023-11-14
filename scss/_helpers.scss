@@ -441,6 +441,8 @@
   @return --#{$project-prefix}#{$prop};
 }
 
+// Find a value from the key in list
+// ($list:0 1 2 4 6 8 12 16 24 32 48 64 96 128, $value: 48) => true
 @function map-search($list, $value) {
   @for $i from 1 through length($list) {
     @if (nth($list, $i) == $value) {
@@ -450,23 +452,27 @@
   @return false;
 }
 
-// Define if the value is containing any 'px' postfix, create 'px' if it not
-@mixin print-variables-in-root($map_name, $map_container , $key_name, $prefix) {
-  $project-prefix: map-get($info, 'variable-prefix');
-
-  // get value list from $map_name
-  $allowedValuesList: map-get($map_container, $key_name);
+// Define if the value is containing any CSS unit, create CSS unit if it not
+@mixin print-variables-in-root($list_responsive_values, $list_responsive_names,  $variable_name) {
+  // get value list from $list_responsive_names
+  $allowed_values_list: map-get($list_responsive_values, "values");
 
   :root {
-    @each $name, $value in $map_name {
-      $isHavingUnit: get-unit($value) == "";
-      $isAllowedValue: map-search($allowedValuesList, $value);
-      // if the value is existing in the $map_name and it does not have unit value => create variable value
-      @if ($isAllowedValue and $isHavingUnit == "") {
-        @include get-variable(#{$prefix}-#{replace-prop($name)}, var(#{get-variable(#{$prefix}-#{replace-prop($value)})}));
-      } @else {
-        @include get-variable(#{$prefix}-#{replace-prop($name)}, format-value($value));
+    @each $responsive_name, $responsive_value in $list_responsive_names {
+      $newValue: format-value($responsive_value); // e.g. 90px
+
+      // check if $responsive_value is containing any CSS unit
+      $has_unit: get-unit($responsive_value) != "";
+
+      // check if $responsive_value in $list_responsive_names
+      $is_allowed_value: map-search($allowed_values_list, $responsive_value);
+
+      // use responsive variable
+      @if ($is_allowed_value and not $has_unit) {
+        $newValue: var(#{get-variable(#{$variable_name}-#{replace-prop($responsive_value)})}); // => var(--$variable_name-90);
       }
+
+      @include get-variable(#{$variable_name}-#{replace-prop($responsive_name)}, $newValue); //  => --gap-container: $newValue;
     }
   }
 }
