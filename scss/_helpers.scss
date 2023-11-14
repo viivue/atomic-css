@@ -459,7 +459,7 @@
 
   :root {
     @each $name, $value in $map_name {
-      $isHavingUnit: get-unit($value);
+      $isHavingUnit: get-unit($value) == "";
       $isAllowedValue: map-search($allowedValuesList, $value);
       // if the value is existing in the $map_name and it does not have unit value => create variable value
       @if ($isAllowedValue and $isHavingUnit == "") {
