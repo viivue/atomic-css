@@ -3,41 +3,41 @@
 @import "defs";
 
 // Project info
-$info: (
-        name: 'Atomic CSS',
-        variable-prefix: 'bb'
-);
+//$info: (
+//        name: 'Atomic CSS',
+//        variable-prefix: 'bb'
+//);
 
 // font family
-$fonts: (
-        primary: (
-                font-face: "'Be Vietnam Pro', sans-serif",
-                weight: 400 500 700
-        ),
-        icomoon: "'icomoon', fantasy"
-);
+//$fonts: (
+//        primary: (
+//                font-face: "'Be Vietnam Pro', sans-serif",
+//                weight: 400 500 700
+//        ),
+//        icomoon: "'icomoon', fantasy"
+//);
 
 // colors
-$colors: (
-        primary: '#1c44ad',
-        dark: '#1a1b1c',
-        "gray": '#f6f6f6',
-        light-blue: '#115df7',
-        dark-blue: '#21297d'
-);
+//$colors: (
+//        primary: '#1c44ad',
+//        dark: '#1a1b1c',
+//        "gray": '#f6f6f6',
+//        light-blue: '#115df7',
+//        dark-blue: '#21297d'
+//);
 
 // aspect ratio
-$aspect_ratio: (
-        "custom":"1280/768"
-);
+//$aspect_ratio: (
+//        "custom":"1280/768"
+//);
 
 // breakpoints
-$breakpoints: (
-        "lg": 1280px,
-        "md": 1024px,
-        "sm": 768px,
-        "xs": 480px,
-);
+//$breakpoints: (
+//        "lg": 1280px,
+//        "md": 1024px,
+//        "sm": 768px,
+//        "xs": 480px,
+//);
 
 
 // vertical spacing
