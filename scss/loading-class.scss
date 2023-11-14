@@ -10,10 +10,11 @@
   // $isEnabled: true => loading is used
   @if ($isEnabled) {
     // If $isWoocommerce value is false just load the loading selector only
-    @if ($isWoocommerce == false) {
-      .loading {
+    @if ($isWoocommerce == true) {
+      .loading, .woocommerce .blockUI.blockOverlay, .woocommerce .loader {
         position: relative;
       }
+      .woocommerce .blockUI.blockOverlay:before, .woocommerce .loader:before,
       .loading:before {
         content: "";
         position: absolute;
@@ -24,7 +25,10 @@
         z-index: 2;
         background-color: rgba(255, 255, 255, 0.7);
       }
-      .loading:after {
+      .loading:after,
+      body .xwc--pf-loader-overlay:after,
+      .woocommerce .blockUI.blockOverlay:after,
+      .woocommerce .loader:after {
         --loading-size: 35px;
         content: "";
         position: absolute;
@@ -47,10 +51,9 @@
         }
       }
     } @else {
-      .loading, .woocommerce .blockUI.blockOverlay, .woocommerce .loader {
+      .loading {
         position: relative;
       }
-      .woocommerce .blockUI.blockOverlay:before, .woocommerce .loader:before,
       .loading:before {
         content: "";
         position: absolute;
@@ -61,10 +64,7 @@
         z-index: 2;
         background-color: rgba(255, 255, 255, 0.7);
       }
-      .loading:after,
-      body .xwc--pf-loader-overlay:after,
-      .woocommerce .blockUI.blockOverlay:after,
-      .woocommerce .loader:after {
+      .loading:after {
         --loading-size: 35px;
         content: "";
         position: absolute;
