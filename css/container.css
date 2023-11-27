@@ -1,0 +1,34 @@
+/* container */
+.container-small, .container, .container-large, .container-fluid {
+    position:relative;
+    width:100%;
+    margin-right:auto;
+    margin-left:auto;
+    padding-left:20px;
+    padding-right:20px;
+}
+
+:root {
+    --bb-container-small:880px;
+    --bb-container:1076px;
+    --bb-container-large:1196px;
+}
+
+.container-small {
+    --bb-gap-side:calc((var(--bb-100vw, 100vw) - var(--bb-container-small)) * 0.5);
+    max-width:920px;
+}
+
+.container {
+    --bb-gap-side:calc((var(--bb-100vw, 100vw) - var(--bb-container)) * 0.5);
+    max-width:1116px;
+}
+
+.container-large {
+    --bb-gap-side:calc((var(--bb-100vw, 100vw) - var(--bb-container-large)) * 0.5);
+    max-width:1236px;
+}
+
+.container-fluid {
+    --bb-gap-side:20px;
+}
