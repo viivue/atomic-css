@@ -4,53 +4,53 @@
  */
 /* transition */
 .t {
-  transition-duration:.25s;
-  transition-property:all;
-  transition-timing-function:ease;
-  transition-delay:0s;
+    transition-duration:.25s;
+    transition-property:all;
+    transition-timing-function:ease;
+    transition-delay:0s;
 }
 
 /* slow */
 .t-slow {
-  transition-duration:.6s;
+    transition-duration:.6s;
 }
 
 /* fast */
 .t-fast {
-  transition-duration:.1s;
+    transition-duration:.1s;
 }
 
 /* opacity */
 .t-opacity {
-  transition-property:opacity;
+    transition-property:opacity;
 }
 
 /* opacity-color */
 .t-opacity-color {
-  transition-property:opacity, color;
+    transition-property:opacity, color;
 }
 
 /* transform */
 .t-transform {
-  transition-property:transform;
+    transition-property:transform;
 }
 
 /* transform-opacity */
 .t-transform-opacity {
-  transition-property:transform, opacity;
+    transition-property:transform, opacity;
 }
 
 /* transform-opacity-color */
 .t-transform-opacity-color {
-  transition-property:transform, opacity, color;
+    transition-property:transform, opacity, color;
 }
 
 /* transform-color */
 .t-transform-color {
-  transition-property:transform, color;
+    transition-property:transform, color;
 }
 
 /* color */
 .t-color {
-  transition-property:color;
+    transition-property:color;
 }
