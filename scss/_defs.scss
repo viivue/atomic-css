@@ -47,8 +47,20 @@ $colors: ();
 
 // vertical spacing
 $vertical_spacing: (
-        "values": 0
+        "values": 0px
 );
+
+// custom spacing (vertical)
+$custom_spacing: ();
+
+// horizontal spacing
+$horizontal_spacing: (
+        "values":0,
+);
+
+// gap spacing (horizontal)
+$gap_spacing: ();
+
 
 // horizontal spacing
 //$horizontal_spacing: (
