@@ -1,0 +1,68 @@
+@import "helpers";
+
+// Get container selectors and return a selector chain
+// size: ("container-small": 880, "container": 1076) => .container-small, .container {}
+@function get-container-selectors($data) {
+  $container-selectors: "";
+
+  $index: 0;
+  @each $name, $value in map-get($data, size) {
+
+    // generate a container selector chain
+    @if ($index != 0) {
+      $container-selectors: $container-selectors + "," + "." + $name;
+    } @else {
+      $container-selectors: "." + $container-selectors + $name;
+    }
+    $index: $index + 1;
+  }
+  @return $container-selectors;
+}
+
+@mixin print-container-class($data) {
+  $container-gap: map-get($data, 'gap');
+  $container-selector: get-container-selectors($data);
+  $project-prefix: map-get($info, 'variable-prefix');
+
+  // print
+  $dataset: (
+          container:(
+                  selectors: '#{$container-selector}',
+                  inline: 'position:relative' 'width:100%' 'margin-right:auto' 'margin-left:auto' 'padding-left:#{format-value($container-gap)}' 'padding-right:#{format-value($container-gap)}'
+          ),
+  );
+  @include print($dataset);
+
+  // Generate container variables
+  :root {
+    @each $name, $value in map-get($data, size) {
+      @if (type-of($value) == 'number') {
+        --#{$project-prefix}-#{$name}: #{format-value($value)};
+      }
+    }
+    --bb-gap-side: #{format-value($container-gap)};
+  }
+
+  // Generate container classes
+  @each $name, $value in map-get($data, size) {
+    @if ($name == 'container-fluid') {
+      .#{$name} {
+        --bb-gap-side: #{format-value($container-gap)};
+      }
+    } @else {
+      .#{$name} {
+        --bb-gap-side: calc((var(--bb-100vw, 100vw) - var(--#{$project-prefix}-#{$name})) * 0.5);
+        max-width: format-value(calc($value + $container-gap * 2));
+      }
+    }
+  }
+}
+
+@mixin print-container($data, $prefix) {
+  @if (length($data) != 0) {
+    @include print-container-class($data);
+  }
+}
+
+
+@include print-container($containers, "container");

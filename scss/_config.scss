@@ -39,8 +39,49 @@
 //        "xs": 480px,
 //);
 
+// SPACING
+// 40%  => --spacing-x-40: 40%
+// 40   => --spacing-x-40: 40px
+// 40px => --spacing-x-40px: 40px
+// 40em => --spacing-x-40em: 40em
+
 // vertical spacing
 //$vertical_spacing: (
 //        "values":0 1 2 4 6 8 12 16 24 32 48 64 96 128,
-//        "md":    0 1 2 4 6 8 12 16 24 30 40 50 60 70,
+//        "md": 0 1 2 4 6 8 12 16 24 30 40 50 60 70,
+//);
+
+// custom vertical spacing
+//$custom_vertical_spacing: (
+//        'default':10,
+//        'heading':20,
+//        'paragraph':16,
+//);
+
+// horizontal spacing
+//$horizontal_spacing: (
+//        "values":20 40,
+//        "md": 20 20,
+//);
+
+// custom horizontal spacing (gap)
+//$custom_horizontal_spacing: (
+//        "gap-vc-column":20,
+//        "gap-container":40px, // Add unit to not use the responsive value
+//);
+
+// loading class
+//$loading_class: (
+//        "enable": true,
+//        "isWoocommerce": false // true if project using woocommerce
+//);
+
+// containers
+//$containers: (
+//        size:(
+//                "container-small": 768,
+//                "container": 1096,
+//                "container-fluid": unset, // unset => none max-width but still keep gap value
+//        ),
+//        gap:40 // container paddings
 //);
