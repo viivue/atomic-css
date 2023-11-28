@@ -22,7 +22,7 @@ $classes: ("m":"margin", "p":"padding");
  * General spacing variables
  */
 
-@mixin generate-spacing-variables($vertical_spacing, $prefix) {
+@mixin generate-spacing-variables($axis_spacing, $prefix) {
   $project-prefix: map-get($info, 'variable-prefix');
   @each $breakpoint, $values in $vertical_spacing {
     @if is-breakpoint($breakpoint) {
