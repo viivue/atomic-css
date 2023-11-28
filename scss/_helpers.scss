@@ -441,7 +441,7 @@
   @return --#{$project-prefix}#{$prop};
 }
 
-// Find a value from the key in list
+// Return true if a list contains a specified value.
 // ($list:0 1 2 4 6 8 12 16 24 32 48 64 96 128, $value: 48) => true
 @function map-search($list, $value) {
   @for $i from 1 through length($list) {
