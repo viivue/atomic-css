@@ -5,7 +5,7 @@
 
 @mixin print-loading-class($data) {
   $isEnabled: map-get($data, 'enable');
-  $isWoocommerce: map-get($data, 'isWoocomerce');
+  $isWoocommerce: map-get($data, 'isWoocommerce');
 
   // $isEnabled: true => loading is used
   @if ($isEnabled) {

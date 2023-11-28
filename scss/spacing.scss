@@ -19,7 +19,7 @@ $classes: ("m":"margin", "p":"padding");
 }
 
 /**
- * General spacing variables
+ * Vertical Spacing
  */
 
 @mixin generate-spacing-variables($axis_spacing, $prefix) {
@@ -88,11 +88,12 @@ $classes: ("m":"margin", "p":"padding");
 
 }
 
-/**
- * custom spacing
- */
+// print vertical spacing variables
 @include print-variables-in-root($vertical_spacing, $custom_vertical_spacing, 'spacing');
+
+// print horizontal spacing variables
 @include print-variables-in-root($horizontal_spacing, $custom_horizontal_spacing, 'spacing-x');
 
+// generate responsive values
 @include generate-spacing-variables($vertical_spacing, 'spacing');
 @include generate-spacing-variables($horizontal_spacing, 'spacing-x');

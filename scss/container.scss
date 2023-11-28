@@ -10,7 +10,7 @@
 
     // generate a container selector chain
     @if ($index != 0) {
-      $container-selector: $container-selectors + "," + "." + $name;
+      $container-selectors: $container-selectors + "," + "." + $name;
     } @else {
       $container-selectors: "." + $container-selectors + $name;
     }
@@ -40,6 +40,7 @@
         --#{$project-prefix}-#{$name}: #{format-value($value)};
       }
     }
+    --bb-gap-side: #{format-value($container-gap)};
   }
 
   // Generate container classes
@@ -58,7 +59,9 @@
 }
 
 @mixin print-container($data, $prefix) {
-  @include print-container-class($data);
+  @if (length($data) != 0) {
+    @include print-container-class($data);
+  }
 }
 
 
