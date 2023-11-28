@@ -40,26 +40,26 @@
 //);
 
 // vertical spacing
-//$vertical_spacing: (
-//        "values":0 1 2 4 6 8 12 16 24 32 48 64 96 128,
-//        "md": 0 1 2 4 6 8 12 16 24 30 40 50 60 70,
-//);
+$vertical_spacing: (
+        "values":0 1 2 4 6 8 12 16 24 32 48 64 96 128,
+        "md": 0 1 2 4 6 8 12 16 24 30 40 50 60 70,
+);
 
 // custom spacing (vertical)
-//$custom_spacing: (
-//        'default':10,
-//        'heading':20,
-//        'paragraph':16,
-//);
+$custom_spacing: (
+        'default':10,
+        'heading':20,
+        'paragraph':16,
+);
 
 // horizontal spacing
-//$horizontal_spacing: (
-//        "values":20 40,
-//        "md":20 20,
-//);
+$horizontal_spacing: (
+        "values":20 40,
+        "md":20 20,
+);
 
 // gap spacing (horizontal)
-//$gap_spacing: (
-//        "vc-column":20,
-//        "container":40px,
-//);
+$gap_spacing: (
+        "vc-column":20,
+        "container":40px,
+);
