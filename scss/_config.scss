@@ -70,18 +70,15 @@
 //        "gap-container":40px, // Add unit to not use the responsive value
 //);
 
+// containers
+//$containers: (
+//        "container-small": 768,
+//        "container": 1096,
+//        "container-fluid": unset, // unset => none max-width but still keep gap value
+//);
+
 // loading class
 //$loading_class: (
 //        "enable": true,
 //        "isWoocommerce": false // true if project using woocommerce
-//);
-
-// containers
-//$containers: (
-//        size:(
-//                "container-small": 768,
-//                "container": 1096,
-//                "container-fluid": unset, // unset => none max-width but still keep gap value
-//        ),
-//        gap:40 // container paddings
 //);
