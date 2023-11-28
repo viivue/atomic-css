@@ -50,24 +50,16 @@ $vertical_spacing: (
         "values": 0
 );
 
-// custom spacing (vertical)
-$custom_spacing: ();
+// custom vertical spacing
+$custom_vertical_spacing: ();
 
 // horizontal spacing
 $horizontal_spacing: (
         "values":0,
 );
 
-// gap spacing (horizontal)
-$gap_spacing: ();
-
-
-// horizontal spacing
-//$horizontal_spacing: (
-//        "values": 0 100 200,
-//        "lg":0 50 200,
-//        "md":0 20 100,
-//);
+// custom horizontal spacing (gap)
+$custom_horizontal_spacing: ();
 
 // coordinate values (for position top, right, bottom left)
 $coordinate_values: (

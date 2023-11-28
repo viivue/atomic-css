@@ -452,7 +452,7 @@
   @return false;
 }
 
-// Define if the value is containing any CSS unit, create CSS unit if it not
+// Check if the value is containing any CSS unit, create CSS unit if it not
 @mixin print-variables-in-root($list_responsive_values, $list_responsive_names,  $variable_name) {
   // get value list from $list_responsive_names
   $allowed_values_list: map-get($list_responsive_values, "values");
@@ -472,7 +472,11 @@
         $newValue: var(#{get-variable(#{$variable_name}-#{replace-prop($responsive_value)})}); // => var(--$variable_name-90);
       }
 
-      @include get-variable(#{$variable_name}-#{replace-prop($responsive_name)}, $newValue); //  => --gap-container: $newValue;
+      @if ($variable_name == "spacing") {
+        @include get-variable(#{$variable_name}-#{replace-prop($responsive_name)}, $newValue); //  => --$variable_name-$responsive_name: $newValue;
+      } @else {
+        @include get-variable(#{replace-prop($responsive_name)}, $newValue); //  => --$responsive_name: $newValue;
+      }
     }
   }
 }

@@ -24,20 +24,20 @@ $classes: ("m":"margin", "p":"padding");
 
 @mixin generate-spacing-variables($axis_spacing, $prefix) {
   $project-prefix: map-get($info, 'variable-prefix');
-  @each $breakpoint, $values in $vertical_spacing {
+  @each $breakpoint, $values in $axis_spacing {
     @if is-breakpoint($breakpoint) {
       // Responsive value
       @include media-screen($breakpoint) {
         :root {
           @for $i from 1 through length($values) {
             $value: nth($values, $i);
-            $postfix: get-desktop-value($i, $vertical_spacing);
+            $postfix: get-desktop-value($i, $axis_spacing);
 
             //@debug $value, $postfix;
 
             /// if changed compare with desktop value
             @if $value != $postfix {
-              $previous_postfix: get-previous-breakpoint-value($i, $value, $breakpoint, $vertical_spacing);
+              $previous_postfix: get-previous-breakpoint-value($i, $value, $breakpoint, $axis_spacing);
 
               // and changed compare with the previous value
               @if $value != $previous_postfix {
@@ -52,44 +52,47 @@ $classes: ("m":"margin", "p":"padding");
       :root {
         @for $i from 1 through length($values) {
           $value: nth($values, $i);
-          $postfix: get-previous-breakpoint-value($i, $value, $breakpoint, $vertical_spacing);
+          $postfix: get-previous-breakpoint-value($i, $value, $breakpoint, $axis_spacing);
           //@debug $value, $postfix;
-
           @include get-variable(#{$prefix}-#{replace-prop($postfix)}, #{format-value($value)});
         }
       }
 
-      // margin padding top bottom
-      @for $i from 1 through length($values) {
-        $value: nth($values, $i);
-        $postfix: get-previous-breakpoint-value($i, $value, $breakpoint, $vertical_spacing);
-        //@debug $value, $postfix;
+      @if ($prefix == "spacing") {
+        // margin padding top bottom
+        @for $i from 1 through length($values) {
+          $value: nth($values, $i);
+          $postfix: get-previous-breakpoint-value($i, $value, $breakpoint, $axis_spacing);
+          //@debug $value, $postfix;
 
-        $var: var(#{get-variable(#{$prefix}-#{replace-prop($postfix)})});
+          $var: var(#{get-variable(#{$prefix}-#{replace-prop($postfix)})});
 
-        .pt#{replace-prop($postfix)} {
-          padding-top: #{$var};
-        }
-        .pb#{replace-prop($postfix)} {
-          padding-bottom: #{$var};
-        }
-        .mt#{replace-prop($postfix)} {
-          margin-top: #{$var};
-        }
-        .mb#{replace-prop($postfix)} {
-          margin-bottom: #{$var};
+
+          .pt#{replace-prop($postfix)} {
+            padding-top: #{$var};
+          }
+          .pb#{replace-prop($postfix)} {
+            padding-bottom: #{$var};
+          }
+          .mt#{replace-prop($postfix)} {
+            margin-top: #{$var};
+          }
+          .mb#{replace-prop($postfix)} {
+            margin-bottom: #{$var};
+          }
         }
       }
 
     }
   }
+
 }
 
 /**
  * custom spacing
  */
-@include print-variables-in-root($vertical_spacing, $custom_spacing, 'spacing');
-@include print-variables-in-root($horizontal_spacing, $gap_spacing, 'gap');
+@include print-variables-in-root($vertical_spacing, $custom_vertical_spacing, 'spacing');
+@include print-variables-in-root($horizontal_spacing, $custom_horizontal_spacing, 'spacing-x');
 
 @include generate-spacing-variables($vertical_spacing, 'spacing');
-@include generate-spacing-variables($horizontal_spacing, 'gap');
+@include generate-spacing-variables($horizontal_spacing, 'spacing-x');
