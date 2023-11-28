@@ -63,3 +63,9 @@
 //        "vc-column":20,
 //        "container":40px,
 //);
+
+// loading class
+$loading_class: (
+        "enable": true,
+        "isWoocomerce": false // true if project using woocommerce
+)
