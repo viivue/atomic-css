@@ -440,3 +440,44 @@
 
   @return --#{$project-prefix}#{$prop};
 }
+
+// Return true if a list contains a specified value.
+// ($list:0 1 2 4 6 8 12 16 24 32 48 64 96 128, $value: 48) => true
+@function map-search($list, $value) {
+  @for $i from 1 through length($list) {
+    @if (nth($list, $i) == $value) {
+      @return true;
+    }
+  }
+  @return false;
+}
+
+// Check if the value is containing any CSS unit, create CSS unit if it not
+@mixin print-variables-in-root($list_responsive_values, $list_responsive_names,  $variable_name) {
+  // get value list from $list_responsive_names
+  $allowed_values_list: map-get($list_responsive_values, "values");
+
+  :root {
+    @each $responsive_name, $responsive_value in $list_responsive_names {
+      $newValue: format-value($responsive_value); // e.g. 90px
+
+      // check if $responsive_value is containing any CSS unit
+      $has_unit: get-unit($responsive_value) != "";
+
+      // check if $responsive_value in $list_responsive_names
+      $is_allowed_value: map-search($allowed_values_list, $responsive_value);
+
+      // use responsive variable
+      @if ($is_allowed_value and not $has_unit) {
+        $newValue: var(#{get-variable(#{$variable_name}-#{replace-prop($responsive_value)})}); // => var(--$variable_name-90);
+      }
+
+      @if ($variable_name == "spacing") {
+        @include get-variable(#{$variable_name}-#{replace-prop($responsive_name)}, $newValue); //  => --$variable_name-$responsive_name: $newValue;
+      } @else {
+        @include get-variable(#{replace-prop($responsive_name)}, $newValue); //  => --$responsive_name: $newValue;
+      }
+    }
+  }
+}
+
