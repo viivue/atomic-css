@@ -28,7 +28,7 @@
   $dataset: (
           container:(
                   selectors: '#{$container-selector}',
-                  inline: 'position:relative' 'width:100%' 'margin-right:auto' 'margin-left:auto' 'padding-left:#{format-value($container-gap)}' 'padding-right:#{format-value($container-gap)}'
+                  inline: 'position:relative' 'width:100%' 'margin-right:auto' 'margin-left:auto' 'padding-left:#{var(get-variable(gap-container))}' 'padding-right:#{var(get-variable(gap-container))}'
           ),
   );
   @include print($dataset);
