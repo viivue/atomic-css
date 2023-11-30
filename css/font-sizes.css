@@ -1,0 +1,101 @@
+/**
+ * Font Sizes
+ */
+:root {
+  --bb-size-0: 0;
+  --bb-size-1: 1px;
+  --bb-size-2: 2px;
+  --bb-size-4: 4px;
+  --bb-size-6: 6px;
+  --bb-size-8: 8px;
+  --bb-size-12: 12px;
+  --bb-size-16: 16px;
+  --bb-size-24: 24px;
+  --bb-size-32: 32px;
+  --bb-size-48: 48px;
+  --bb-size-64: 64px;
+  --bb-size-96: 96px;
+  --bb-size-128: 128px;
+}
+
+.fs0 {
+  font-size: var(--bb-size-0);
+}
+
+.fs1 {
+  font-size: var(--bb-size-1);
+}
+
+.fs2 {
+  font-size: var(--bb-size-2);
+}
+
+.fs4 {
+  font-size: var(--bb-size-4);
+}
+
+.fs6 {
+  font-size: var(--bb-size-6);
+}
+
+.fs8 {
+  font-size: var(--bb-size-8);
+}
+
+.fs12 {
+  font-size: var(--bb-size-12);
+}
+
+.fs16 {
+  font-size: var(--bb-size-16);
+}
+
+.fs24 {
+  font-size: var(--bb-size-24);
+}
+
+.fs32 {
+  font-size: var(--bb-size-32);
+}
+
+.fs48 {
+  font-size: var(--bb-size-48);
+}
+
+.fs64 {
+  font-size: var(--bb-size-64);
+}
+
+.fs96 {
+  font-size: var(--bb-size-96);
+}
+
+.fs128 {
+  font-size: var(--bb-size-128);
+}
+
+/* Breakpoint md */
+@media only screen and (max-width: 1024px) {
+  :root {
+    --bb-size-32: 30px;
+    --bb-size-48: 40px;
+    --bb-size-64: 50px;
+    --bb-size-96: 60px;
+    --bb-size-128: 70px;
+  }
+}
+/* Breakpoint xs */
+@media only screen and (max-width: 480px) {
+  :root {
+    --bb-size-128: 60px;
+  }
+}
+:root {
+  --bb-size-h1: 60px;
+  --bb-size-h2: 50px;
+  --bb-size-h3: 40px;
+  --bb-size-h4: 30px;
+  --bb-size-h5: 20px;
+  --bb-size-h6: var(--bb-size-16);
+  --bb-size-body: var(--bb-size-16);
+}
