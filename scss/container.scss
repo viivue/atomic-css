@@ -1,0 +1,70 @@
+@import "helpers";
+
+// Get container selectors and return a selector chain
+// size: ("container-small": 880, "container": 1076) => .container-small, .container {}
+@function get-container-selectors($data) {
+  $container-selectors: "";
+
+  $index: 0;
+  @each $name, $value in $data {
+
+    // generate a container selector chain
+    @if ($index != 0) {
+      $container-selectors: $container-selectors + "," + "." + $name;
+    } @else {
+      $container-selectors: "." + $container-selectors + $name;
+    }
+    $index: $index + 1;
+  }
+  @return $container-selectors;
+}
+
+@mixin print-container-class($data) {
+  $container-gap: map-get($custom_horizontal_spacing, "gap-container") or 40;
+  $container-selector: get-container-selectors($data);
+  $project-prefix: map-get($info, 'variable-prefix');
+
+  // print
+  $dataset: (
+          container:(
+                  selectors: '#{$container-selector}',
+                  inline: 'position:relative' 'width:100%' 'margin-right:auto' 'margin-left:auto' 'padding-left:#{var(get-variable(gap-container), format-value($container-gap))}' 'padding-right:#{var(get-variable(gap-container), format-value($container-gap))}'
+          ),
+  );
+  @include print($dataset);
+
+  // Generate container variables
+  :root {
+    @each $name, $value in $data {
+      @if (type-of($value) == 'number') {
+        @include get-variable($name, format-value($value));
+      }
+    }
+    @include get-variable(gap-side, format-value($container-gap));
+
+  }
+
+  // Generate container classes
+  @each $name, $value in $data {
+
+    @if ($name == 'container-fluid') {
+      .#{$name} {
+        @include get-variable(gap-side, format-value($container-gap));
+      }
+    } @else {
+      .#{$name} {
+        //#{get-variable(gap-side)}: calc((var(get-variable("100vw"), 100vw) - var(get-variable($name))) * 0.5);
+        max-width: calc(var(get-variable($name)) + var(get-variable(gap-container), format-value($container-gap)) * 2);
+      }
+    }
+  }
+}
+
+@mixin print-container($data, $prefix) {
+  @if (length($data) != 0) {
+    @include print-container-class($data);
+  }
+}
+
+
+@include print-container($containers, "container");

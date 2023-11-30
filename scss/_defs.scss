@@ -1,7 +1,7 @@
 /// Definitions
 /// DO NOT EDIT!
 
-$version: "1.1.10";
+$version: "1.2.0";
 $info: ();
 
 // axes
@@ -50,12 +50,14 @@ $vertical_spacing: (
         "values": 0
 );
 
+// custom vertical spacing
+$custom_vertical_spacing: ();
+
 // horizontal spacing
-//$horizontal_spacing: (
-//        "values": 0 100 200,
-//        "lg":0 50 200,
-//        "md":0 20 100,
-//);
+$horizontal_spacing: ();
+
+// custom horizontal spacing (gap)
+$custom_horizontal_spacing: ();
 
 // coordinate values (for position top, right, bottom left)
 $coordinate_values: (
@@ -64,3 +66,21 @@ $coordinate_values: (
 
 // aspect ratio
 $aspect_ratio: ();
+
+// containers
+$containers: ();
+//$containers: (
+//        size:(
+//                "container-small": 880,
+//                "container": 1076,
+//                "container-large": 1196,
+//                "container-fluid": unset, // unset => none max-width but still keep gap value
+//        ),
+//        gap:20 // container paddings
+//);
+
+// loading class
+$loading_class: (
+        "enable": false,
+        "isWoocommerce": false // true if project using woocommerce
+)
