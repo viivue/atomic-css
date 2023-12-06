@@ -22,7 +22,7 @@
 
               // and changed compare with the previous value
               @if $value != $previous_postfix {
-                @include get-variable(bb-size-#{replace-prop($postfix)}, #{format-value($value)});
+                @include get-variable(size-#{replace-prop($postfix)}, #{format-value($value)});
               }
             }
           }
@@ -36,7 +36,7 @@
           $postfix: get-previous-breakpoint-value($i, $value, $breakpoint, $font_sizes);
           //@debug $value, $postfix;
 
-          @include get-variable(bb-size-#{replace-prop($postfix)}, #{format-value($value)});
+          @include get-variable(size-#{replace-prop($postfix)}, #{format-value($value)});
         }
       }
 
@@ -46,7 +46,7 @@
         $postfix: get-previous-breakpoint-value($i, $value, $breakpoint, $font_sizes);
         //@debug $value, $postfix;
 
-        $var: var(#{get-variable(bb-size-#{replace-prop($postfix)})});
+        $var: var(#{get-variable(size-#{replace-prop($postfix)})});
 
         .fs#{replace-prop($postfix)} {
           font-size: #{$var};
@@ -67,9 +67,9 @@
       $isValid: map-search($list, $value);
       // if the value is not existing in the $font_sizes, create 'px' for the value
       @if (not $isValid) {
-        @include get-variable(bb-size-#{replace-prop($name)}, format-value($value));
+        @include get-variable(size-#{replace-prop($name)}, format-value($value));
       } @else {
-        @include get-variable(bb-size-#{replace-prop($name)}, var(#{get-variable(bb-size-#{replace-prop($value)})}));
+        @include get-variable(size-#{replace-prop($name)}, var(#{get-variable(size-#{replace-prop($value)})}));
       }
     }
   }

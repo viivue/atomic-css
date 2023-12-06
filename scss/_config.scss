@@ -70,6 +70,29 @@ $breakpoints: (
 //        "gap-container":40px, // Add unit to not use the responsive value
 //);
 
+// font sizes
+//$font_sizes: (
+//        "values": 13 14 15 16 18 20 28 30 32 35 40 50 70 100,
+//        "md": 13 14 15 16 18 20 24 26 28 32 35 40 50 71,
+//        "sm": 13 14 15 16 18 20 22 24 26 30 32 36 40 58,
+//        "xs": 13 14 15 16 16 18 20 24 24 26 30 33 34 48
+//);
+
+
+// font size custom name
+// The value must be defined by font_sizes above
+//$font_size_custom: (
+//        "h1": 40,
+//        "h2": 35,
+//        "h3": 35,
+//        "h4": 18,
+//        "h5": 16,
+//        "h6": 15,
+//        'body': 16,
+//        "large": 100,
+//);
+
+
 // containers
 //$containers: (
 //        "container-small": 768,
@@ -83,21 +106,3 @@ $breakpoints: (
 //        "isWoocommerce": false // true if project using woocommerce
 //);
 
-// font sizes
-$font_sizes: (
-        "values":0 1 2 4 6 8 12 16 24 32 48 64 96 128,
-        "md": 0 1 2 4 6 8 12 16 24 30 40 50 60 70,
-        "xs": 0 1 2 4 6 8 12 16 24 30 40 50 60 60,
-);
-
-// font size custom name
-// The value must be defined by font_sizes above
-$font_size_custom: (
-        "h1": 60,
-        "h2": 50,
-        "h3": 40,
-        "h4": 30,
-        "h5": 20,
-        "h6": 16,
-        'body': 16
-);
