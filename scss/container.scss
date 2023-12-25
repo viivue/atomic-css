@@ -6,7 +6,7 @@
   $container-selectors: "";
 
   $index: 0;
-  @each $name, $value in map-get($data, size) {
+  @each $name, $value in $data {
 
     // generate a container selector chain
     @if ($index != 0) {
@@ -20,7 +20,7 @@
 }
 
 @mixin print-container-class($data) {
-  $container-gap: map-get($data, 'gap');
+  $container-gap: map-get($custom_horizontal_spacing, "gap-container") or 40;
   $container-selector: get-container-selectors($data);
   $project-prefix: map-get($info, 'variable-prefix');
 
@@ -28,31 +28,35 @@
   $dataset: (
           container:(
                   selectors: '#{$container-selector}',
-                  inline: 'position:relative' 'width:100%' 'margin-right:auto' 'margin-left:auto' 'padding-left:#{format-value($container-gap)}' 'padding-right:#{format-value($container-gap)}'
+                  inline: 'position:relative' 'width:100%' 'margin-right:auto' 'margin-left:auto' 'padding-left:#{var(get-variable(gap-container), format-value($container-gap))}' 'padding-right:#{var(get-variable(gap-container), format-value($container-gap))}'
           ),
   );
   @include print($dataset);
 
   // Generate container variables
   :root {
-    @each $name, $value in map-get($data, size) {
+    @each $name, $value in $data {
       @if (type-of($value) == 'number') {
-        --#{$project-prefix}-#{$name}: #{format-value($value)};
+        @include get-variable($name, format-value($value));
       }
     }
-    --bb-gap-side: #{format-value($container-gap)};
+    #{get-variable(gap-side)}: clamp(var(get-variable(gap-container)), calc(((var(get-variable("100vw"), 100vw)) - var(get-variable("container"))) / 2), 100vw);
+
+
   }
 
   // Generate container classes
-  @each $name, $value in map-get($data, size) {
+  @each $name, $value in $data {
+
     @if ($name == 'container-fluid') {
       .#{$name} {
-        --bb-gap-side: #{format-value($container-gap)};
+        @include get-variable(gap-side, format-value($container-gap));
       }
     } @else {
       .#{$name} {
-        --bb-gap-side: calc((var(--bb-100vw, 100vw) - var(--#{$project-prefix}-#{$name})) * 0.5);
-        max-width: format-value(calc($value + $container-gap * 2));
+
+        #{get-variable(gap-side)}: clamp(var(get-variable(gap-container)), calc(((var(get-variable("100vw"), 100vw)) - var(get-variable($name))) / 2), 100vw);
+        max-width: calc(var(get-variable($name)) + var(get-variable(gap-container), format-value($container-gap)) * 2);
       }
     }
   }

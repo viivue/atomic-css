@@ -3,41 +3,41 @@
 @import "defs";
 
 // Project info
-//$info: (
-//        name: 'Atomic CSS',
-//        variable-prefix: ''
-//);
+$info: (
+        name: 'Atomic CSS',
+        variable-prefix: ''
+);
 
 // font family
-//$fonts: (
-//        primary: (
-//                font-face: "'Be Vietnam Pro', sans-serif",
-//                weight: 400 500 700
-//        ),
-//        icomoon: "'icomoon', fantasy"
-//);
+$fonts: (
+        primary: (
+                font-face: "'Be Vietnam Pro', sans-serif",
+                weight: 400 500 700
+        ),
+        icomoon: "'icomoon', fantasy"
+);
 
 // colors
-//$colors: (
-//        primary: '#1c44ad',
-//        dark: '#1a1b1c',
-//        "gray": '#f6f6f6',
-//        light-blue: '#115df7',
-//        dark-blue: '#21297d'
-//);
+$colors: (
+        primary: '#1c44ad',
+        dark: '#1a1b1c',
+        "gray": '#f6f6f6',
+        light-blue: '#115df7',
+        dark-blue: '#21297d'
+);
 
 // aspect ratio
-//$aspect_ratio: (
-//        "custom":"1280/768"
-//);
+$aspect_ratio: (
+        "custom":"1280/768"
+);
 
 // breakpoints
-//$breakpoints: (
-//        "lg": 1280px,
-//        "md": 1024px,
-//        "sm": 768px,
-//        "xs": 480px,
-//);
+$breakpoints: (
+        "lg": 1280px,
+        "md": 1024px,
+        "sm": 768px,
+        "xs": 480px,
+);
 
 // SPACING
 // 40%  => --spacing-x-40: 40%
@@ -70,18 +70,39 @@
 //        "gap-container":40px, // Add unit to not use the responsive value
 //);
 
+// font sizes
+//$font_sizes: (
+//        "values": 13 14 15 16 18 20 28 30 32 35 40 50 70 100,
+//        "md": 13 14 15 16 18 20 24 26 28 32 35 40 50 71,
+//        "sm": 13 14 15 16 18 20 22 24 26 30 32 36 40 58,
+//        "xs": 13 14 15 16 16 18 20 24 24 26 30 33 34 48
+//);
+
+
+// font size custom name
+// The value must be defined by font_sizes above
+//$font_size_custom: (
+//        "h1": 40,
+//        "h2": 35,
+//        "h3": 35,
+//        "h4": 18,
+//        "h5": 16,
+//        "h6": 15,
+//        'body': 16,
+//        "large": 100,
+//);
+
+
+// containers
+//$containers: (
+//        "container-small": 768,
+//        "container": 1096,
+//        "container-fluid": unset, // unset => none max-width but still keep gap value
+//);
+
 // loading class
 //$loading_class: (
 //        "enable": true,
 //        "isWoocommerce": false // true if project using woocommerce
 //);
 
-// containers
-//$containers: (
-//        size:(
-//                "container-small": 768,
-//                "container": 1096,
-//                "container-fluid": unset, // unset => none max-width but still keep gap value
-//        ),
-//        gap:40 // container paddings
-//);
