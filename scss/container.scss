@@ -40,7 +40,8 @@
         @include get-variable($name, format-value($value));
       }
     }
-    @include get-variable(gap-side, format-value($container-gap));
+    #{get-variable(gap-side)}: clamp(var(get-variable(gap-container)), calc(((var(get-variable("100vw"), 100vw)) - var(get-variable("container"))) / 2), 100vw);
+
 
   }
 
@@ -53,7 +54,8 @@
       }
     } @else {
       .#{$name} {
-        //#{get-variable(gap-side)}: calc((var(get-variable("100vw"), 100vw) - var(get-variable($name))) * 0.5);
+
+        #{get-variable(gap-side)}: clamp(var(get-variable(gap-container)), calc(((var(get-variable("100vw"), 100vw)) - var(get-variable($name))) / 2), 100vw);
         max-width: calc(var(get-variable($name)) + var(get-variable(gap-container), format-value($container-gap)) * 2);
       }
     }
