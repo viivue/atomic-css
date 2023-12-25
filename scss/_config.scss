@@ -2,42 +2,42 @@
 /// Edit these configs to fit your needs
 @import "defs";
 
-// Project info
-$info: (
-        name: 'Atomic CSS',
-        variable-prefix: ''
-);
+//// Project info
+//$info: (
+//        name: 'Atomic CSS',
+//        variable-prefix: ''
+//);
+//
+//// font family
+//$fonts: (
+//        primary: (
+//                font-face: "'Be Vietnam Pro', sans-serif",
+//                weight: 400 500 700
+//        ),
+//        icomoon: "'icomoon', fantasy"
+//);
+//
+//// colors
+//$colors: (
+//        primary: '#1c44ad',
+//        dark: '#1a1b1c',
+//        "gray": '#f6f6f6',
+//        light-blue: '#115df7',
+//        dark-blue: '#21297d'
+//);
 
-// font family
-$fonts: (
-        primary: (
-                font-face: "'Be Vietnam Pro', sans-serif",
-                weight: 400 500 700
-        ),
-        icomoon: "'icomoon', fantasy"
-);
-
-// colors
-$colors: (
-        primary: '#1c44ad',
-        dark: '#1a1b1c',
-        "gray": '#f6f6f6',
-        light-blue: '#115df7',
-        dark-blue: '#21297d'
-);
-
-// aspect ratio
-$aspect_ratio: (
-        "custom":"1280/768"
-);
-
-// breakpoints
-$breakpoints: (
-        "lg": 1280px,
-        "md": 1024px,
-        "sm": 768px,
-        "xs": 480px,
-);
+//// aspect ratio
+//$aspect_ratio: (
+//        "custom":"1280/768"
+//);
+//
+//// breakpoints
+//$breakpoints: (
+//        "lg": 1280px,
+//        "md": 1024px,
+//        "sm": 768px,
+//        "xs": 480px,
+//);
 
 // SPACING
 // 40%  => --spacing-x-40: 40%
