@@ -1,5 +1,5 @@
 /*!
-* Atomic CSS 1.2.0
+* Atomic CSS 1.2.1
 * https://github.com/viivue/atomic-css
 */
 /**
@@ -1079,3 +1079,10 @@ ul.list-style-none > li,
     padding:0;
     border:0;
 }
+
+/**
+ * Font Sizes
+ */
+/**
+ * Loading
+ */

@@ -1,6 +1,6 @@
 {
   "name": "@viivue/atomic-css",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "⚛️ Customizable Atomic CSS Framework.",
   "main": "./dist/atomic.min.css",
   "scripts": {
