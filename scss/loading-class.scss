@@ -7,6 +7,9 @@
   $isEnabled: map-get($data, 'enable');
   $isWoocommerce: map-get($data, 'isWoocommerce');
 
+  // prefix project
+  $project-prefix: map-get($info, 'variable-prefix');
+
   // $isEnabled: true => loading is used
   @if ($isEnabled) {
     // If $isWoocommerce value is false just load the loading selector only
@@ -40,8 +43,8 @@
         margin: calc(-0.5 * var(--loading-size)) 0 0 calc(-0.5 * var(--loading-size));
         border-radius: 50%;
         border: 2px dashed transparent;
-        border-bottom-color: var(--bb-color-primary);
-        border-right-color: var(--bb-color-primary);
+        border-bottom-color: var(--#{$project-prefix}-color-primary);
+        border-right-color: var(--#{$project-prefix}-color-primary);
         animation: spinner .6s linear infinite;
         box-sizing: border-box;
       }
@@ -76,8 +79,8 @@
         margin: calc(-0.5 * var(--loading-size)) 0 0 calc(-0.5 * var(--loading-size));
         border-radius: 50%;
         border: 2px dashed transparent;
-        border-bottom-color: var(--bb-color-primary);
-        border-right-color: var(--bb-color-primary);
+        border-bottom-color: var(--#{$project-prefix}-color-primary);
+        border-right-color: var(--#{$project-prefix}-color-primary);
         animation: spinner .6s linear infinite;
         box-sizing: border-box;
       }
