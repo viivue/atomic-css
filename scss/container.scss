@@ -50,7 +50,7 @@
 
     @if ($name == 'container-fluid') {
       .#{$name} {
-        @include get-variable(gap-side, format-value($container-gap));
+        @include get-variable(gap-side, var(get-variable(gap-container)));
       }
     } @else {
       .#{$name} {
