@@ -47,8 +47,7 @@
 
   // Generate container classes
   @each $name, $value in $data {
-
-    @if ($name == 'container-fluid') {
+    @if ($value == 'unset') {
       .#{$name} {
         @include get-variable(gap-side, var(get-variable(gap-container)));
       }
