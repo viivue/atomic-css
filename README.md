@@ -1,5 +1,8 @@
 # Atomic CSS
 
+> [!NOTE]  
+> Atomic CSS will no longer be updated as we moved to TailwindCSS with our [custom Tailwind preset here](https://github.com/viivue/tailwindcss-preset).
+
 [![npm](https://badgen.net/npm/v/@viivue/atomic-css)](https://www.npmjs.com/package/@viivue/atomic-css)
 [![minified](https://badgen.net/badge/minified/~8KB/cyan)](https://www.jsdelivr.com/package/gh/viivue/atomic-css)
 [![jsdelivr](https://data.jsdelivr.com/v1/package/gh/viivue/atomic-css/badge?style=rounded)](https://www.jsdelivr.com/package/gh/viivue/atomic-css)
