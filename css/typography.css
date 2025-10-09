@@ -4,185 +4,185 @@
  */
 /* font-family */
 .ff-sans {
-    font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
 }
 
 .ff-serif {
-    font-family:Georgia, Cambria, "Times New Roman", Times, serif;
+  font-family: Georgia, Cambria, "Times New Roman", Times, serif;
 }
 
 /* color */
 .fc-white {
-    color:#fff;
+  color: #fff;
 }
 
 .fc-black {
-    color:#000;
+  color: #000;
 }
 
 /* background-color */
 .bg-white {
-    background-color:#fff;
+  background-color: #fff;
 }
 
 .bg-black {
-    background-color:#000;
+  background-color: #000;
 }
 
 /* font-weight */
 .fw-normal {
-    font-weight:400;
+  font-weight: 400;
 }
 
 .fw-bold {
-    font-weight:700;
+  font-weight: 700;
 }
 
 /* line-height */
 .lh-xs {
-    line-height:1;
+  line-height: 1;
 }
 
 .lh-sm {
-    line-height:1.15;
+  line-height: 1.15;
 }
 
 .lh-md {
-    line-height:1.3;
+  line-height: 1.3;
 }
 
 .lh-lg {
-    line-height:1.6;
+  line-height: 1.6;
 }
 
 .lh-xl {
-    line-height:1.92;
+  line-height: 1.92;
 }
 
 .lh-xxl {
-    line-height:2;
+  line-height: 2;
 }
 
 .lh-unset {
-    line-height:unset;
+  line-height: unset;
 }
 
 /* font-style */
 .fs-normal {
-    font-style:normal;
+  font-style: normal;
 }
 
 .fs-italic {
-    font-style:italic;
+  font-style: italic;
 }
 
 /* text-transform */
 .tt-capitalize {
-    text-transform:capitalize;
+  text-transform: capitalize;
 }
 
 .tt-lowercase {
-    text-transform:lowercase;
+  text-transform: lowercase;
 }
 
 .tt-uppercase {
-    text-transform:uppercase;
+  text-transform: uppercase;
 }
 
 .tt-none {
-    text-transform:none;
+  text-transform: none;
 }
 
 .tt-unset {
-    text-transform:unset;
+  text-transform: unset;
 }
 
 /* text-decoration */
 .td-underline {
-    text-decoration:underline;
+  text-decoration: underline;
 }
 
 .td-none {
-    text-decoration:none;
+  text-decoration: none;
 }
 
 /* text-align */
 .ta-left {
-    text-align:left;
+  text-align: left;
 }
 
 .ta-center {
-    text-align:center;
+  text-align: center;
 }
 
 .ta-right {
-    text-align:right;
+  text-align: right;
 }
 
 .ta-justify {
-    text-align:justify;
+  text-align: justify;
 }
 
 /* white-space */
 .ws-normal {
-    white-space:normal;
+  white-space: normal;
 }
 
 .ws-nowrap {
-    white-space:nowrap;
+  white-space: nowrap;
 }
 
 .ws-pre {
-    white-space:pre;
+  white-space: pre;
 }
 
 .ws-pre-wrap {
-    white-space:pre-wrap;
+  white-space: pre-wrap;
 }
 
 .ws-pre-line {
-    white-space:pre-line;
+  white-space: pre-line;
 }
 
 /* word-break */
 .wb-normal {
-    word-break:normal;
+  word-break: normal;
 }
 
 .wb-break-all {
-    word-break:break-all;
+  word-break: break-all;
 }
 
 .wb-keep-all {
-    word-break:keep-all;
+  word-break: keep-all;
 }
 
 .wb-inherit {
-    word-break:inherit;
+  word-break: inherit;
 }
 
 .wb-initial {
-    word-break:initial;
+  word-break: initial;
 }
 
 .wb-unset {
-    word-break:unset;
+  word-break: unset;
 }
 
 /* break-word */
 .break-word {
-    word-break:break-word;
-    word-wrap:break-word;
-    overflow-wrap:break-word;
-    hyphens:auto;
+  word-break: break-word;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
 }
 
 :root {
-    --font-sans:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
-    --font-serif:Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-sans: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+  --font-serif: Georgia, Cambria, "Times New Roman", Times, serif;
 }
 
 :root {
-    --color-white:#fff;
-    --color-black:#000;
+  --color-white: #fff;
+  --color-black: #000;
 }

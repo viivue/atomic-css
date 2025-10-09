@@ -9,6 +9,9 @@ $dataset: (
                 prefix:'c',
                 value:auto default pointer text wait move not-allowed help
         ),
+        cursor-pointer: (
+                inline: "cursor: pointer",
+        )
 );
 
 // print

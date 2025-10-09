@@ -22,7 +22,48 @@ $dataset: (
         ),
         fl-grid:(
                 inline: 'display:flex' 'flex-wrap:wrap'
-        )
+        ),
+        items-start: (
+                inline: 'align-items:flex-start'
+        ),
+        items-end: (
+                inline: 'align-items:flex-end'
+        ),
+        items-center: (
+                inline: 'align-items:center'
+        ),
+        items-baseline: (
+                inline: 'align-items:baseline'
+        ),
+        justify-start: (
+                inline: 'justify-content:flex-start'
+        ),
+        justify-end: (
+                inline: 'justify-content:flex-end'
+        ),
+        justify-center: (
+                inline: 'justify-content:center'
+        ),
+        justify-between: (
+                inline: 'justify-content:space-between'
+        ),
+        justify-around: (
+                inline: 'justify-content:space-around'
+        ),
+        justify-evenly: (
+                inline: 'justify-content:space-evenly'
+        ),
+        flex-col-reverse: (
+                inline: 'flex-direction:column-reverse'
+        ),
+        flex-nowrap: (
+                inline: 'flex-wrap:nowrap'
+        ),
+        "flex-wrap@single": (
+                selectors: ".flex-wrap",
+                inline: "flex-wrap:wrap"
+        ),
+
 );
 
 // print

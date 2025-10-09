@@ -73,5 +73,17 @@ $dataset: (
                 hyphen:false,
                 value:1 2 3 4 5 10 20 30 40 100 99999999
         ),
+        fixed: (
+                inline:'position:fixed'
+        ),
+        absolute: (
+                inline:'position:absolute'
+        ),
+        relative: (
+                inline:'position:relative'
+        ),
+        sticky: (
+                inline:'position:sticky'
+        ),
 );
 @include print($dataset);

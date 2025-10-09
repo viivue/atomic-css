@@ -5,7 +5,19 @@
 @import "helpers";
 
 $dataset: (
-        display: block inline inline-block flex inline-flex grid inline-grid table table-cell none unset
+        display: block inline inline-block flex inline-flex grid inline-grid table table-cell none unset,
+        flex: (
+                inline: "display: flex",
+        ),
+        inline: (
+                inline: "display: inline",
+        ),
+        inline-flex: (
+                inline: "display: inline-flex",
+        ),
+        inline-block: (
+                inline: "display: inline-block",
+        ),
 );
 
 // print
