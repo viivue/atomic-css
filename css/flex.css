@@ -203,6 +203,11 @@
   justify-content: space-evenly;
 }
 
+/* flex-col */
+.flex-col {
+  flex-direction: column;
+}
+
 /* flex-col-reverse */
 .flex-col-reverse {
   flex-direction: column-reverse;

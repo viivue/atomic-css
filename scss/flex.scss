@@ -53,6 +53,9 @@ $dataset: (
         justify-evenly: (
                 inline: 'justify-content:space-evenly'
         ),
+        flex-col: (
+                inline: 'flex-direction:column'
+        ),
         flex-col-reverse: (
                 inline: 'flex-direction:column-reverse'
         ),
