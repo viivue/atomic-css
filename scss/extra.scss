@@ -47,12 +47,12 @@
   display: block;
 }
 
-.img-wrapper-cover > img {
+.img-wrapper-cover  img {
   @include img-object-fit;
   object-fit: cover;
 }
 
-.img-wrapper-contain > img {
+.img-wrapper-contain  img {
   @include img-object-fit;
   object-fit: contain;
 }
