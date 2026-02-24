@@ -8,16 +8,16 @@
   --grid-gap-y: 30px;
   --grid-col: 3;
 
-  /* calculate new width */
-  --grid-gap-x-total: calc(var(--grid-gap-x) * (var(--grid-col) - 1));
-  --grid-space-each: calc(var(--grid-gap-x-total) / var(--grid-col));
-
   display: flex;
   flex-wrap: wrap;
   gap: var(--grid-gap-y) var(--grid-gap-x);
 }
 
 .flex-grid-template > * {
+  /* calculate new width */
+  --grid-gap-x-total: calc(var(--grid-gap-x) * (var(--grid-col) - 1));
+  --grid-space-each: calc(var(--grid-gap-x-total) / var(--grid-col));
+
   width: calc(100% / var(--grid-col) - var(--grid-space-each));
 }
 
