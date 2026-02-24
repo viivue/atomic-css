@@ -7,6 +7,10 @@
 @use "sass:map";
 @import "helpers";
 
+// fallback if _config.scss doesn't define $border_radius
+$border_radius: () !default;
+
+// map -> list (comma separated)
 $radius_values: ();
 @if type-of($border_radius) == "map" {
         @each $k, $v in $border_radius {
@@ -17,12 +21,9 @@ $radius_values: ();
 }
 
 $dataset: (
-        bar-pill: (
-                inline: "border-radius: 1000px",
-        ),
-        bar-circle: (
-                inline: "border-radius: 100%",
-        ),
+        bar-pill: (inline: "border-radius: 1000px"),
+        bar-circle: (inline: "border-radius: 100%"),
+
         border-radius: (
                 prefix: "bar",
                 hyphen: false,
