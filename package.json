@@ -1,6 +1,6 @@
 {
   "name": "@viivue/atomic-css",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "⚛️ Customizable Atomic CSS Framework.",
   "main": "./dist/atomic.min.css",
   "scripts": {
@@ -21,8 +21,8 @@
     "viivue"
   ],
   "author": {
-    "name": "phucbm",
-    "url": "https://github.com/phucbm"
+    "name": "viivuedev",
+    "url": "https://github.com/viivue"
   },
   "license": "MIT",
   "bugs": {

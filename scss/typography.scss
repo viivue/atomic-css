@@ -3,6 +3,7 @@
  * https://stackoverflow.design/product/base/typography/
  */
 @use "sass:map";
+@use "sass:list";
 @import "helpers";
 
 $dataset: (
@@ -29,13 +30,6 @@ $dataset: (
                         "black":'#000'
                 )
         ),
-        font-weight: (
-                type:value-key-as-postfix,
-                value:(
-                        normal:400,
-                        bold:700
-                )
-        ),
         line-height:(
                 type:value-key-as-postfix,
                 prefix:'lh',
@@ -60,52 +54,77 @@ $dataset: (
         )
 );
 
-// custom font family
-$font_families: ();
+
+@function _contains($items, $value) {
+  @each $i in $items {
+    @if $i == $value { @return true; }
+  }
+  @return false;
+}
+
+$font-families: ();
+$weights: ();
+
 @each $name, $data in $fonts {
-  @if type-of($data) == 'map' {
-    $font-face: map-get($data, 'font-face');
-    $font_families: map.set($font_families, $name, $font-face);
+  @if type-of($data) == "map" {
+    // font-face
+    @if map-has-key($data, "font-face") {
+      $font-families: map.set($font-families, $name, map-get($data, "font-face"));
+    }
 
-    // has defined weights
-    @if map-has-key($data, 'weight') {
-      $weight: map.get($data, 'weight');
-
-      @if type-of($weight) == 'list' {
-        @each $w in $weight {
-          .f-#{$name}-#{$w} {
-            font-family: #{$font-face};
-            font-weight: #{$w};
-          }
-        }
-      }
-      @if type-of($weight) == 'number' {
-        .f-#{$name}-#{$weight} {
-          font-family: #{$font-face};
-          font-weight: #{$weight};
+    // weight list (collect unique)
+    @if map-has-key($data, "weight") {
+      @each $w in map-get($data, "weight") {
+        @if not _contains($weights, $w) {
+          $weights: list.append($weights, $w);
         }
       }
     }
-
-  }
-  @if type-of($data) == 'string' {
-    $font_families: map.set($font_families, $name, $data);
+  } @else if type-of($data) == "string" {
+    $font-families: map.set($font-families, $name, $data);
   }
 }
 
-$custom_font_family: map-merge(map-get($dataset, "font-family", "value"), $font_families);
+/* custom font-family */
+$custom_font_family: map-merge(map-get($dataset, "font-family", "value"), $font-families);
 $dataset: map.set($dataset, "font-family", "value", $custom_font_family);
 
-// custom color
+/* build font-weight from _config.scss */
+$aliases: (
+        100: thin,
+        200: extralight,
+        300: light,
+        400: normal,
+        500: medium,
+        600: semibold,
+        700: bold,
+        800: extrabold,
+        900: black
+);
+
+$fw-values: ();
+@each $w in $weights {
+  $key: map-get($aliases, $w);
+  @if $key == null { $key: $w; } // fallback (e.g. fw-550)
+  $fw-values: map.set($fw-values, $key, $w);
+}
+
+/* inject font-weight dataset */
+$dataset: map.set($dataset, "font-weight", (
+        type: value-key-as-postfix,
+        prefix: "fw",
+        value: $fw-values
+));
+
+/* color */
 $custom_color: map-merge(map-get($dataset, "color", "value"), $colors);
 $dataset: map.set($dataset, "color", "value", $custom_color);
 
-// custom background color
+/* bg-color */
 $custom_bg_color: map-merge(map-get($dataset, "background-color", "value"), $colors);
 $dataset: map.set($dataset, "background-color", "value", $custom_bg_color);
 
-
-// print
+/* Print */
 @include print($dataset);
 
 // CSS  variables
