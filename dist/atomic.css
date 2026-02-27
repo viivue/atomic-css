@@ -1014,12 +1014,12 @@
   width:calc(100% / var(--grid-col) - var(--grid-space-each));
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width:768px) {
   .flex-grid-template {
     --grid-col:2;
   }
 }
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width:480px) {
   .flex-grid-template {
     --grid-col:1;
   }
