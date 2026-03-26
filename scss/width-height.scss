@@ -1,7 +1,7 @@
 /**
  * Width & Height
  */
-@import "helpers";
+@use "helpers";
 
 $dataset: (
         w-auto: (
@@ -34,4 +34,4 @@ $dataset: (
         ),
 );
 
-@include print($dataset);
+@include helpers.print($dataset);

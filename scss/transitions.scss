@@ -2,7 +2,7 @@
  * Transitions
  * https://stackoverflow.design/product/base/transitions/
  */
-@import "helpers";
+@use "helpers";
 
 $dataset: (
         transition: (
@@ -48,4 +48,4 @@ $dataset: (
 );
 
 // print
-@include print($dataset);
+@include helpers.print($dataset);

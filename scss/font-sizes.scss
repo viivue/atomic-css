@@ -1,4 +1,6 @@
-@import "helpers";
+@use "helpers";
+@use "sass:list";
+@use "sass:map";
 
 /**
  * Font Sizes
@@ -6,23 +8,23 @@
 
 @mixin font-sizes($font_sizes) {
   @each $breakpoint, $values in $font_sizes {
-    @if is-breakpoint($breakpoint) {
+    @if helpers.is-breakpoint($breakpoint) {
       // Responsive value
-      @include media-screen($breakpoint) {
+      @include helpers.media-screen($breakpoint) {
         :root {
-          @for $i from 1 through length($values) {
-            $value: nth($values, $i);
-            $postfix: get-desktop-value($i, $font_sizes);
+          @for $i from 1 through list.length($values) {
+            $value: list.nth($values, $i);
+            $postfix: helpers.get-desktop-value($i, $font_sizes);
 
             //@debug $value, $postfix;
 
             /// if changed compare with desktop value
             @if $value != $postfix {
-              $previous_postfix: get-previous-breakpoint-value($i, $value, $breakpoint, $font_sizes);
+              $previous_postfix: helpers.get-previous-breakpoint-value($i, $value, $breakpoint, $font_sizes);
 
               // and changed compare with the previous value
               @if $value != $previous_postfix {
-                @include get-variable(size-#{replace-prop($postfix)}, #{format-value($value)});
+                @include helpers.get-variable(size-#{helpers.replace-prop($postfix)}, #{helpers.format-value($value)});
               }
             }
           }
@@ -31,24 +33,24 @@
     } @else {
       // Desktop value
       :root {
-        @for $i from 1 through length($values) {
-          $value: nth($values, $i);
-          $postfix: get-previous-breakpoint-value($i, $value, $breakpoint, $font_sizes);
+        @for $i from 1 through list.length($values) {
+          $value: list.nth($values, $i);
+          $postfix: helpers.get-previous-breakpoint-value($i, $value, $breakpoint, $font_sizes);
           //@debug $value, $postfix;
 
-          @include get-variable(size-#{replace-prop($postfix)}, #{format-value($value)});
+          @include helpers.get-variable(size-#{helpers.replace-prop($postfix)}, #{helpers.format-value($value)});
         }
       }
 
       // generate font size selector
-      @for $i from 1 through length($values) {
-        $value: nth($values, $i);
-        $postfix: get-previous-breakpoint-value($i, $value, $breakpoint, $font_sizes);
+      @for $i from 1 through list.length($values) {
+        $value: list.nth($values, $i);
+        $postfix: helpers.get-previous-breakpoint-value($i, $value, $breakpoint, $font_sizes);
         //@debug $value, $postfix;
 
-        $var: var(#{get-variable(size-#{replace-prop($postfix)})});
+        $var: var(#{helpers.get-variable(size-#{helpers.replace-prop($postfix)})});
 
-        .fs#{replace-prop($postfix)} {
+        .fs#{helpers.replace-prop($postfix)} {
           font-size: #{$var};
         }
       }
@@ -60,20 +62,20 @@
 @mixin print-font-size-custom-class($data) {
 
   // print
-  $list: map-get($font_sizes, 'values');
+  $list: map.get(helpers.$font_sizes, 'values');
 
   :root {
     @each $name, $value in $data {
-      $isValid: map-search($list, $value);
+      $isValid: helpers.map-search($list, $value);
       // if the value is not existing in the $font_sizes, create 'px' for the value
       @if (not $isValid) {
-        @include get-variable(size-#{replace-prop($name)}, format-value($value));
+        @include helpers.get-variable(size-#{helpers.replace-prop($name)}, helpers.format-value($value));
       } @else {
-        @include get-variable(size-#{replace-prop($name)}, var(#{get-variable(size-#{replace-prop($value)})}));
+        @include helpers.get-variable(size-#{helpers.replace-prop($name)}, var(#{helpers.get-variable(size-#{helpers.replace-prop($value)})}));
       }
     }
   }
 }
 
-@include font-sizes($font_sizes);
-@include print-font-size-custom-class($font_size_custom);
+@include font-sizes(helpers.$font_sizes);
+@include print-font-size-custom-class(helpers.$font_size_custom);

@@ -2,7 +2,8 @@
  * Positioning
  * https://stackoverflow.design/product/base/position/
  */
-@import "helpers";
+@use "helpers";
+@use "sass:list";
 
 /* Positions */
 $positions: absolute fixed relative static sticky;
@@ -15,21 +16,21 @@ $positions: absolute fixed relative static sticky;
 /* Coordinates */
 @mixin position-coordinates($value,$postfix) {
 
-  @each $name, $prop in $coordinates {
+  @each $name, $prop in helpers.$coordinates {
     //@debug $name+'-'+$value+'-'+format-postfix($postfix);
-    .#{$name}#{format-postfix($postfix)} {
-      #{$prop}: format-value($value);
+    .#{$name}#{helpers.format-postfix($postfix)} {
+      #{$prop}: helpers.format-value($value);
     }
   }
 }
 
-@each $breakpoint, $values in $coordinate_values {
-  @include media-screen($breakpoint) {
-    @for $i from 1 through length($values) {
-      $value: nth($values, $i);
-      $postfix: get-previous-breakpoint-value($i, $value, $breakpoint, $coordinate_values);
+@each $breakpoint, $values in helpers.$coordinate_values {
+  @include helpers.media-screen($breakpoint) {
+    @for $i from 1 through list.length($values) {
+      $value: list.nth($values, $i);
+      $postfix: helpers.get-previous-breakpoint-value($i, $value, $breakpoint, helpers.$coordinate_values);
 
-      @include responsive($breakpoint, $value, $postfix) {
+      @include helpers.responsive($breakpoint, $value, $postfix) {
         @include position-coordinates($value, $postfix);
       }
     }
@@ -38,12 +39,13 @@ $positions: absolute fixed relative static sticky;
 
 /* Coordinates - auto */
 @mixin position-coordinates-auto() {
-  @each $name, $prop in $coordinates {
+  @each $name, $prop in helpers.$coordinates {
     .#{$name}-auto {
       #{$prop}: auto;
     }
   }
 }
+
 @include position-coordinates-auto();
 
 // print
@@ -74,4 +76,4 @@ $dataset: (
                 value:1 2 3 4 5 10 20 30 40 100 99999999
         ),
 );
-@include print($dataset);
+@include helpers.print($dataset);

@@ -4,7 +4,8 @@
  */
 @use "sass:map";
 @use "sass:list";
-@import "helpers";
+@use "helpers";
+@use "sass:meta";
 
 $dataset: (
         font-family:(
@@ -57,7 +58,9 @@ $dataset: (
 
 @function _contains($items, $value) {
   @each $i in $items {
-    @if $i == $value { @return true; }
+    @if $i == $value {
+      @return true;
+    }
   }
   @return false;
 }
@@ -65,28 +68,28 @@ $dataset: (
 $font-families: ();
 $weights: ();
 
-@each $name, $data in $fonts {
-  @if type-of($data) == "map" {
+@each $name, $data in helpers.$fonts {
+  @if meta.type-of($data) == "map" {
     // font-face
-    @if map-has-key($data, "font-face") {
-      $font-families: map.set($font-families, $name, map-get($data, "font-face"));
+    @if map.has-key($data, "font-face") {
+      $font-families: map.set($font-families, $name, map.get($data, "font-face"));
     }
 
     // weight list (collect unique)
-    @if map-has-key($data, "weight") {
-      @each $w in map-get($data, "weight") {
+    @if map.has-key($data, "weight") {
+      @each $w in map.get($data, "weight") {
         @if not _contains($weights, $w) {
           $weights: list.append($weights, $w);
         }
       }
     }
-  } @else if type-of($data) == "string" {
+  } @else if meta.type-of($data) == "string" {
     $font-families: map.set($font-families, $name, $data);
   }
 }
 
 /* custom font-family */
-$custom_font_family: map-merge(map-get($dataset, "font-family", "value"), $font-families);
+$custom_font_family: map.merge(map.get($dataset, "font-family", "value"), $font-families);
 $dataset: map.set($dataset, "font-family", "value", $custom_font_family);
 
 /* build font-weight from _config.scss */
@@ -104,8 +107,11 @@ $aliases: (
 
 $fw-values: ();
 @each $w in $weights {
-  $key: map-get($aliases, $w);
-  @if $key == null { $key: $w; } // fallback (e.g. fw-550)
+  $key: map.get($aliases, $w);
+  @if $key == null {
+    $key: $w;
+  }
+  // fallback (e.g. fw-550)
   $fw-values: map.set($fw-values, $key, $w);
 }
 
@@ -117,16 +123,16 @@ $dataset: map.set($dataset, "font-weight", (
 ));
 
 /* color */
-$custom_color: map-merge(map-get($dataset, "color", "value"), $colors);
+$custom_color: map.merge(map.get($dataset, "color", "value"), helpers.$colors);
 $dataset: map.set($dataset, "color", "value", $custom_color);
 
 /* bg-color */
-$custom_bg_color: map-merge(map-get($dataset, "background-color", "value"), $colors);
+$custom_bg_color: map.merge(map.get($dataset, "background-color", "value"), helpers.$colors);
 $dataset: map.set($dataset, "background-color", "value", $custom_bg_color);
 
 /* Print */
-@include print($dataset);
+@include helpers.print($dataset);
 
 // CSS  variables
-@include print-variables($custom_font_family, "font");
-@include print-variables($custom_color, "color");
+@include helpers.print-variables($custom_font_family, "font");
+@include helpers.print-variables($custom_color, "color");

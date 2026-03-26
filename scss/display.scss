@@ -2,11 +2,11 @@
  * Display
  * https://stackoverflow.design/product/base/display/
  */
-@import "helpers";
+@use "helpers";
 
 $dataset: (
         display: block inline inline-block flex inline-flex grid inline-grid table table-cell none unset
 );
 
 // print
-@include print($dataset);
+@include helpers.print($dataset);

@@ -1,14 +1,15 @@
 /**
  * Loading
  */
-@import "helpers";
+@use "helpers";
+@use "sass:map";
 
 @mixin print-loading-class($data) {
-  $isEnabled: map-get($data, 'enable');
-  $isWoocommerce: map-get($data, 'isWoocommerce');
+  $isEnabled: map.get($data, 'enable');
+  $isWoocommerce: map.get($data, 'isWoocommerce');
 
   // prefix project
-  $project-prefix: map-get($info, 'variable-prefix');
+  $project-prefix: map.get(helpers.$info, 'variable-prefix');
 
   // $isEnabled: true => loading is used
   @if ($isEnabled) {
@@ -93,6 +94,6 @@
   }
 }
 
-@include print-loading-class($loading_class);
+@include print-loading-class(helpers.$loading_class);
 
 

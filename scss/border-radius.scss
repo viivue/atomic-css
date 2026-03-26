@@ -1,26 +1,35 @@
+/**
+ * Border radius
+ * https://stackoverflow.design/product/base/border-radius/
+ */
 @use "sass:list";
 @use "sass:map";
-@import "helpers";
+@use "sass:meta";
+@use "helpers";
 
-$border_radius: () !default;
 
 // Static classes
-.bar-pill { border-radius: 1000px; }
-.bar-circle { border-radius: 100%; }
+$dataset: (
+        bar-pill: (inline: "border-radius: 1000px"),
+        bar-circle: (inline: "border-radius: 100%"),
+);
+
+// print
+@include helpers.print($dataset);
 
 // Responsive radius
-@if type-of($border_radius) == "map" and map-has-key($border_radius, "values") {
-  @each $breakpoint, $values in $border_radius {
-    @if is-breakpoint($breakpoint) {
-      @include media-screen($breakpoint) {
+@if meta.type-of(helpers.$border_radius) == "map" and map.has-key(helpers.$border_radius, "values") {
+  @each $breakpoint, $values in helpers.$border_radius {
+    @if helpers.is-breakpoint($breakpoint) {
+      @include helpers.media-screen($breakpoint) {
         :root {
-          @for $i from 1 through length($values) {
-            $value: nth($values, $i);
-            $postfix: get-desktop-value($i, $border_radius);
+          @for $i from 1 through list.length($values) {
+            $value: list.nth($values, $i);
+            $postfix: helpers.get-desktop-value($i, helpers.$border_radius);
             @if $value != $postfix {
-              $previous_postfix: get-previous-breakpoint-value($i, $value, $breakpoint, $border_radius);
+              $previous_postfix: helpers.get-previous-breakpoint-value($i, $value, $breakpoint, helpers.$border_radius);
               @if $value != $previous_postfix {
-                @include get-variable(radius-#{replace-prop($postfix)}, #{format-value($value)});
+                @include helpers.get-variable(radius-#{helpers.replace-prop($postfix)}, #{helpers.format-value($value)});
               }
             }
           }
@@ -28,17 +37,17 @@ $border_radius: () !default;
       }
     } @else {
       :root {
-        @for $i from 1 through length($values) {
-          $value: nth($values, $i);
-          $postfix: get-previous-breakpoint-value($i, $value, $breakpoint, $border_radius);
-          @include get-variable(radius-#{replace-prop($postfix)}, #{format-value($value)});
+        @for $i from 1 through list.length($values) {
+          $value: list.nth($values, $i);
+          $postfix: helpers.get-previous-breakpoint-value($i, $value, $breakpoint, helpers.$border_radius);
+          @include helpers.get-variable(radius-#{helpers.replace-prop($postfix)}, #{helpers.format-value($value)});
         }
       }
-      @for $i from 1 through length($values) {
-        $value: nth($values, $i);
-        $postfix: get-previous-breakpoint-value($i, $value, $breakpoint, $border_radius);
-        .bar#{replace-prop($postfix)}px {
-          border-radius: var(#{get-variable(radius-#{replace-prop($postfix)})});
+      @for $i from 1 through list.length($values) {
+        $value: list.nth($values, $i);
+        $postfix: helpers.get-previous-breakpoint-value($i, $value, $breakpoint, helpers.$border_radius);
+        .bar#{helpers.replace-prop($postfix)}px {
+          border-radius: var(#{helpers.get-variable(radius-#{helpers.replace-prop($postfix)})});
         }
       }
     }

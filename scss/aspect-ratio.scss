@@ -2,7 +2,7 @@
  * Aspect Ratio
  */
 @use "sass:map";
-@import "helpers";
+@use "helpers";
 
 $dataset: (
         aspect-ratio:(
@@ -14,8 +14,8 @@ $dataset: (
 );
 
 // merge
-$custom_aspect_ratio: map-merge(map-get($dataset, "aspect-ratio", "value"), $aspect_ratio);
+$custom_aspect_ratio: map.merge(map.get($dataset, "aspect-ratio", "value"), helpers.$aspect_ratio);
 $dataset: map.set($dataset, "aspect-ratio", "value", $custom_aspect_ratio);
 
 // print
-@include print($dataset);
+@include helpers.print($dataset);
