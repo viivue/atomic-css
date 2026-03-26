@@ -1,34 +1,46 @@
-/**
- * Border radius
- * https://stackoverflow.design/product/base/border-radius/
- */
-
 @use "sass:list";
 @use "sass:map";
 @import "helpers";
 
-// fallback if _config.scss doesn't define $border_radius
 $border_radius: () !default;
 
-// map -> list (comma separated)
-$radius_values: ();
-@if type-of($border_radius) == "map" {
-        @each $k, $v in $border_radius {
-                $radius_values: list.append($radius_values, $k, comma);
+// Static classes
+.bar-pill { border-radius: 1000px; }
+.bar-circle { border-radius: 100%; }
+
+// Responsive radius
+@if type-of($border_radius) == "map" and map-has-key($border_radius, "values") {
+  @each $breakpoint, $values in $border_radius {
+    @if is-breakpoint($breakpoint) {
+      @include media-screen($breakpoint) {
+        :root {
+          @for $i from 1 through length($values) {
+            $value: nth($values, $i);
+            $postfix: get-desktop-value($i, $border_radius);
+            @if $value != $postfix {
+              $previous_postfix: get-previous-breakpoint-value($i, $value, $breakpoint, $border_radius);
+              @if $value != $previous_postfix {
+                @include get-variable(radius-#{replace-prop($postfix)}, #{format-value($value)});
+              }
+            }
+          }
         }
-} @else if type-of($border_radius) == "list" {
-        $radius_values: $border_radius;
+      }
+    } @else {
+      :root {
+        @for $i from 1 through length($values) {
+          $value: nth($values, $i);
+          $postfix: get-previous-breakpoint-value($i, $value, $breakpoint, $border_radius);
+          @include get-variable(radius-#{replace-prop($postfix)}, #{format-value($value)});
+        }
+      }
+      @for $i from 1 through length($values) {
+        $value: nth($values, $i);
+        $postfix: get-previous-breakpoint-value($i, $value, $breakpoint, $border_radius);
+        .bar#{replace-prop($postfix)}px {
+          border-radius: var(#{get-variable(radius-#{replace-prop($postfix)})});
+        }
+      }
+    }
+  }
 }
-
-$dataset: (
-        bar-pill: (inline: "border-radius: 1000px"),
-        bar-circle: (inline: "border-radius: 100%"),
-
-        border-radius: (
-                prefix: "bar",
-                hyphen: false,
-                value: $radius_values
-        )
-);
-
-@include print($dataset);
