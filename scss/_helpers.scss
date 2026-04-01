@@ -18,7 +18,11 @@
 @function format-postfix($postfix) {
   $unit: get-unit($postfix);
 
-  @return if($unit == '%', strip-units($postfix) + 'p', strip-units($postfix));
+  @if $unit == '%' {
+    @return strip-units($postfix) + 'p';
+  } @else {
+    @return strip-units($postfix);
+  }
 }
 
 // get formatted value
@@ -29,7 +33,11 @@
   }
 
   // default unit is px
-  @return to-number(if(math.is-unitless($value), string.unquote($value+'px'), $value));
+  @if math.is-unitless($value) {
+    @return to-number(string.unquote($value+'px'));
+  } @else {
+    @return to-number($value);
+  }
 }
 
 // Is valid breakpoint
@@ -111,11 +119,20 @@
   $minus: string.slice($value, 1, 1) == '-';
   $numbers: ('0': 0, '1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '8': 8, '9': 9);
 
-  @for $i from if($minus, 2, 1) through string.length($value) {
+  $start: 1;
+  @if $minus {
+    $start: 2;
+  }
+
+  @for $i from $start through string.length($value) {
     $character: string.slice($value, $i, $i);
 
     @if not (list.index(map.keys($numbers), $character) or $character == '.') {
-      @return to-length(if($minus, -$result, $result), string.slice($value, $i))
+      $signed: $result;
+      @if $minus {
+        $signed: -$result;
+      }
+      @return to-length($signed, string.slice($value, $i))
     }
 
     @if $character == '.' {
@@ -127,8 +144,11 @@
       $result: $result + map.get($numbers, $character) / $digits;
     }
   }
-
-  @return if($minus, -$result, $result);
+  @if $minus {
+    @return -$result;
+  } @else {
+    @return $result;
+  }
 }
 
 ///
