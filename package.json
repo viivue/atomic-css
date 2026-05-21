@@ -1,8 +1,16 @@
 {
   "name": "@viivue/atomic-css",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "description": "⚛️ Customizable Atomic CSS Framework.",
   "main": "./dist/atomic.min.css",
+  "bin": {
+    "atomic-css": "./bin/build.js"
+  },
+  "files": [
+    "bin",
+    "scss",
+    "dist"
+  ],
   "scripts": {
     "sass": "sass scss:css --no-source-map",
     "sass:watch": "sass scss:css -w --no-source-map",
@@ -29,8 +37,8 @@
     "url": "https://github.com/viivue/atomic-css/issues"
   },
   "homepage": "https://github.com/viivue/atomic-css",
-  "devDependencies": {
-    "csso-cli": "^3.0.0",
+  "dependencies": {
+    "csso": "^5.0.0",
     "sass": "^1.51.0"
   }
 }
