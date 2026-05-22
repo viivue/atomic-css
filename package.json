@@ -3,13 +3,23 @@
   "version": "1.2.5",
   "description": "⚛️ Customizable Atomic CSS Framework.",
   "main": "./dist/atomic.min.css",
+  "sass": "scss/_index.scss",
+  "style": "scss/_index.scss",
+  "exports": {
+    ".": {
+      "sass": "./scss/_index.scss",
+      "style": "./scss/_index.scss",
+      "default": "./dist/atomic.min.css"
+    },
+    "./scss/*": "./scss/*"
+  },
   "bin": {
     "atomic-css": "./bin/build.js"
   },
   "files": [
-    "bin",
     "scss",
-    "dist"
+    "dist",
+    "README.md"
   ],
   "scripts": {
     "sass": "sass scss:css --no-source-map",

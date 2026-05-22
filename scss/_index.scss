@@ -1,0 +1,4 @@
+/// Public entry point for @viivue/atomic-css
+/// Usage: @use '@viivue/atomic-css/scss/index' with ($colors: (...), ...)
+@forward 'defs';
+@use 'build';

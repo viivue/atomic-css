@@ -1,8 +1,8 @@
 /// Definitions
 /// DO NOT EDIT!
 
-$version: "1.2.4";
-$info: ();
+$version: "1.2.5";
+$info: () !default;
 
 // axes
 $axes: ("x": ("-left" "-right"), "y": ("-top" "-bottom"));
@@ -32,32 +32,32 @@ $breakpoints: (
         "md": 1024px,
         "sm": 768px,
         "xs": 480px,
-);
+) !default;
 
 // font sizes
 $font-sizes: (
         "values": 0 1 2 4 6 8 12 16 24 32 48 64 96 128,
-);
+) !default;
 
 // font family
-$fonts: ();
+$fonts: () !default;
 
 // colors
-$colors: ();
+$colors: () !default;
 
 // vertical spacing
 $vertical_spacing: (
         "values": 0
-);
+) !default;
 
 // custom vertical spacing
-$custom_vertical_spacing: ();
+$custom_vertical_spacing: () !default;
 
 // horizontal spacing
-$horizontal_spacing: ();
+$horizontal_spacing: () !default;
 
 // custom horizontal spacing (gap)
-$custom_horizontal_spacing: ();
+$custom_horizontal_spacing: () !default;
 
 // coordinate values (for position top, right, bottom left)
 $coordinate_values: (
@@ -65,19 +65,19 @@ $coordinate_values: (
 );
 
 // aspect ratio
-$aspect_ratio: ();
+$aspect_ratio: () !default;
 
 // border radius
-$border_radius: ();
+$border_radius: () !default;
 
 // font sizes
-$font_sizes: ();
+$font_sizes: () !default;
 
 // font size custom name
-$font_size_custom: ();
+$font_size_custom: () !default;
 
 // containers
-$containers: ();
+$containers: () !default;
 //$containers: (
 //        size:(
 //                "container-small": 880,
@@ -92,4 +92,4 @@ $containers: ();
 $loading_class: (
         "enable": false,
         "isWoocommerce": false // true if project using woocommerce
-)
+) !default;
