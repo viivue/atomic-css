@@ -13,9 +13,6 @@
     },
     "./scss/*": "./scss/*"
   },
-  "bin": {
-    "atomic-css": "./bin/build.js"
-  },
   "files": [
     "scss",
     "dist",
