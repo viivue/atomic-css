@@ -3,6 +3,18 @@
   "version": "1.2.5",
   "description": "⚛️ Customizable Atomic CSS Framework.",
   "main": "./dist/atomic.min.css",
+  "style": "./dist/atomic.min.css",
+  "exports": {
+    ".": {
+      "style": "./dist/atomic.min.css",
+      "default": "./dist/atomic.min.css"
+    },
+    "./scss/*": "./scss/*",
+    "./dist/*": "./dist/*"
+  },
+  "engines": {
+    "node": ">=14"
+  },
   "bin": {
     "atomic-css": "./bin/build.js"
   },

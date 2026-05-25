@@ -15,11 +15,10 @@ function getArg(name) {
     return i !== -1 && args[i + 1] ? args[i + 1] : null;
 }
 
-const DEFAULT_CONFIG = 'components/atomic-css/assets/css/_config.scss';
-const DEFAULT_OUTPUT = 'components/atomic-css/assets/css';
+const configArg = getArg('--config');
+const outputArg = getArg('--output');
 
-const configArg = getArg('--config') || DEFAULT_CONFIG;
-const outputArg = getArg('--output') || DEFAULT_OUTPUT;
+if (!configArg || !outputArg) process.exit(0);
 
 const configPath = path.resolve(process.cwd(), configArg);
 const outputDir  = path.resolve(process.cwd(), outputArg);
@@ -62,6 +61,7 @@ try {
 
     const { css } = sass.compile(buildEntry, {
         sourceMap: false,
+        loadPaths: [path.join(process.cwd(), 'node_modules')],
         logger: {
             warn(message, { span }) {
                 const mod = span?.url ? moduleFromUrl(span.url) : 'unknown';
