@@ -27,7 +27,7 @@
     "sass": "sass scss:css --no-source-map",
     "sass:watch": "sass scss:css -w --no-source-map",
     "sass:build": "sass scss/_build.scss:dist/atomic.css --no-source-map",
-    "optimize": "node bin/optimize.js",
+    "optimize": "csso dist/atomic.css --output dist/atomic.min.css --stat",
     "dev": "sass scss:css scss/_build.scss:dist/atomic.css -w --no-source-map",
     "prod": "npm run sass:build && npm run optimize"
   },
@@ -52,5 +52,8 @@
   "dependencies": {
     "csso": "^5.0.0",
     "sass": "^1.51.0"
+  },
+  "devDependencies": {
+    "csso-cli": "^4.0.2"
   }
 }
