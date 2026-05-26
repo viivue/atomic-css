@@ -45,6 +45,20 @@ if (!fs.existsSync(configPath)) {
     process.exit(1);
 }
 
+// Check if the config file has "@forward "defs"" — it must be there.
+// That line loads the default variable definitions this package relies on.
+const configContent = fs.readFileSync(configPath, 'utf8');
+if (!/^\s*@forward\s+["']defs["']/m.test(configContent)) {
+    console.error('');
+    console.error('  [atomic-css] Missing required line in your config file:');
+    console.error('');
+    console.error('    @forward "defs";');
+    console.error('');
+    console.error('  Add it at the top of: ' + configArg);
+    console.error('');
+    process.exit(1);
+}
+
 // Create the output folder if it doesn't exist yet
 if (!fs.existsSync(outputDir)) {
     fs.mkdirSync(outputDir, { recursive: true });
