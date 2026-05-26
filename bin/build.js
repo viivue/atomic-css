@@ -59,11 +59,6 @@ if (!/^\s*@forward\s+["']defs["']/m.test(configContent)) {
     process.exit(1);
 }
 
-// Create the output folder if it doesn't exist yet
-if (!fs.existsSync(outputDir)) {
-    fs.mkdirSync(outputDir, { recursive: true });
-}
-
 // ── Paths inside this package ─────────────────────────────────────────────────
 // __dirname is the bin/ folder of this package (inside node_modules)
 const pkgDir     = path.join(__dirname, '..');
@@ -75,8 +70,8 @@ const buildEntry = path.join(pkgDir, 'scss', '_build.scss');  // main sass entry
 // Read _build.scss and return the list of module names it imports
 function getModules(buildFile) {
     const content = fs.readFileSync(buildFile, 'utf8');
-    return (content.match(/@use\s+"([^"]+)"/g) || [])
-        .map(m => m.match(/@use\s+"([^"]+)"/)[1]);
+    return (content.match(/@use\s+["']([^"']+)["']/g) || [])
+        .map(m => m.match(/@use\s+["']([^"']+)["']/)[1]);
 }
 
 // Extract a short module name from a sass error/warning URL for readable logs
@@ -88,11 +83,29 @@ function moduleFromUrl(url) {
 
 // ── Build ─────────────────────────────────────────────────────────────────────
 
-// Back up the original _config.scss so we can restore it after the build
-const backup  = fs.readFileSync(configDest, 'utf8');
-const modules = getModules(buildEntry);
+// backup is declared outside try so finally can always check it safely.
+// If it stays null, the config was never swapped and nothing needs restoring.
+let backup = null;
 
 try {
+    // Verify package integrity before doing anything
+    if (!fs.existsSync(configDest)) {
+        console.error(`[atomic-css] Package file missing: ${configDest}`);
+        console.error('  Try reinstalling @viivue/atomic-css.');
+        process.exit(1);
+    }
+    if (!fs.existsSync(buildEntry)) {
+        console.error(`[atomic-css] Package file missing: ${buildEntry}`);
+        console.error('  Try reinstalling @viivue/atomic-css.');
+        process.exit(1);
+    }
+
+    backup = fs.readFileSync(configDest, 'utf8');
+    const modules = getModules(buildEntry);
+
+    // Create the output folder if it doesn't exist yet
+    fs.mkdirSync(outputDir, { recursive: true });
+
     // Swap in the user's config — this is how the build picks up custom values
     fs.copyFileSync(configPath, configDest);
 
@@ -128,12 +141,16 @@ try {
 
 } catch (err) {
     const mod  = err.span?.url ? moduleFromUrl(err.span.url) : 'unknown';
-    const line = err.span?.start ? `:${err.span.start.line}` : '';
+    // span.start.line is 0-based per the Sass JS API spec, so add 1 for display
+    const line = err.span?.start?.line != null ? `:${err.span.start.line + 1}` : '';
     console.error('');
     console.error(`  ERR [${mod}${line}] ${err.sassMessage || err.message}`);
     process.exit(1);
 
 } finally {
-    // Always restore the original _config.scss, even if the build failed
-    fs.writeFileSync(configDest, backup);
+    // Always restore the original _config.scss, even if the build failed.
+    // Only runs if backup was successfully read (i.e. the config was actually swapped).
+    if (backup !== null) {
+        fs.writeFileSync(configDest, backup);
+    }
 }
