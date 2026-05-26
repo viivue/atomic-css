@@ -52,5 +52,8 @@
   "dependencies": {
     "csso": "^5.0.0",
     "sass": "^1.51.0"
+  },
+  "devDependencies": {
+    "csso-cli": "^4.0.2"
   }
 }
