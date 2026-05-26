@@ -13,6 +13,22 @@
   animation: skeleton-animate 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
+@keyframes skeleton-animate {
+  0%,
+  100% {
+    background-color: rgba(229, 231, 235, 1);
+  }
+  50% {
+    background-color: rgba(229, 231, 235, .5);
+  }
+}
+
+@keyframes skeleton-txt-animate {
+  100% {
+    background-position: 180% 0;
+  }
+}
+
 .skeleton-txt {
   position: relative;
 }
@@ -49,20 +65,4 @@
 .skeleton-txt.skeleton-hide::before,
 .skeleton-txt.skeleton-hide::after {
   content: unset;
-}
-
-@keyframes skeleton-txt-animate {
-  100% {
-    background-position: 180% 0;
-  }
-}
-
-@keyframes skeleton-animate {
-  0%,
-  100% {
-    background-color: rgba(229, 231, 235, 1);
-  }
-  50% {
-    background-color: rgba(229, 231, 235, .5);
-  }
 }
