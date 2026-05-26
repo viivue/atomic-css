@@ -7,13 +7,14 @@
 
 > ⚛️ Customizable Atomic CSS Framework for everyone.
 
-- 💡Inspirited by [Atomic CSS, Vì Một Thế Giới Hoà Bình](https://ehkoo.com/bai-viet/introduction-to-functional-utility-first-atomic-css)
+- 💡Inspirited
+  by [Atomic CSS, Vì Một Thế Giới Hoà Bình](https://ehkoo.com/bai-viet/introduction-to-functional-utility-first-atomic-css)
 - 👀 Guided by [Stacks](https://stackoverflow.design/product/guidelines/using-stacks/)
 - ✨ Build with [SCSS](https://sass-lang.com/)
 
-
-We all might agree that Atomic CSS is a helpful tool for both FE and BE development. There's a lot of Atomic CSS 
-frameworks out there (like [tailwindcss](https://tailwindcss.com/)), however, to **elevate the advantage of Atomic CSS**, while keeping
+We all might agree that Atomic CSS is a helpful tool for both FE and BE development. There's a lot of Atomic CSS
+frameworks out there (like [tailwindcss](https://tailwindcss.com/)), however, to **elevate the advantage of Atomic CSS
+**, while keeping
 it in **as light-weight as possible**, and even **customizable** for each project, we have this project on the go.
 
 ## Usage
@@ -32,18 +33,62 @@ Import
 import "@viivue/atomic-css";
 ```
 
-Or, you can download the default Atomic CSS files in the [`/dist` folder](https://github.com/viivue/atomic-css/tree/main/dist).
+Or, you can download the default Atomic CSS files in the [
+`/dist` folder](https://github.com/viivue/atomic-css/tree/main/dist).
 
 ### CDN
+
 Check the CDN served by jsDelivr [here](https://www.jsdelivr.com/package/gh/viivue/atomic-css?tab=files&path=dist)
 
 ```html
+
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/viivue/atomic-css@1.1.10/dist/atomic.min.css">
 ```
 
 ### Customization
 
-To add custom classes for a specific project, you will have to:
+#### Option 1 — CLI (recommended)
+
+Build a custom Atomic CSS directly from your project without cloning this repo.
+
+**1. Install the package**
+
+```shell
+npm i @viivue/atomic-css
+```
+
+**2. Create a `_config.scss` in your project**
+
+```scss
+@forward "defs"; // required — loads default variable definitions
+
+// override variables below
+$colors: (
+        primary: '#ff0000',
+);
+```
+
+> `@forward "defs"` is required. The build will fail with a clear error if it is missing or commented out.
+
+**3. Add a build script to your `package.json`**
+
+```json
+{
+  "scripts": {
+    "build:css": "atomic-css --config path/to/_config.scss --output path/to/output/"
+  }
+}
+```
+
+**4. Run**
+
+```shell
+npm run build:css
+```
+
+This generates `atomic.css` and `atomic.min.css` in the output folder.
+
+#### Option 2 — Clone & edit
 
 1. Clone this repo to your local machine.
 2. Edit the `/scss/_config.scss`, you will find some example templates there.
@@ -54,14 +99,13 @@ To add custom classes for a specific project, you will have to:
 ```shell
 npm install
 
-# Watch SCSS files, then compile to previewed CSS
+# Watch SCSS files and recompile on change
 npm run dev
 
-# Compile compressed CSS for distribution.
-# Check version at `_defs.scss` and `package.json`
+# Compile dist/atomic.css and minify to dist/atomic.min.css
 npm run prod
 
 # Publish NPM package
-# Auto-publish package on release using GitHub workflow
+# Auto-publish on release via GitHub workflow
 npm publish
 ```
