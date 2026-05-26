@@ -328,12 +328,12 @@
     }
 
     /* #{$prop} */
-    @debug "------v------";
-    @debug #{$prop};
+    //@debug "------v------";
+    //@debug #{$prop};
 
     // Type: default
     @if (not $has_type) {
-      @debug "Type: default";
+      //@debug "Type: default";
       $hyphen: "-";
       @if not $has_hyphen {
         $hyphen: '';
@@ -350,7 +350,7 @@
 
     // Type: mixin
     @if ($is_mixin) {
-      @debug "Type: Mixin";
+      //@debug "Type: Mixin";
 
       $mixin: map.get($data, "mixin");
 
@@ -366,7 +366,7 @@
 
     // Type: value-key-as-postfix
     @if ($is_value_key_as_postfix) {
-      @debug "Type: value-key-as-postfix";
+      //@debug "Type: value-key-as-postfix";
 
       @each $postfix, $val in $value {
         @if $val and not is-ignored($prop, $val) {
