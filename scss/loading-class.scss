@@ -11,7 +11,10 @@
   // prefix project — guard against null (map.get returns null when key is absent)
   // mirrors the same logic in _helpers.scss print-var-prop()
   $raw-prefix: map.get(helpers.$info, 'variable-prefix');
-  $project-prefix: if($raw-prefix and $raw-prefix != '', $raw-prefix + '-', '');
+  $project-prefix: '';
+  @if $raw-prefix and $raw-prefix != '' {
+    $project-prefix: $raw-prefix + '-';
+  }
 
   // $isEnabled: true => loading is used
   @if ($isEnabled) {
