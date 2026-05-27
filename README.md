@@ -60,15 +60,12 @@ npm i @viivue/atomic-css
 **2. Create a `_config.scss` in your project**
 
 ```scss
-@forward "defs"; // required — loads default variable definitions
-
-// override variables below
+// Only define the variables you want to override.
+// Everything else falls back to the built-in defaults automatically.
 $colors: (
         primary: '#ff0000',
 );
 ```
-
-> `@forward "defs"` is required. The build will fail with a clear error if it is missing or commented out.
 
 **3. Add a build script to your `package.json`**
 
