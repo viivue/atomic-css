@@ -1,6 +1,5 @@
 /*!
 * Atomic CSS 1.2.5
-* Customized for Atomic CSS
 * https://github.com/viivue/atomic-css
 */
 /**
@@ -96,23 +95,23 @@
  * Vertical Spacing
  */
 :root {
-    --vii-spacing-0:0;
+    --spacing-0:0;
 }
 
 .pt0 {
-    padding-top:var(--vii-spacing-0);
+    padding-top:var(--spacing-0);
 }
 
 .pb0 {
-    padding-bottom:var(--vii-spacing-0);
+    padding-bottom:var(--spacing-0);
 }
 
 .mt0 {
-    margin-top:var(--vii-spacing-0);
+    margin-top:var(--spacing-0);
 }
 
 .mb0 {
-    margin-bottom:var(--vii-spacing-0);
+    margin-bottom:var(--spacing-0);
 }
 
 /**
@@ -470,13 +469,13 @@
 
 /* font-weight */
 :root {
-    --vii-font-sans:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
-    --vii-font-serif:Georgia, Cambria, "Times New Roman", Times, serif;
+    --font-sans:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    --font-serif:Georgia, Cambria, "Times New Roman", Times, serif;
 }
 
 :root {
-    --vii-color-white:#fff;
-    --vii-color-black:#000;
+    --color-white:#fff;
+    --color-black:#000;
 }
 
 /**
@@ -1091,118 +1090,78 @@ ul.list-style-none > li,
  * Font Sizes
  */
 :root {
-    --vii-size-13:13px;
-    --vii-size-14:14px;
-    --vii-size-15:15px;
-    --vii-size-16:16px;
-    --vii-size-18:18px;
-    --vii-size-20:20px;
-    --vii-size-28:28px;
-    --vii-size-30:30px;
-    --vii-size-32:32px;
-    --vii-size-35:35px;
-    --vii-size-40:40px;
-    --vii-size-50:50px;
-    --vii-size-70:70px;
-    --vii-size-100:100px;
+    --size-0:0;
+    --size-1:1px;
+    --size-2:2px;
+    --size-4:4px;
+    --size-6:6px;
+    --size-8:8px;
+    --size-12:12px;
+    --size-16:16px;
+    --size-24:24px;
+    --size-32:32px;
+    --size-48:48px;
+    --size-64:64px;
+    --size-96:96px;
+    --size-128:128px;
 }
 
-.fs13 {
-    font-size:var(--vii-size-13);
+.fs0 {
+    font-size:var(--size-0);
 }
 
-.fs14 {
-    font-size:var(--vii-size-14);
+.fs1 {
+    font-size:var(--size-1);
 }
 
-.fs15 {
-    font-size:var(--vii-size-15);
+.fs2 {
+    font-size:var(--size-2);
+}
+
+.fs4 {
+    font-size:var(--size-4);
+}
+
+.fs6 {
+    font-size:var(--size-6);
+}
+
+.fs8 {
+    font-size:var(--size-8);
+}
+
+.fs12 {
+    font-size:var(--size-12);
 }
 
 .fs16 {
-    font-size:var(--vii-size-16);
+    font-size:var(--size-16);
 }
 
-.fs18 {
-    font-size:var(--vii-size-18);
-}
-
-.fs20 {
-    font-size:var(--vii-size-20);
-}
-
-.fs28 {
-    font-size:var(--vii-size-28);
-}
-
-.fs30 {
-    font-size:var(--vii-size-30);
+.fs24 {
+    font-size:var(--size-24);
 }
 
 .fs32 {
-    font-size:var(--vii-size-32);
+    font-size:var(--size-32);
 }
 
-.fs35 {
-    font-size:var(--vii-size-35);
+.fs48 {
+    font-size:var(--size-48);
 }
 
-.fs40 {
-    font-size:var(--vii-size-40);
+.fs64 {
+    font-size:var(--size-64);
 }
 
-.fs50 {
-    font-size:var(--vii-size-50);
+.fs96 {
+    font-size:var(--size-96);
 }
 
-.fs70 {
-    font-size:var(--vii-size-70);
+.fs128 {
+    font-size:var(--size-128);
 }
 
-.fs100 {
-    font-size:var(--vii-size-100);
-}
-
-/* Breakpoint md */
-@media only screen and (max-width:1024px) {
-    :root {
-        --vii-size-28:24px;
-        --vii-size-30:26px;
-        --vii-size-32:28px;
-        --vii-size-35:32px;
-        --vii-size-40:35px;
-        --vii-size-50:40px;
-        --vii-size-70:50px;
-        --vii-size-100:71px;
-    }
-}
-/* Breakpoint sm */
-@media only screen and (max-width:768px) {
-    :root {
-        --vii-size-28:22px;
-        --vii-size-30:24px;
-        --vii-size-32:26px;
-        --vii-size-35:30px;
-        --vii-size-40:32px;
-        --vii-size-50:36px;
-        --vii-size-70:40px;
-        --vii-size-100:58px;
-    }
-}
-/* Breakpoint xs */
-@media only screen and (max-width:480px) {
-    :root {
-        --vii-size-18:16px;
-        --vii-size-20:18px;
-        --vii-size-28:20px;
-        --vii-size-32:24px;
-        --vii-size-35:26px;
-        --vii-size-40:30px;
-        --vii-size-50:33px;
-        --vii-size-70:34px;
-        --vii-size-100:48px;
-    }
-}
 /**
  * Loading
  */
