@@ -28,7 +28,9 @@ const args = process.argv.slice(2);
 
 function getArg(name) {
     const i = args.indexOf(name);
-    return i !== -1 && args[i + 1] ? args[i + 1] : null;
+    const val = i !== -1 ? args[i + 1] : undefined;
+    // Reject if the "value" is itself a flag (e.g. --config --output ./out)
+    return val && !val.startsWith('--') ? val : null;
 }
 
 const configArg = getArg('--config');
@@ -36,12 +38,13 @@ const outputArg = getArg('--output');
 
 // Both --config and --output are required.
 // If called with no args at all (e.g. checking the binary exists), exit silently.
-// If only one arg is missing, tell the user which one.
+// If only one arg is missing, tell the user which one and exit with code 1
+// so npm scripts and CI pipelines correctly detect the failure.
 if (!configArg || !outputArg) {
     if (args.length === 0) process.exit(0);
-    if (!configArg) console.warn('\n  [atomic-css] Missing required argument: --config <path/to/_config.scss>\n');
-    if (!outputArg) console.warn('\n  [atomic-css] Missing required argument: --output <path/to/output/>\n');
-    process.exit(0);
+    if (!configArg) console.error('\n  [atomic-css] Missing required argument: --config <path/to/_config.scss>\n');
+    if (!outputArg) console.error('\n  [atomic-css] Missing required argument: --output <path/to/output/>\n');
+    process.exit(1);
 }
 
 const configPath = path.resolve(process.cwd(), configArg);
@@ -77,8 +80,7 @@ const buildEntry = path.join(pkgDir, 'scss', '_build.scss');  // main sass entry
 // Read _build.scss and return the list of module names it imports
 function getModules(buildFile) {
     const content = fs.readFileSync(buildFile, 'utf8');
-    return (content.match(/@use\s+["']([^"']+)["']/g) || [])
-        .map(m => m.match(/@use\s+["']([^"']+)["']/)[1]);
+    return [...content.matchAll(/@use\s+["']([^"']+)["']/g)].map(m => m[1]);
 }
 
 // Extract a short module name from a sass error/warning URL for readable logs
@@ -93,6 +95,22 @@ function moduleFromUrl(url) {
 // backup is declared outside try so finally can always check it safely.
 // If it stays null, the config was never swapped and nothing needs restoring.
 let backup = null;
+
+// buildFailed is set in catch so we can call process.exit(1) AFTER finally
+// has had a chance to restore _config.scss.
+// Never call process.exit() inside catch — it skips the finally block entirely.
+let buildFailed = false;
+
+// Restore _config.scss on SIGTERM / SIGINT (e.g. Ctrl-C mid-build).
+// SIGKILL (kill -9) cannot be caught — reinstall the package if that happens.
+function restoreOnSignal() {
+    if (backup !== null) {
+        try { fs.writeFileSync(configDest, backup); } catch (_) {}
+    }
+    process.exit(1);
+}
+process.on('SIGTERM', restoreOnSignal);
+process.on('SIGINT',  restoreOnSignal);
 
 try {
     // Verify package integrity before doing anything
@@ -143,8 +161,19 @@ try {
     // Minify and write both the readable and minified versions
     const { css: minified } = csso.minify(css);
 
-    fs.writeFileSync(path.join(outputDir, 'atomic.css'),     css);
-    fs.writeFileSync(path.join(outputDir, 'atomic.min.css'), minified);
+    const cssOutPath = path.join(outputDir, 'atomic.css');
+    const minOutPath = path.join(outputDir, 'atomic.min.css');
+    fs.writeFileSync(cssOutPath, css);
+    fs.writeFileSync(minOutPath, minified);
+
+    function formatBytes(n) {
+        return n >= 1024 ? (n / 1024).toFixed(1) + ' kB' : n + ' B';
+    }
+    const cssSize = formatBytes(Buffer.byteLength(css));
+    const minSize = formatBytes(Buffer.byteLength(minified));
+    console.log('');
+    console.log(`  ✓  atomic.css     ${cssSize.padStart(8)}  →  ${outputDir}`);
+    console.log(`  ✓  atomic.min.css ${minSize.padStart(8)}  →  ${outputDir}`);
 
 } catch (err) {
     const mod  = err.span?.url ? moduleFromUrl(err.span.url) : 'unknown';
@@ -152,12 +181,22 @@ try {
     const line = err.span?.start?.line != null ? `:${err.span.start.line + 1}` : '';
     console.error('');
     console.error(`  ERR [${mod}${line}] ${err.sassMessage || err.message}`);
-    process.exit(1);
+    buildFailed = true;
 
 } finally {
     // Always restore the original _config.scss, even if the build failed.
     // Only runs if backup was successfully read (i.e. the config was actually swapped).
     if (backup !== null) {
-        fs.writeFileSync(configDest, backup);
+        try {
+            fs.writeFileSync(configDest, backup);
+        } catch (restoreErr) {
+            console.error('');
+            console.error(`  [atomic-css] WARNING: Could not restore scss/_config.scss: ${restoreErr.message}`);
+            console.error('  Run "npm install @viivue/atomic-css" to repair the package.');
+            console.error('');
+        }
     }
 }
+
+// Exit after finally has restored _config.scss.
+if (buildFailed) process.exit(1);
