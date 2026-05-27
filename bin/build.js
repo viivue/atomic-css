@@ -34,8 +34,15 @@ function getArg(name) {
 const configArg = getArg('--config');
 const outputArg = getArg('--output');
 
-// Both --config and --output are required. Exit quietly if either is missing.
-if (!configArg || !outputArg) process.exit(0);
+// Both --config and --output are required.
+// If called with no args at all (e.g. checking the binary exists), exit silently.
+// If only one arg is missing, tell the user which one.
+if (!configArg || !outputArg) {
+    if (args.length === 0) process.exit(0);
+    if (!configArg) console.warn('\n  [atomic-css] Missing required argument: --config <path/to/_config.scss>\n');
+    if (!outputArg) console.warn('\n  [atomic-css] Missing required argument: --output <path/to/output/>\n');
+    process.exit(0);
+}
 
 const configPath = path.resolve(process.cwd(), configArg);
 const outputDir  = path.resolve(process.cwd(), outputArg);
