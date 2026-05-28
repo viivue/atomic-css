@@ -1,10 +1,55 @@
 @use 'sass:math';
 @use "sass:list";
-@forward "config";
-@use "config" as *;
 @use "sass:meta";
 @use "sass:map";
 @use "sass:string";
+@use "config";
+@use "defs" as d;
+
+// Merge: variables defined in _config.scss override _defs.scss defaults.
+// Uses meta.module-variables so only variables the user actually wrote in
+// _config.scss are treated as overrides — unset ones fall back to defs.
+$_cv: meta.module-variables("config");
+
+@function _resolve($key, $default) {
+  @if map.has-key($_cv, $key) {
+    $val: map.get($_cv, $key);
+
+    @if $val == () {
+      @return $default;
+    }
+
+    @return $val;
+  }
+
+  @return $default;
+}
+
+// Configurable variables (user overrides merged with defs defaults).
+// Keys must use hyphens: meta.module-variables normalises $foo_bar → "foo-bar".
+$info: _resolve("info", d.$info);
+$variables: _resolve("variables", d.$variables);
+$breakpoints: _resolve("breakpoints", d.$breakpoints);
+$fonts: _resolve("fonts", d.$fonts);
+$colors: _resolve("colors", d.$colors);
+$vertical_spacing: _resolve("vertical-spacing", d.$vertical_spacing);
+$custom_vertical_spacing: _resolve("custom-vertical-spacing", d.$custom_vertical_spacing);
+$horizontal_spacing: _resolve("horizontal-spacing", d.$horizontal_spacing);
+$custom_horizontal_spacing: _resolve("custom-horizontal-spacing", d.$custom_horizontal_spacing);
+$coordinate_values: _resolve("coordinate-values", d.$coordinate_values);
+$aspect_ratio: _resolve("aspect-ratio", d.$aspect_ratio);
+$border_radius: _resolve("border-radius", d.$border_radius);
+$font_sizes: _resolve("font-sizes", d.$font_sizes);
+$font_size_custom: _resolve("font-size-custom", d.$font_size_custom);
+$containers: _resolve("containers", d.$containers);
+$loading_class: _resolve("loading-class", d.$loading_class);
+
+// Structural variables (not user-configurable)
+$version: d.$version;
+$axes: d.$axes;
+$coordinates: d.$coordinates;
+$ignore: d.$ignore;
+$replace_prop: d.$replace_prop;
 
 ////////////////////////////// Functions
 @function strip-units($number) {
@@ -328,12 +373,12 @@
     }
 
     /* #{$prop} */
-    @debug "------v------";
-    @debug #{$prop};
+    //@debug "------v------";
+    //@debug #{$prop};
 
     // Type: default
     @if (not $has_type) {
-      @debug "Type: default";
+      //@debug "Type: default";
       $hyphen: "-";
       @if not $has_hyphen {
         $hyphen: '';
@@ -350,7 +395,7 @@
 
     // Type: mixin
     @if ($is_mixin) {
-      @debug "Type: Mixin";
+      //@debug "Type: Mixin";
 
       $mixin: map.get($data, "mixin");
 
@@ -366,7 +411,7 @@
 
     // Type: value-key-as-postfix
     @if ($is_value_key_as_postfix) {
-      @debug "Type: value-key-as-postfix";
+      //@debug "Type: value-key-as-postfix";
 
       @each $postfix, $val in $value {
         @if $val and not is-ignored($prop, $val) {

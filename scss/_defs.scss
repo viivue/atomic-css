@@ -1,7 +1,7 @@
 /// Definitions
 /// DO NOT EDIT!
 
-$version: "1.2.4";
+$version: "1.2.5";
 $info: ();
 
 // axes
@@ -32,11 +32,6 @@ $breakpoints: (
         "md": 1024px,
         "sm": 768px,
         "xs": 480px,
-);
-
-// font sizes
-$font-sizes: (
-        "values": 0 1 2 4 6 8 12 16 24 32 48 64 96 128,
 );
 
 // font family
@@ -71,25 +66,18 @@ $aspect_ratio: ();
 $border_radius: ();
 
 // font sizes
-$font_sizes: ();
+$font_sizes: (
+        "values": 0 1 2 4 6 8 12 16 24 32 48 64 96 128,
+);
 
 // font size custom name
 $font_size_custom: ();
 
 // containers
 $containers: ();
-//$containers: (
-//        size:(
-//                "container-small": 880,
-//                "container": 1076,
-//                "container-large": 1196,
-//                "container-fluid": unset, // unset => none max-width but still keep gap value
-//        ),
-//        gap:20 // container paddings
-//);
 
 // loading class
 $loading_class: (
         "enable": false,
         "isWoocommerce": false // true if project using woocommerce
-)
+);
