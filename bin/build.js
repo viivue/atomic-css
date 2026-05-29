@@ -4,11 +4,11 @@
  * @viivue/atomic-css — build script
  *
  * How it works:
- *   1. Takes your project's config file (--config) and temporarily copies it
- *      into this package's scss/ folder, replacing the default _config.scss.
- *   2. Compiles _build.scss (which picks up your config automatically).
- *   3. Writes atomic.css and atomic.min.css to your output folder (--output).
- *   4. Restores the original _config.scss no matter what (even on error).
+ *   1. Copies this package's scss/ folder to a unique temp directory.
+ *   2. Overwrites _config.scss in that temp directory with your project's config.
+ *   3. Compiles from the temp directory — node_modules is never modified.
+ *   4. Writes atomic.css and atomic.min.css to your output folder (--output).
+ *   5. Cleans up the temp directory in the finally block.
  *
  * Usage (in your project's package.json scripts):
  *   node node_modules/@viivue/atomic-css/bin/build.js \
@@ -18,6 +18,7 @@
 
 'use strict';
 
+const os = require('os');
 const path = require('path');
 const fs = require('fs');
 const sass = require('sass');
@@ -58,7 +59,7 @@ if(!fs.existsSync(configPath)){
 // ── Paths inside this package ─────────────────────────────────────────────────
 // __dirname is the bin/ folder of this package (inside node_modules)
 const pkgDir = path.join(__dirname, '..');
-const configDest = path.join(pkgDir, 'scss', '_config.scss'); // will be overwritten temporarily
+const configDest = path.join(pkgDir, 'scss', '_config.scss'); // checked for package integrity only
 const buildEntry = path.join(pkgDir, 'scss', '_build.scss');  // main sass entry point
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
@@ -78,55 +79,39 @@ function moduleFromUrl(url){
 
 // ── Build ─────────────────────────────────────────────────────────────────────
 
-// backup is declared outside try so finally can always check it safely.
-// If it stays null, the config was never swapped and nothing needs restoring.
-let backup = null;
+// tempDir is declared outside try so finally can always clean it up.
+let tempDir = null;
 
 // buildFailed is set in catch so we can call process.exit(1) AFTER finally
-// has had a chance to restore _config.scss.
+// has cleaned up the temp directory.
 // Never call process.exit() inside catch — it skips the finally block entirely.
 let buildFailed = false;
 
-// Restore _config.scss on SIGTERM / SIGINT (e.g. Ctrl-C mid-build).
-// SIGKILL (kill -9) cannot be caught — reinstall the package if that happens.
-function restoreOnSignal(){
-    if(backup !== null){
-        try{
-            fs.writeFileSync(configDest, backup);
-        }catch(_){
-        }
-    }
-    process.exit(1);
-}
-
-process.on('SIGTERM', restoreOnSignal);
-process.on('SIGINT', restoreOnSignal);
-
 try{
     // Verify package integrity before doing anything
-    if(!fs.existsSync(configDest)){
-        console.error(`[atomic-css] Package file missing: ${configDest}`);
-        console.error('  Try reinstalling @viivue/atomic-css.');
-        process.exit(1);
-    }
-    if(!fs.existsSync(buildEntry)){
-        console.error(`[atomic-css] Package file missing: ${buildEntry}`);
+    if(!fs.existsSync(configDest) || !fs.existsSync(buildEntry)){
+        console.error(`[atomic-css] Package files missing in: ${path.join(pkgDir, 'scss')}`);
         console.error('  Try reinstalling @viivue/atomic-css.');
         process.exit(1);
     }
 
-    backup = fs.readFileSync(configDest, 'utf8');
-    const modules = getModules(buildEntry);
+    // Copy the entire scss/ folder to a unique temp directory so node_modules
+    // is never modified — safe for read-only environments and concurrent builds.
+    tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'atomic-css-'));
+    fs.cpSync(path.join(pkgDir, 'scss'), tempDir, {recursive: true});
+
+    // Overwrite _config.scss in the temp directory with the user's config
+    fs.copyFileSync(configPath, path.join(tempDir, '_config.scss'));
+
+    const tempBuildEntry = path.join(tempDir, '_build.scss');
+    const modules = getModules(tempBuildEntry);
 
     // Create the output folder if it doesn't exist yet
     fs.mkdirSync(outputDir, {recursive: true});
 
-    // Swap in the user's config — this is how the build picks up custom values
-    fs.copyFileSync(configPath, configDest);
-
     const warnings = [];
 
-    const {css} = sass.compile(buildEntry, {
+    const {css} = sass.compile(tempBuildEntry, {
         sourceMap: false,
         // Allow sass to resolve package imports (e.g. @use "@viivue/atomic-css/...")
         // from the project's node_modules folder
@@ -176,19 +161,15 @@ try{
     buildFailed = true;
 
 }finally{
-    // Always restore the original _config.scss, even if the build failed.
-    // Only runs if backup was successfully read (i.e. the config was actually swapped).
-    if(backup !== null){
+    // Clean up the temp directory whether the build succeeded or failed.
+    if(tempDir){
         try{
-            fs.writeFileSync(configDest, backup);
-        }catch(restoreErr){
-            console.error('');
-            console.error(`  [atomic-css] WARNING: Could not restore scss/_config.scss: ${restoreErr.message}`);
-            console.error('  Run "npm install @viivue/atomic-css" to repair the package.');
-            console.error('');
+            fs.rmSync(tempDir, {recursive: true, force: true});
+        }catch(cleanupErr){
+            console.error(`  [atomic-css] WARNING: Could not clean up temp directory: ${cleanupErr.message}`);
         }
     }
 }
 
-// Exit after finally has restored _config.scss.
+// Exit after finally has cleaned up the temp directory.
 if(buildFailed) process.exit(1);
