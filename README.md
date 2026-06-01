@@ -7,14 +7,13 @@
 
 > ⚛️ Customizable Atomic CSS Framework for everyone.
 
-- 💡Inspirited
-  by [Atomic CSS, Vì Một Thế Giới Hoà Bình](https://ehkoo.com/bai-viet/introduction-to-functional-utility-first-atomic-css)
+- 💡Inspirited by [Atomic CSS, Vì Một Thế Giới Hoà Bình](https://ehkoo.com/bai-viet/introduction-to-functional-utility-first-atomic-css)
 - 👀 Guided by [Stacks](https://stackoverflow.design/product/guidelines/using-stacks/)
 - ✨ Build with [SCSS](https://sass-lang.com/)
 
-We all might agree that Atomic CSS is a helpful tool for both FE and BE development. There's a lot of Atomic CSS
-frameworks out there (like [tailwindcss](https://tailwindcss.com/)), however, to **elevate the advantage of Atomic CSS
-**, while keeping
+
+We all might agree that Atomic CSS is a helpful tool for both FE and BE development. There's a lot of Atomic CSS 
+frameworks out there (like [tailwindcss](https://tailwindcss.com/)), however, to **elevate the advantage of Atomic CSS**, while keeping
 it in **as light-weight as possible**, and even **customizable** for each project, we have this project on the go.
 
 ## Usage
@@ -33,15 +32,12 @@ Import
 import "@viivue/atomic-css";
 ```
 
-Or, you can download the default Atomic CSS files in the [
-`/dist` folder](https://github.com/viivue/atomic-css/tree/main/dist).
+Or, you can download the default Atomic CSS files in the [`/dist` folder](https://github.com/viivue/atomic-css/tree/main/dist).
 
 ### CDN
-
 Check the CDN served by jsDelivr [here](https://www.jsdelivr.com/package/gh/viivue/atomic-css?tab=files&path=dist)
 
 ```html
-
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/viivue/atomic-css@1.1.10/dist/atomic.min.css">
 ```
 
@@ -96,13 +92,14 @@ This generates `atomic.css` and `atomic.min.css` in the output folder.
 ```shell
 npm install
 
-# Watch SCSS files and recompile on change
+# Watch SCSS files, then compile to previewed CSS
 npm run dev
 
-# Compile dist/atomic.css and minify to dist/atomic.min.css
+# Compile compressed CSS for distribution.
+# Check version at `_defs.scss` and `package.json`
 npm run prod
 
 # Publish NPM package
-# Auto-publish on release via GitHub workflow
+# Auto-publish package on release using GitHub workflow
 npm publish
 ```
