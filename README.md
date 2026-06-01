@@ -38,7 +38,7 @@ Or, you can download the default Atomic CSS files in the [`/dist` folder](https:
 Check the CDN served by jsDelivr [here](https://www.jsdelivr.com/package/gh/viivue/atomic-css?tab=files&path=dist)
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/viivue/atomic-css@1.1.10/dist/atomic.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/viivue/atomic-css@1.2.5/dist/atomic.min.css">
 ```
 
 ### Customization
@@ -53,16 +53,24 @@ Build a custom Atomic CSS directly from your project without cloning this repo.
 npm i @viivue/atomic-css
 ```
 
-**2. Copy `_config.scss` from the repository into your project**
+**2. Copy `_config.scss` into your project**
 
-Copy the file from `node_modules/@viivue/atomic-css/scss/_config.scss` — it already contains commented-out examples for all available variables (colors, fonts, breakpoints, etc.). Uncomment and edit only the variables you want to override; everything else falls back to the built-in defaults automatically.
+Download the config file directly from GitHub — it contains commented-out examples for all available variables (colors, fonts, breakpoints, etc.):
+
+```shell
+curl -o _config.scss https://raw.githubusercontent.com/viivue/atomic-css/main/scss/_config.scss
+```
+
+Or [view it on GitHub](https://github.com/viivue/atomic-css/blob/main/scss/_config.scss) and copy it manually.
+
+Uncomment and edit only the variables you want to override; everything else falls back to the built-in defaults automatically.
 
 **3. Add a build script to your `package.json`**
 
 ```json
 {
   "scripts": {
-    "build:css": "atomic-css --config path/to/_config.scss --output path/to/output/"
+    "build:css": "atomic-css --config scss/_config.scss --output dist/"
   }
 }
 ```
@@ -77,9 +85,12 @@ This generates `atomic.css` and `atomic.min.css` in the output folder.
 
 #### Option 2 — Clone & edit
 
+For contributors or anyone who wants to fork and modify the framework itself.
+
 1. Clone this repository to your local machine.
-2. Edit the `/scss/_config.scss`, you will find some example templates there.
-3. Generate the new Atomic CSS by `npm run prod`.
+2. Run `npm install` to install dependencies.
+3. Edit `/scss/_config.scss` to override variables (colors, fonts, breakpoints, etc.).
+4. Run `npm run prod` to compile the output CSS.
 
 ## Deployment
 
