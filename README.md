@@ -53,15 +53,9 @@ Build a custom Atomic CSS directly from your project without cloning this repo.
 npm i @viivue/atomic-css
 ```
 
-**2. Create a `_config.scss` in your project**
+**2. Copy `_config.scss` from the repository into your project**
 
-```scss
-// Only define the variables you want to override.
-// Everything else falls back to the built-in defaults automatically.
-$colors: (
-        primary: '#ff0000',
-);
-```
+Copy the file from `node_modules/@viivue/atomic-css/scss/_config.scss` — it already contains commented-out examples for all available variables (colors, fonts, breakpoints, etc.). Uncomment and edit only the variables you want to override; everything else falls back to the built-in defaults automatically.
 
 **3. Add a build script to your `package.json`**
 
@@ -83,7 +77,7 @@ This generates `atomic.css` and `atomic.min.css` in the output folder.
 
 #### Option 2 — Clone & edit
 
-1. Clone this repo to your local machine.
+1. Clone this repository to your local machine.
 2. Edit the `/scss/_config.scss`, you will find some example templates there.
 3. Generate the new Atomic CSS by `npm run prod`.
 
