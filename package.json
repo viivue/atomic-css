@@ -1,15 +1,35 @@
 {
   "name": "@viivue/atomic-css",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "description": "⚛️ Customizable Atomic CSS Framework.",
   "main": "./dist/atomic.min.css",
+  "style": "./dist/atomic.min.css",
+  "exports": {
+    ".": {
+      "style": "./dist/atomic.min.css",
+      "default": "./dist/atomic.min.css"
+    },
+    "./scss/*": "./scss/*",
+    "./dist/*": "./dist/*"
+  },
+  "engines": {
+    "node": ">=16"
+  },
+  "bin": {
+    "atomic-css": "./bin/build.js"
+  },
+  "files": [
+    "bin",
+    "scss",
+    "dist"
+  ],
   "scripts": {
     "sass": "sass scss:css --no-source-map",
     "sass:watch": "sass scss:css -w --no-source-map",
-    "sass:compressed": "sass scss/_build.scss:dist/atomic.css --no-source-map",
+    "sass:build": "sass scss/_build.scss:dist/atomic.css --no-source-map",
     "optimize": "csso dist/atomic.css --output dist/atomic.min.css --stat",
-    "dev": "npm run sass:watch && npm run sass:compressed",
-    "prod": "npm run sass && npm run sass:compressed && npm run optimize"
+    "dev": "sass scss:css scss/_build.scss:dist/atomic.css -w --no-source-map",
+    "prod": "npm run sass:build && npm run optimize"
   },
   "repository": {
     "type": "git",
@@ -29,8 +49,11 @@
     "url": "https://github.com/viivue/atomic-css/issues"
   },
   "homepage": "https://github.com/viivue/atomic-css",
-  "devDependencies": {
-    "csso-cli": "^3.0.0",
+  "dependencies": {
+    "csso": "^5.0.0",
     "sass": "^1.51.0"
+  },
+  "devDependencies": {
+    "csso-cli": "^4.0.2"
   }
 }

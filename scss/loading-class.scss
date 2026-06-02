@@ -1,14 +1,20 @@
 /**
  * Loading
  */
-@import "helpers";
+@use "helpers";
+@use "sass:map";
 
 @mixin print-loading-class($data) {
-  $isEnabled: map-get($data, 'enable');
-  $isWoocommerce: map-get($data, 'isWoocommerce');
+  $isEnabled: map.get($data, 'enable');
+  $isWoocommerce: map.get($data, 'isWoocommerce');
 
-  // prefix project
-  $project-prefix: map-get($info, 'variable-prefix');
+  // prefix project — guard against null (map.get returns null when key is absent)
+  // mirrors the same logic in _helpers.scss print-var-prop()
+  $raw-prefix: map.get(helpers.$info, 'variable-prefix');
+  $project-prefix: '';
+  @if $raw-prefix and $raw-prefix != '' {
+    $project-prefix: $raw-prefix + '-';
+  }
 
   // $isEnabled: true => loading is used
   @if ($isEnabled) {
@@ -43,8 +49,8 @@
         margin: calc(-0.5 * var(--loading-size)) 0 0 calc(-0.5 * var(--loading-size));
         border-radius: 50%;
         border: 2px dashed transparent;
-        border-bottom-color: var(--#{$project-prefix}-color-primary);
-        border-right-color: var(--#{$project-prefix}-color-primary);
+        border-bottom-color: var(--#{$project-prefix}color-primary);
+        border-right-color: var(--#{$project-prefix}color-primary);
         animation: spinner .6s linear infinite;
         box-sizing: border-box;
       }
@@ -79,8 +85,8 @@
         margin: calc(-0.5 * var(--loading-size)) 0 0 calc(-0.5 * var(--loading-size));
         border-radius: 50%;
         border: 2px dashed transparent;
-        border-bottom-color: var(--#{$project-prefix}-color-primary);
-        border-right-color: var(--#{$project-prefix}-color-primary);
+        border-bottom-color: var(--#{$project-prefix}color-primary);
+        border-right-color: var(--#{$project-prefix}color-primary);
         animation: spinner .6s linear infinite;
         box-sizing: border-box;
       }
@@ -93,6 +99,4 @@
   }
 }
 
-@include print-loading-class($loading_class);
-
-
+@include print-loading-class(helpers.$loading_class);

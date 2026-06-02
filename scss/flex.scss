@@ -2,7 +2,7 @@
  * Flex
  * https://stackoverflow.design/product/base/flex/
  */
-@import "helpers";
+@use "helpers";
 
 $dataset: (
         align-content: stretch center flex-start flex-end space-between space-around initial inherit,
@@ -26,4 +26,4 @@ $dataset: (
 );
 
 // print
-@include print($dataset);
+@include helpers.print($dataset);

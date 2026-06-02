@@ -1,5 +1,55 @@
 @use 'sass:math';
-@import "config";
+@use "sass:list";
+@use "sass:meta";
+@use "sass:map";
+@use "sass:string";
+@use "config";
+@use "defs" as d;
+
+// Merge: variables defined in _config.scss override _defs.scss defaults.
+// Uses meta.module-variables so only variables the user actually wrote in
+// _config.scss are treated as overrides — unset ones fall back to defs.
+$_cv: meta.module-variables("config");
+
+@function _resolve($key, $default) {
+  @if map.has-key($_cv, $key) {
+    $val: map.get($_cv, $key);
+
+    @if $val == () {
+      @return $default;
+    }
+
+    @return $val;
+  }
+
+  @return $default;
+}
+
+// Configurable variables (user overrides merged with defs defaults).
+// Keys must use hyphens: meta.module-variables normalises $foo_bar → "foo-bar".
+$info: _resolve("info", d.$info);
+$variables: _resolve("variables", d.$variables);
+$breakpoints: _resolve("breakpoints", d.$breakpoints);
+$fonts: _resolve("fonts", d.$fonts);
+$colors: _resolve("colors", d.$colors);
+$vertical_spacing: _resolve("vertical-spacing", d.$vertical_spacing);
+$custom_vertical_spacing: _resolve("custom-vertical-spacing", d.$custom_vertical_spacing);
+$horizontal_spacing: _resolve("horizontal-spacing", d.$horizontal_spacing);
+$custom_horizontal_spacing: _resolve("custom-horizontal-spacing", d.$custom_horizontal_spacing);
+$coordinate_values: _resolve("coordinate-values", d.$coordinate_values);
+$aspect_ratio: _resolve("aspect-ratio", d.$aspect_ratio);
+$border_radius: _resolve("border-radius", d.$border_radius);
+$font_sizes: _resolve("font-sizes", d.$font_sizes);
+$font_size_custom: _resolve("font-size-custom", d.$font_size_custom);
+$containers: _resolve("containers", d.$containers);
+$loading_class: _resolve("loading-class", d.$loading_class);
+
+// Structural variables (not user-configurable)
+$version: d.$version;
+$axes: d.$axes;
+$coordinates: d.$coordinates;
+$ignore: d.$ignore;
+$replace_prop: d.$replace_prop;
 
 ////////////////////////////// Functions
 @function strip-units($number) {
@@ -7,13 +57,17 @@
 }
 
 @function get-unit($value) {
-  @return str-slice($value * 0 + "", 2, -1);
+  @return string.slice($value * 0 + "", 2, -1);
 }
 
 @function format-postfix($postfix) {
   $unit: get-unit($postfix);
 
-  @return if($unit == '%', strip-units($postfix) + 'p', strip-units($postfix));
+  @if $unit == '%' {
+    @return strip-units($postfix) + 'p';
+  } @else {
+    @return strip-units($postfix);
+  }
 }
 
 // get formatted value
@@ -24,12 +78,16 @@
   }
 
   // default unit is px
-  @return to-number(if(unitless($value), unquote($value+'px'), $value));
+  @if math.is-unitless($value) {
+    @return to-number(string.unquote($value+'px'));
+  } @else {
+    @return to-number($value);
+  }
 }
 
 // Is valid breakpoint
 @function is-breakpoint($breakpoint) {
-  @return map-has-key($breakpoints, $breakpoint);
+  @return map.has-key($breakpoints, $breakpoint);
 }
 
 // get previous breakpoint in responsive $data
@@ -39,8 +97,8 @@
 //)
 // get-previous-breakpoint(md,...) => "values"
 @function get-previous-breakpoint($breakpoint,$data) {
-  $keys: map-keys($data);
-  $current_index: index($keys, $breakpoint);
+  $keys: map.keys($data);
+  $current_index: list.index($keys, $breakpoint);
   $previous_index: $current_index - 1;
 
   // first index is 1 (yes, not 0!!!)
@@ -48,9 +106,9 @@
     $previous_index: 1;
   }
 
-  //@debug "Current #{$breakpoint} -> Prev #{nth($keys, $previous_index)}";
+  //@debug "Current #{$breakpoint} -> Prev #{list.nth($keys, $previous_index)}";
 
-  @return nth($keys, $previous_index);
+  @return list.nth($keys, $previous_index);
 }
 
 
@@ -64,14 +122,14 @@
 // get-postfix(80,sm,...) => 128
 @function get-previous-breakpoint-value($index,$value,$current_breakpoint,$data) {
   @if is-breakpoint($current_breakpoint) {
-    $default_values: map-get($data, "values");
-    $previous_values: map-get($data, get-previous-breakpoint($current_breakpoint, $data));
-    $current_values: map-get($data, $current_breakpoint);
-    $previous_val: nth($previous_values, $index);
+    $default_values: map.get($data, "values");
+    $previous_values: map.get($data, get-previous-breakpoint($current_breakpoint, $data));
+    $current_values: map.get($data, $current_breakpoint);
+    $previous_val: list.nth($previous_values, $index);
 
     // if responsive value is different
     @if $previous_val != $value {
-      @return nth($previous_values, $index);
+      @return list.nth($previous_values, $index);
     }
 
     //@debug "----";
@@ -83,8 +141,8 @@
 }
 
 @function get-desktop-value($index,$data) {
-  $default_values: map-get($data, "values");
-  @return nth($default_values, $index);
+  $default_values: map.get($data, "values");
+  @return list.nth($default_values, $index);
 }
 
 ///
@@ -95,35 +153,47 @@
 /// @return {Number}
 ///
 @function to-number($value) {
-  @if type-of($value) == 'number' {
+  @if meta.type-of($value) == 'number' {
     @return $value;
-  } @else if type-of($value) != 'string' {
+  } @else if meta.type-of($value) != 'string' {
     @warn ('Value for `to-number` should be a number or a string.');
   }
 
   $result: 0;
   $digits: 0;
-  $minus: str-slice($value, 1, 1) == '-';
+  $minus: string.slice($value, 1, 1) == '-';
   $numbers: ('0': 0, '1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '8': 8, '9': 9);
 
-  @for $i from if($minus, 2, 1) through str-length($value) {
-    $character: str-slice($value, $i, $i);
+  $start: 1;
+  @if $minus {
+    $start: 2;
+  }
 
-    @if not (index(map-keys($numbers), $character) or $character == '.') {
-      @return to-length(if($minus, -$result, $result), str-slice($value, $i))
+  @for $i from $start through string.length($value) {
+    $character: string.slice($value, $i, $i);
+
+    @if not (list.index(map.keys($numbers), $character) or $character == '.') {
+      $signed: $result;
+      @if $minus {
+        $signed: -$result;
+      }
+      @return to-length($signed, string.slice($value, $i))
     }
 
     @if $character == '.' {
       $digits: 1;
     } @else if $digits == 0 {
-      $result: $result * 10 + map-get($numbers, $character);
+      $result: $result * 10 + map.get($numbers, $character);
     } @else {
       $digits: $digits * 10;
-      $result: $result + map-get($numbers, $character) / $digits;
+      $result: $result + map.get($numbers, $character) / $digits;
     }
   }
-
-  @return if($minus, -$result, $result);
+  @if $minus {
+    @return -$result;
+  } @else {
+    @return $result;
+  }
 }
 
 ///
@@ -137,31 +207,31 @@
 @function to-length($value, $unit) {
   $units: ('px': 1px, 'cm': 1cm, 'mm': 1mm, '%': 1%, 'ch': 1ch, 'pc': 1pc, 'in': 1in, 'em': 1em, 'rem': 1rem, 'pt': 1pt, 'ex': 1ex, 'vw': 1vw, 'vh': 1vh, 'vmin': 1vmin, 'vmax': 1vmax);
 
-  @if not index(map-keys($units), $unit) {
+  @if not list.index(map.keys($units), $unit) {
     @warn ('Invalid unit `#{$unit}`.');
   }
 
-  @return $value * map-get($units, $unit);
+  @return $value * map.get($units, $unit);
 }
 
 @function str-split($string, $separator) {
   // empty array/list
   $split-arr: ();
   // first index of separator in string
-  $index: str-index($string, $separator);
+  $index: string.index($string, $separator);
   // loop through string
   @while $index != null {
     // get the substring from the first character to the separator
-    $item: str-slice($string, 1, $index - 1);
+    $item: string.slice($string, 1, $index - 1);
     // push item to array
-    $split-arr: append($split-arr, $item);
+    $split-arr: list.append($split-arr, $item);
     // remove item and separator from string
-    $string: str-slice($string, $index + 1);
+    $string: string.slice($string, $index + 1);
     // find new index of separator
-    $index: str-index($string, $separator);
+    $index: string.index($string, $separator);
   }
   // add the remaining string to list (the last item)
-  $split-arr: append($split-arr, $string);
+  $split-arr: list.append($split-arr, $string);
 
   @return $split-arr;
 }
@@ -173,10 +243,10 @@
 /// @param {String} $replace ('') - New value
 /// @return {String} - Updated string
 @function str-replace($string, $search, $replace: '') {
-  $index: str-index($string, $search);
+  $index: string.index($string, $search);
 
   @if $index {
-    @return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+    @return string.slice($string, 1, $index - 1) + $replace + str-replace(string.slice($string, $index + string.length($search)), $search, $replace);
   }
 
   @return $string;
@@ -187,7 +257,7 @@
   $split-prop: str-split($prop, "-");
   $short-prefix: '';
   @each $word in $split-prop {
-    $short-prefix: str-insert($short-prefix, str-slice($word, 0, 1), 100);
+    $short-prefix: string.insert($short-prefix, string.slice($word, 0, 1), 100);
   }
   @return $short-prefix;
 }
@@ -195,7 +265,7 @@
 // ignore based on prop:val
 @function is-ignored($search-prop, $search-value) {
   @each $val, $props in $ignore {
-    @if $val == $search-value and index($props,$search-prop) != null {
+    @if $val == $search-value and list.index($props,$search-prop) != null {
       @return true;
     }
   }
@@ -204,8 +274,8 @@
 }
 
 @function replace-prop($search-prop) {
-  @if map-has-key($replace_prop, $search-prop) {
-    @return map-get($replace_prop, $search-prop);
+  @if map.has-key($replace_prop, $search-prop) {
+    @return map.get($replace_prop, $search-prop);
   }
 
   // to string
@@ -242,7 +312,7 @@
 @mixin media-screen($breakpoint) {
   @if is-breakpoint($breakpoint) {
     /* Breakpoint #{$breakpoint} */
-    @media only screen and (max-width: map-get($breakpoints, $breakpoint)) {
+    @media only screen and (max-width: map.get($breakpoints, $breakpoint)) {
       @content;
     }
   } @else {
@@ -265,7 +335,7 @@
 
 @mixin print($dataset) {
   @each $prop, $data in $dataset {
-    $input-type: type-of($data);
+    $input-type: meta.type-of($data);
     $value: $data;
     $prefix: shorten-prop($prop);
 
@@ -276,39 +346,39 @@
     $is_inline: false;
 
     @if ($input-type=='map') {
-      $value: map-get($data, "value");
-      $prefix: map-get($data, "prefix");
+      $value: map.get($data, "value");
+      $prefix: map.get($data, "prefix");
 
       // has hyphen
-      @if map-has-key($data, "hyphen") {
-        $has_hyphen: map-get($data, "hyphen");
+      @if map.has-key($data, "hyphen") {
+        $has_hyphen: map.get($data, "hyphen");
       }
 
       // type
-      $has_type: map-has-key($data, "type");
-      $type: map-get($data, "type");
+      $has_type: map.has-key($data, "type");
+      $type: map.get($data, "type");
       $is_value_key_as_postfix: $has_type and $type == value-key-as-postfix;
       $is_mixin: $has_type and $type == mixin;
 
       // auto prefix for type map
-      @if ($input-type=='map' and not map-has-key($data, "prefix") and not $is_mixin) {
+      @if ($input-type=='map' and not map.has-key($data, "prefix") and not $is_mixin) {
         $prefix: shorten-prop($prop);
       }
 
       // type: inline
-      @if map-has-key($data, "inline") {
+      @if map.has-key($data, "inline") {
         $type: inline;
         $is_inline: true;
       }
     }
 
     /* #{$prop} */
-    @debug "------v------";
-    @debug #{$prop};
+    //@debug "------v------";
+    //@debug #{$prop};
 
     // Type: default
     @if (not $has_type) {
-      @debug "Type: default";
+      //@debug "Type: default";
       $hyphen: "-";
       @if not $has_hyphen {
         $hyphen: '';
@@ -325,9 +395,9 @@
 
     // Type: mixin
     @if ($is_mixin) {
-      @debug "Type: Mixin";
+      //@debug "Type: Mixin";
 
-      $mixin: map-get($data, "mixin");
+      $mixin: map.get($data, "mixin");
 
       // use prop as a fallback mixin name
       @if (not $mixin) {
@@ -341,7 +411,7 @@
 
     // Type: value-key-as-postfix
     @if ($is_value_key_as_postfix) {
-      @debug "Type: value-key-as-postfix";
+      //@debug "Type: value-key-as-postfix";
 
       @each $postfix, $val in $value {
         @if $val and not is-ignored($prop, $val) {
@@ -354,11 +424,11 @@
 
     // Type: inline
     @if ($is_inline) {
-      $inline: map-get($data, 'inline');
-      @if map-has-key($data, 'selectors') {
-        @include get-inline(map-get($data, 'selectors'), $inline);
+      $inline: map.get($data, 'inline');
+      @if map.has-key($data, 'selectors') {
+        @include get-inline(map.get($data, 'selectors'), $inline);
       } @else {
-        @include get-inline(str-insert($prop, '.', -100), $inline);
+        @include get-inline(string.insert($prop, '.', -100), $inline);
       }
     }
 
@@ -367,20 +437,20 @@
 
 @mixin get-inline-item($prop_val) {
   $parts: str-split($prop_val, ':');
-  $prop: nth($parts, 1);
-  $val: nth($parts, 2);
+  $prop: list.nth($parts, 1);
+  $val: list.nth($parts, 2);
   #{$prop}: #{$val};
 }
 
 @mixin get-inline($prop, $inline) {
   #{$prop} {
-    @if type-of($inline) == 'list' {
+    @if meta.type-of($inline) == 'list' {
       @each $prop_val in $inline {
         @include get-inline-item($prop_val);
       }
     }
 
-    @if type-of($inline) == 'string' {
+    @if meta.type-of($inline) == 'string' {
       @include get-inline-item($inline);
     }
   }
@@ -392,14 +462,14 @@
   @if $value != '' {
     $project-prefix: '';
 
-    @if map-has-key($info, 'variable-prefix') {
-      $i-prefix: map-get($info, 'variable-prefix');
+    @if map.has-key($info, 'variable-prefix') {
+      $i-prefix: map.get($info, 'variable-prefix');
       @if $i-prefix != '' {
-        $project-prefix: str-insert($i-prefix, '-', 100);
+        $project-prefix: string.insert($i-prefix, '-', 100);
       }
     }
 
-    --#{$project-prefix}#{$prefix}-#{$name}: #{$value};
+    --#{$project-prefix}#{$prefix}-#{$name + ""}: #{$value};
   }
 }
 
@@ -416,10 +486,10 @@
   @if $value != '' {
     $project-prefix: '';
 
-    @if map-has-key($info, 'variable-prefix') {
-      $i-prefix: map-get($info, 'variable-prefix');
+    @if map.has-key($info, 'variable-prefix') {
+      $i-prefix: map.get($info, 'variable-prefix');
       @if $i-prefix != '' {
-        $project-prefix: str-insert($i-prefix, '-', 100);
+        $project-prefix: string.insert($i-prefix, '-', 100);
       }
     }
 
@@ -431,10 +501,10 @@
 @function get-variable($prop) {
   $project-prefix: '';
 
-  @if map-has-key($info, 'variable-prefix') {
-    $i-prefix: map-get($info, 'variable-prefix');
+  @if map.has-key($info, 'variable-prefix') {
+    $i-prefix: map.get($info, 'variable-prefix');
     @if $i-prefix != '' {
-      $project-prefix: str-insert($i-prefix, '-', 100);
+      $project-prefix: string.insert($i-prefix, '-', 100);
     }
   }
 
@@ -446,8 +516,8 @@
 // ($list:0 1 2 4 6 8 12 16 24 32 48 64 96 128, $value: 48) => true
 
 @function map-search($list, $value) {
-  @for $i from 1 through length($list) {
-    @if (nth($list, $i) == $value) {
+  @for $i from 1 through list.length($list) {
+    @if (list.nth($list, $i) == $value) {
       @return true;
     }
   }
@@ -458,7 +528,7 @@
 // Check if the value is containing any CSS unit, create CSS unit if it not
 @mixin print-variables-in-root($list_responsive_values, $list_responsive_names,  $variable_name) {
   // get value list from $list_responsive_names
-  $allowed_values_list: map-get($list_responsive_values, "values");
+  $allowed_values_list: map.get($list_responsive_values, "values");
 
   :root {
     @each $responsive_name, $responsive_value in $list_responsive_names {

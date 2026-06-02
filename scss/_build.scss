@@ -1,35 +1,20 @@
 /// Build file (for production only)
-@import "config";
-
-@if map-get($info,"name") {
-  /*!
- * Atomic CSS #{$version}
- * Customized for #{map-get($info,"name")}
- * https://github.com/viivue/atomic-css
- */
-} @else {
-  /*!
- * Atomic CSS #{$version}
- * https://github.com/viivue/atomic-css
- */
-}
-
-
-@import "spacing";
-@import "positioning";
-@import "typography";
-@import "display";
-@import "flex";
-@import "transitions";
-@import "object-fit";
-@import "interactivity";
-@import "overflow";
-@import "border-radius";
-@import "skeleton";
-@import "width-height";
-@import "cursors";
-@import "aspect-ratio";
-@import "extra";
-@import "container";
-@import "font-sizes";
-@import "loading-class";
+@use "banner";
+@use "skeleton";
+@use "spacing";
+@use "positioning";
+@use "typography";
+@use "display";
+@use "flex";
+@use "transitions";
+@use "object-fit";
+@use "interactivity";
+@use "overflow";
+@use "border-radius";
+@use "width-height";
+@use "cursors";
+@use "aspect-ratio";
+@use "extra";
+@use "container";
+@use "font-sizes";
+@use "loading-class";

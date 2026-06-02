@@ -2,7 +2,7 @@
  * Object fit
  * https://stackoverflow.design/product/base/object-fit/
  */
-@import "helpers";
+@use "helpers";
 
 $dataset: (
         object-fit: fill contain cover scale-down none initial inherit,
@@ -10,4 +10,4 @@ $dataset: (
 );
 
 // print
-@include print($dataset);
+@include helpers.print($dataset);
