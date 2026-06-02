@@ -16,7 +16,7 @@
     "node": ">=16"
   },
   "bin": {
-    "atomic-css": "./bin/build.js"
+    "atomic-css": "bin/build.js"
   },
   "files": [
     "bin",
