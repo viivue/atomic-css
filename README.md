@@ -38,7 +38,7 @@ Or, you can download the default Atomic CSS files in the [`/dist` folder](https:
 Check the CDN served by jsDelivr [here](https://www.jsdelivr.com/package/gh/viivue/atomic-css?tab=files&path=dist)
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/viivue/atomic-css@1.2.5/dist/atomic.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@viivue/atomic-css@1.2.5/dist/atomic.min.css">
 ```
 
 ### Customization
